@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Lungo 2 - HTML5 Cross-Device Framework</title>
+    <title>FutbolCracks</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="HandheldFriendly" content="True">
@@ -53,7 +53,11 @@
 
 <body class="app">
     <section id="main" data-transition="slide">
-        <header data-title="FutbolCracks"></header>
+        <header data-title="FutbolCracks">
+            <nav>
+                <button data-article="cancha" data-view-article="listado-canchas" data-icon="chevron-left"></button>
+            </nav>
+        </header>
         <footer>
             <nav>
                 <a href="#" data-icon="trophy" data-view-section="main"></a>
@@ -61,15 +65,13 @@
             </nav>
         </footer>
 
-        <article id="main-article" class="active list scroll">
+        <article id="listado-canchas" class="active list scroll">
             <ul id="canchas"></ul>
         </article>
 
         <article id="cancha">
-            <header data-back="arrow-left"> <!--------------------------------------------------- -->
-            </header>
             <p class="centrar">
-                <img src="" alt="">
+                <img src="">
             </p>
             <p id="id" class="centrar"></p>
         </article>
@@ -94,33 +96,12 @@
     </section>
 
     <script src="js/quojs/quo.js"></script>
-    <script src="js/quojs/quo.ajax.js"></script>
+    <!-- // <script src="js/quojs/quo.ajax.js"></script> -->
     <script src="js/lungo.js"></script>
     <script src="js/library.js"></script>
     <script>
         Lungo.init({
             name: 'FutbolCracks'
-        });
-        $$(document).ready(function() {
-            Lungo.Service.Settings.async = true;
-            Lungo.Service.Settings.error = function(type, xhr){
-                alert("type: "+type+" xhr: "+xhr);
-            };
-            Lungo.Service.Settings.headers["Content-Type"] = "application/json";
-            Lungo.Service.Settings.crossDomain = false;
-            Lungo.Service.Settings.timeout = 1000;
-            var url = "http://localhost/futbolcracksapi/web/v1/usuario/listar-canchas";
-            // var imprimirCanchas = function(result){
-            //     console.log(result.data);
-            // };
-            Lungo.Service.post(url, "id=1", imprimirCanchas, "json");
-
-            Lungo.dom('section#main-article li').tap(function(event) {
-                alert('tap');
-                console.log(event.target);
-                // Lungo.dom("#id").attr('data-fc-id').html('light').toggleClass('dark');
-            });
-
         });
     </script>
 </body>
