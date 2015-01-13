@@ -56,6 +56,8 @@
         <header data-title="FutbolCracks">
             <nav>
                 <button data-article="cancha" data-view-article="listado-canchas" data-icon="chevron-left"></button>
+                <button data-article="listado-dias" data-view-article="cancha" data-icon="chevron-left"></button>
+                <button data-article="listado-horas" data-view-article="listado-dias" data-icon="chevron-left"></button>
             </nav>
         </header>
         <footer>
@@ -69,19 +71,34 @@
             <ul id="canchas"></ul>
         </article>
 
-        <article id="cancha">
+        <article id="cancha" class="scroll indented">
             <p class="centrar">
-                <img src="">
+                <img style="width: 100%; height: auto;" src="">
             </p>
-            <p id="id" class="centrar"></p>
+            <h2></h2>
+            <div class="layout horizontal">
+                <div data-layout="middle"><p id="label-telefono"></p></div>
+                <div data-layout="quarter"><p id="label-cupo"></p></div>
+            </div>
+            <p id="label-direccion"></p>
+            <button id="seleccionar-cancha" class="accept anchor" data-label="Seleccionar"></button><br><br>
+        </article>
+
+        <article id="listado-dias" class="scroll indented">
+            <ul id="dias"></ul>
+        </article>
+
+        <article id="listado-horas" class="scroll indented">
+            <ul id="horas"></ul>
         </article>
     </section>
 
     <section id="perfil" data-transition="slide">
         <header data-title="Perfil">
             <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
+            <nav class="on-right"><button data-icon="cog" data-view-section="cuenta"></button></nav>
         </header>
-        <article class="active">
+        <article class="active scroll">
             <h1 class="centrar">Datos...</h1>
             <p class="centrar">
                 <img src="images/profile.png" alt="...">
@@ -95,8 +112,25 @@
         </footer>
     </section>
 
+    <section id="cuenta" data-transition="fade">
+        <header data-title="Configuración">
+            <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
+        </header>
+        <article class="active scroll">
+            <h1 class="centrar">Datos...</h1>
+            <p class="centrar">
+                <img src="images/profile.png" alt="...">
+            </p>
+        </article>
+        <footer>
+            <nav>
+                <a href="#" data-icon="trophy" data-view-section="main"></a>
+                <a href="#" data-icon="user" data-view-section="back"></a>
+            </nav>
+        </footer>
+    </section>
+
     <script src="js/quojs/quo.js"></script>
-    <!-- // <script src="js/quojs/quo.ajax.js"></script> -->
     <script src="js/lungo.js"></script>
     <script src="js/library.js"></script>
     <script>
