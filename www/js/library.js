@@ -61,6 +61,7 @@ $$('#listado-horas ul').on('singleTap', 'li', function(event) {
     var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/equipos";
     Lungo.Notification.show();
 	hora = $$(this).attr('data-fc-hora');
+    console.log(cancha.id, fecha, hora);
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
 });
 
@@ -113,7 +114,7 @@ var imprimirHoras = function (result){
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             $$('#horas').append('<li class="thumb selectable arrow" data-fc-hora="'+
-                val.hora+' data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><strong>'+val.label+
+                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><strong>'+val.label+
                 '</strong><small>'+mensajes[Math.floor((Math.random() * mensajes.length))]+'</small></div></li>');
         });
         Lungo.Router.article("main", "listado-horas");
@@ -129,25 +130,33 @@ var imprimirEquipos = function (result){
     $$('#equipo-blanco').empty();
     $$('#equipo-negro').empty();
     if(result.status === "ok"){
-        $$.each(result.data, function(index, val) {
-            if(index === 0){
-                $$.each(val, function(i, v) {
-                    if(i === 0){
-                        $$('#equipo-blanco').append('<li data-fc-idUsuario="'+v.id_usuario+' data-fc-equipo="'+
-                        v.equipo+'" data-fc-entidad="usuario"><strong>'+v.nombre+'</strong><small>Usuario registrado</small></li>');
-                    }else{
-                        $$('#equipo-blanco').append('<li data-fc-idUsuario="'+v.id_usuario+' data-fc-equipo="'+
-                        v.equipo+'" data-fc-entidad="usuario"><strong>'+v.nombre+'</strong><small>Persona invitada</small></li>');
+        $$.each(result.data, function(index, equipo) {
+            if(index === 0){ //Equipo blanco
+                $$.each(equipo, function(i, perfil) {
+                    if(i === 0){ //Usuarios Registrados
+                        $$.each(perfil, function(index, jugador) {
+                            $$('#equipo-blanco').append('<li data-fc-idUsuario="'+jugador.id_usuario+' data-fc-equipo="'+
+                            jugador.equipo+'" data-fc-entidad="usuario"><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
+                        });
+                    }else{ //Usuarios Invitados
+                        $$.each(perfil, function(index, jugador) {
+                            $$('#equipo-blanco').append('<li data-fc-idUsuario="'+jugador.id_usuario+' data-fc-equipo="'+
+                            jugador.equipo+'" data-fc-entidad="usuario"><strong>'+jugador.nombre+'</strong><small>Invitado</small></li>');
+                        });
                     }
                 });
-            }else{
-                $$.each(val, function(i, v) {
-                    if(i === 0){
-                        $$('#equipo-negro').append('<li data-fc-idUsuario="'+v.id_usuario+' data-fc-equipo="'+
-                        v.equipo+'" data-fc-entidad="usuario"><strong>'+v.nombre+'</strong><small>Usuario registrado</small></li>');
-                    }else{
-                        $$('#equipo-negro').append('<li data-fc-idUsuario="'+v.id_usuario+' data-fc-equipo="'+
-                        v.equipo+'" data-fc-entidad="usuario"><strong>'+v.nombre+'</strong><small>Persona invitada</small></li>');
+            }else{ //Equipo negro
+                $$.each(equipo, function(i, perfil) {
+                    if(i === 0){ //Usuarios Registrados
+                        $$.each(perfil, function(index, jugador) {
+                            $$('#equipo-negro').append('<li data-fc-idUsuario="'+jugador.id_usuario+' data-fc-equipo="'+
+                            jugador.equipo+'" data-fc-entidad="usuario"><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
+                        });
+                    }else{ //Usuarios Invitados
+                        $$.each(perfil, function(index, jugador) {
+                            $$('#equipo-negro').append('<li data-fc-idUsuario="'+jugador.id_usuario+' data-fc-equipo="'+
+                            jugador.equipo+'" data-fc-entidad="usuario"><strong>'+jugador.nombre+'</strong><small>Invitado</small></li>');
+                        });
                     }
                 });
             }
