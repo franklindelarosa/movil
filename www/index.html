@@ -62,7 +62,7 @@
         </header>
         <footer>
             <nav>
-                <a href="#" data-icon="trophy" data-view-section="main"></a>
+                <a href="#" class="active" data-icon="trophy" data-view-section="main"></a>
                 <a href="#" data-icon="user" data-view-section="perfil"></a>
             </nav>
         </footer>
@@ -84,11 +84,11 @@
             <button id="seleccionar-cancha" class="accept anchor" data-label="Seleccionar"></button><br><br>
         </article>
 
-        <article id="listado-dias" class="scroll indented">
+        <article id="listado-dias" class="list scroll">
             <ul id="dias"></ul>
         </article>
 
-        <article id="listado-horas" class="scroll indented">
+        <article id="listado-horas" class="list scroll">
             <ul id="horas"></ul>
         </article>
     </section>
@@ -98,7 +98,7 @@
             <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
             <nav class="on-right"><button data-icon="cog" data-view-section="cuenta"></button></nav>
         </header>
-        <article class="active scroll">
+        <article id="article_perfil" class="active scroll">
             <h1 class="centrar">Datos...</h1>
             <p class="centrar">
                 <img src="images/profile.png" alt="...">
@@ -107,7 +107,7 @@
         <footer>
             <nav>
                 <a href="#" data-icon="trophy" data-view-section="back"></a>
-                <a href="#" data-icon="user" data-view-section="perfil"></a>
+                <a href="#" class="active" data-icon="user" data-view-section="perfil"></a>
             </nav>
         </footer>
     </section>
@@ -133,10 +133,5 @@
     <script src="js/quojs/quo.js"></script>
     <script src="js/lungo.js"></script>
     <script src="js/library.js"></script>
-    <script>
-        Lungo.init({
-            name: 'FutbolCracks'
-        });
-    </script>
 </body>
 </html>

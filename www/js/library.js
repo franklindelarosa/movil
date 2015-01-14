@@ -1,3 +1,6 @@
+Lungo.init({
+    name: 'FutbolCracks'
+});
 Lungo.ready(function() {
     Lungo.Notification.show();
     Lungo.Service.Settings.async = true;
@@ -27,7 +30,6 @@ $$('#listado-canchas ul').on('singleTap', 'li', function(event) {
         logo : $$(this).attr('data-fc-logo'),
 		imagen : $$(this).attr('data-fc-image'),
 	};
-    console.log(cancha);
     $$('article#cancha img').attr('src', 'http://elecsis.com.co/fcracks/web/images/canchas/'+cancha.imagen);
     $$('article#cancha h2').html(cancha.nombre);
     $$('#label-telefono').html("Tel: "+cancha.telefono);
@@ -43,6 +45,22 @@ $$('#seleccionar-cancha').on('singleTap', function(event) {
     var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/cancha-dias";
     Lungo.Service.post(url, {cancha:cancha.id}, imprimirDias, "json");
 });
+
+$$('#listado-dias ul').on('singleTap', 'li', function(event) {
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/cancha-horas";
+    Lungo.Notification.show();
+	fecha = $$(this).attr('data-fc-fecha');
+	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
+});
+
+$$('#listado-horas ul').on('singleTap', 'li', function(event) {
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/cancha-horas";
+    Lungo.Notification.show();
+	fecha = $$(this).attr('data-fc-fecha');
+	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
+});
+
+var mensajes = ["Anímate", "No lo pienses más", "Esta es la hora perfecta", "Qué estás esperando?"];
 
 function mostrarError(){
     var html_error = '<h1>Error</h1><p class="centrar"><img src="images/error.png"/></p><p class="centrar">Problemas con el servidor, intenta mas tarde</p>';
@@ -68,15 +86,33 @@ var imprimirCanchas = function (result){
 
 // este método imprime el listado de los días disponibles de la cancha seleccionada
 var imprimirDias = function (result){
-    console.log(result);
+    // console.log(result);
     $$('#dias').empty();
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
-            $$('#dias').append('<li class="selectable arrow" data-fc-fecha="'+
-                val.fecha+'><img src="http://elecsis.com.co/fcracks/web/images/logos/'+val.imagen_logo+'"/><div><strong>'+val.label+
+            $$('#dias').append('<li class="thumb selectable arrow" data-fc-fecha="'+
+                val.fecha+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><strong>'+val.label+
                 '</strong><small>'+val.fecha+'</small></div></li>');
         });
-        Lungo.Router.article("main", "dias");
+        Lungo.Router.article("main", "listado-dias");
+        Lungo.Notification.hide();
+    }else{
+        mostrarError();
+    }
+}
+
+// este método imprime el listado de las horas disponibles de la cancha seleccionada
+//en el día seleccionado
+var imprimirHoras = function (result){
+    console.log(result);
+    $$('#horas').empty();
+    if(result[0].status === "ok"){
+        $$.each(result[0]['data'], function(index, val) {
+            $$('#horas').append('<li class="thumb selectable arrow" data-fc-hora="'+
+                val.hora+' data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><strong>'+val.label+
+                '</strong><small>'+mensajes[Math.floor((Math.random() * mensajes.length))]+'</small></div></li>');
+        });
+        Lungo.Router.article("main", "listado-horas");
         Lungo.Notification.hide();
     }else{
         mostrarError();
