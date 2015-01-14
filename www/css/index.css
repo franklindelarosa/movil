@@ -1,3 +1,13 @@
 .centrar {
     text-align: center;
 }
+
+li.padre{
+	position: relative;
+}
+
+li > a.icono {
+	float: right;
+	color: gray;
+	padding-top: 4px;
+}

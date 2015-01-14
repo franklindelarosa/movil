@@ -7,10 +7,13 @@
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+@import url("http://fonts.googleapis.com/css?family=Oswald:400,300");
 body {
   background-color: #000;
   color: #f4f4f4;
-  font: 16px/1.25 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font: 16px/1.25, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px/1.25;
   font-weight: bold;
   letter-spacing: -0.05em;
 }
@@ -514,7 +517,8 @@ article .button.color {
 }
 article button.accept,
 article .button.accept {
-  background-color: #2ecc71;
+  /*background-color: #2ecc71;*/
+  background-color: #5ebd7b;
 }
 article button.cancel,
 article .button.cancel {

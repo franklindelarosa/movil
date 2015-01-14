@@ -46,9 +46,9 @@
 
     <!-- Lungo - Stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/lungo.css">
-        <link rel="stylesheet" type="text/css" href="css/lungo.icon.css">
-        <link rel="stylesheet" type="text/css" href="css/lungo.theme.css">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/lungo.icon.css">
+    <link rel="stylesheet" type="text/css" href="css/lungo.theme.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 <body class="app">
@@ -58,6 +58,7 @@
                 <button data-article="cancha" data-view-article="listado-canchas" data-icon="chevron-left"></button>
                 <button data-article="listado-dias" data-view-article="cancha" data-icon="chevron-left"></button>
                 <button data-article="listado-horas" data-view-article="listado-dias" data-icon="chevron-left"></button>
+                <button data-article="listado-equipos" data-view-article="listado-horas" data-icon="chevron-left"></button>
             </nav>
         </header>
         <footer>
@@ -77,8 +78,8 @@
             </p>
             <h2></h2>
             <div class="layout horizontal">
+                <div data-layout="middle"><p id="label-cupo"></p></div>
                 <div data-layout="middle"><p id="label-telefono"></p></div>
-                <div data-layout="quarter"><p id="label-cupo"></p></div>
             </div>
             <p id="label-direccion"></p>
             <button id="seleccionar-cancha" class="accept anchor" data-label="Seleccionar"></button><br><br>
@@ -92,9 +93,15 @@
             <ul id="horas"></ul>
         </article>
 
-        <article id="listado-equipos" class="list scroll">
-            <ul id="equipo-blanco"></ul>
-            <ul id="equipo-negro"></ul>
+        <article id="listado-equipos" class="list scroll indented">
+            <ul>
+                <li class="anchor"><a id="unirse-blanco" href="#" class="icono" data-icon="plus"></a><h2>Equipo Blanco</h2>
+                    <ul id="equipo-blanco"></ul>
+                </li>
+                <li class="anchor"><a id="unirse-negro" href="#" class="icono" data-icon="plus"></a><h2>Equipo Negro</h2>
+                    <ul id="equipo-negro"></ul>
+                </li>
+            </ul>
         </article>
     </section>
 
@@ -137,6 +144,7 @@
 
     <script src="js/quojs/quo.js"></script>
     <script src="js/lungo.js"></script>
-    <script src="js/library.js"></script>
+    <script src="js/eventos.js"></script>
+    <script src="js/metodos.js"></script>
 </body>
 </html>
