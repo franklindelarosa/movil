@@ -11,6 +11,7 @@ Lungo.ready(function() {
         console.log(type); /*------------------------------------------------------------------------------------*/
     };
     Lungo.Service.Settings.headers["Content-Type"] = "application/json";
+    // Lungo.Service.Settings.headers["Access-Control-Allow-Origin"] = "*";
     Lungo.Service.Settings.crossDomain = false;
     Lungo.Service.Settings.timeout = 10000;
     var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/listar-canchas";
@@ -42,11 +43,13 @@ $$('#listado-canchas ul').on('singleTap', 'li', function(event) {
 
 $$('#seleccionar-cancha').on('singleTap', function(event) {
     Lungo.Notification.show();
+    // var url = "http://localhost/futbolcracksapi/web/v1/usuario/cancha-dias";
     var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/cancha-dias";
     Lungo.Service.post(url, {cancha:cancha.id}, imprimirDias, "json");
 });
 
 $$('#listado-dias ul').on('singleTap', 'li', function(event) {
+    // var url = "http://localhost/futbolcracksapi/web/v1/usuario/cancha-horas";
     var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/cancha-horas";
     Lungo.Notification.show();
 	fecha = $$(this).attr('data-fc-fecha');
@@ -54,10 +57,11 @@ $$('#listado-dias ul').on('singleTap', 'li', function(event) {
 });
 
 $$('#listado-horas ul').on('singleTap', 'li', function(event) {
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/cancha-horas";
+    // var url = "http://localhost/futbolcracksapi/web/v1/usuario/equipos";
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/equipos";
     Lungo.Notification.show();
-	fecha = $$(this).attr('data-fc-fecha');
-	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
+	hora = $$(this).attr('data-fc-hora');
+	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
 });
 
 var mensajes = ["Anímate", "No lo pienses más", "Esta es la hora perfecta", "Qué estás esperando?"];
@@ -104,15 +108,51 @@ var imprimirDias = function (result){
 // este método imprime el listado de las horas disponibles de la cancha seleccionada
 //en el día seleccionado
 var imprimirHoras = function (result){
-    console.log(result);
+    // console.log(result);
     $$('#horas').empty();
-    if(result[0].status === "ok"){
-        $$.each(result[0]['data'], function(index, val) {
+    if(result.status === "ok"){
+        $$.each(result['data'], function(index, val) {
             $$('#horas').append('<li class="thumb selectable arrow" data-fc-hora="'+
                 val.hora+' data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><strong>'+val.label+
                 '</strong><small>'+mensajes[Math.floor((Math.random() * mensajes.length))]+'</small></div></li>');
         });
         Lungo.Router.article("main", "listado-horas");
+        Lungo.Notification.hide();
+    }else{
+        mostrarError();
+    }
+}
+
+// este método imprime el listado de los jugadores de cada equipo
+var imprimirEquipos = function (result){
+    console.log(result);
+    $$('#equipo-blanco').empty();
+    $$('#equipo-negro').empty();
+    if(result.status === "ok"){
+        $$.each(result.data, function(index, val) {
+            if(index === 0){
+                $$.each(val, function(i, v) {
+                    if(i === 0){
+                        $$('#equipo-blanco').append('<li data-fc-idUsuario="'+v.id_usuario+' data-fc-equipo="'+
+                        v.equipo+'" data-fc-entidad="usuario"><strong>'+v.nombre+'</strong><small>Usuario registrado</small></li>');
+                    }else{
+                        $$('#equipo-blanco').append('<li data-fc-idUsuario="'+v.id_usuario+' data-fc-equipo="'+
+                        v.equipo+'" data-fc-entidad="usuario"><strong>'+v.nombre+'</strong><small>Persona invitada</small></li>');
+                    }
+                });
+            }else{
+                $$.each(val, function(i, v) {
+                    if(i === 0){
+                        $$('#equipo-negro').append('<li data-fc-idUsuario="'+v.id_usuario+' data-fc-equipo="'+
+                        v.equipo+'" data-fc-entidad="usuario"><strong>'+v.nombre+'</strong><small>Usuario registrado</small></li>');
+                    }else{
+                        $$('#equipo-negro').append('<li data-fc-idUsuario="'+v.id_usuario+' data-fc-equipo="'+
+                        v.equipo+'" data-fc-entidad="usuario"><strong>'+v.nombre+'</strong><small>Persona invitada</small></li>');
+                    }
+                });
+            }
+        });
+        Lungo.Router.article("main", "listado-equipos");
         Lungo.Notification.hide();
     }else{
         mostrarError();
