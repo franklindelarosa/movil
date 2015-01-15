@@ -82,7 +82,7 @@
                 <div data-layout="middle"><p id="label-telefono"></p></div>
             </div>
             <p id="label-direccion"></p>
-            <button id="seleccionar-cancha" class="accept anchor" data-label="Seleccionar"></button><br><br>
+            <p class="centrar"><button id="seleccionar-cancha" class="accept" data-label="Seleccionar"></button></p><br><br>
         </article>
 
         <article id="listado-dias" class="list scroll">
@@ -102,6 +102,59 @@
                     <ul id="equipo-negro"></ul>
                 </li>
             </ul>
+        </article>
+    </section>
+
+    <section id="login" data-transition="fade">
+        <header data-title="Iniciar Sesión">
+            <nav class="on-left">
+                <button data-view-section="back" data-icon="chevron-left"></button>
+            </nav>
+            <nav class="on-right">
+                <button data-view-section="registrar" data-label="Registrar&nbsp"></button>
+            </nav>
+        </header>
+        <article id="article_login" class="active indented scroll">
+            <img src="images/login.png" style="width: 100%; height: auto;">
+            <div class="form">
+                <fieldset data-icon="inbox">
+                    <input id="correo" class="border" type="email" placeholder="Correo">
+                </fieldset>
+                <fieldset data-icon="user">
+                    <input id="contrasena" class="border" type="password" placeholder="Contraseña">
+                </fieldset>
+                <p class="centrar"><button class="accept margin-top margin-bottom" data-label="Ingresa"></button></p>
+                <h5 class="margin-top margin-bottom centrar">o:</h5>
+                <button class="anchor margin-top margin-bottom" data-icon="facebook" data-label="Entra con Facebook"></button>
+            </div>
+        </article>
+    </section>
+
+    <section id="registrar" data-transition="fade">
+        <header data-title="Registarse">
+            <nav class="on-left"><button data-label="Cancelar" data-view-section="back"></button></nav>
+            <nav class="on-right"><button id="registrar" data-label="Guardar&nbsp"></button></nav>
+        </header>
+        <article class="active scroll indented">
+            <div class="form">
+                <fieldset data-icon="user">
+                    <input id="campo_nombres" class="border" type="text" placeholder="Nombre(s)">
+                </fieldset>
+                <fieldset data-icon="user">
+                    <input id="campo_apellidos" class="border" type="text" placeholder="Apellido(s)">
+                </fieldset>
+                <fieldset data-icon="lock">
+                    <input id="campo_contrasena" class="border" type="password" placeholder="Contraseña">
+                </fieldset>
+                <fieldset>
+                    <label>Sexo:</label>
+                    <input id="campo_sexo" class="inline" type="checkbox">
+                </fieldset>
+                <fieldset data-icon="phone">
+                    <input id="campo_telefono" class="border" type="tel" placeholder="Telefono">
+                </fieldset>
+                <p class="centrar"><button class="accept margin-top margin-bottom" data-label="Guardar"></button></p>
+            </div>
         </article>
     </section>
 

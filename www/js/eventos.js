@@ -14,9 +14,9 @@ Lungo.ready(function() {
     // Lungo.Service.Settings.headers["Access-Control-Allow-Origin"] = "*";
     Lungo.Service.Settings.crossDomain = false;
     Lungo.Service.Settings.timeout = 10000;
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/listar-canchas";
-    // var url = "http://localhost/futbolcracksapi/web/v1/usuario/listar-canchas";
-    // var url = "https://futbolcracksapi.herokuapp.com/web/v1/usuario/listar-canchas";
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/listar-canchas";
+    // var url = "http://localhost/futbolcracksapi/web/v1/site/listar-canchas";
+    // var url = "https://futbolcracksapi.herokuapp.com/web/v1/site/listar-canchas";
     Lungo.Service.post(url, "id=1", imprimirCanchas, "json");
 
 });
@@ -43,23 +43,31 @@ $$('#listado-canchas ul').on('singleTap', 'li', function(event) {
 
 $$('#seleccionar-cancha').on('singleTap', function(event) {
     Lungo.Notification.show();
-    // var url = "http://localhost/futbolcracksapi/web/v1/usuario/cancha-dias";
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/cancha-dias";
+    // var url = "http://localhost/futbolcracksapi/web/v1/site/cancha-dias";
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/cancha-dias";
     Lungo.Service.post(url, {cancha:cancha.id}, imprimirDias, "json");
 });
 
 $$('#listado-dias ul').on('singleTap', 'li', function(event) {
-    // var url = "http://localhost/futbolcracksapi/web/v1/usuario/cancha-horas";
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/cancha-horas";
+    // var url = "http://localhost/futbolcracksapi/web/v1/site/cancha-horas";
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/cancha-horas";
     Lungo.Notification.show();
 	fecha = $$(this).attr('data-fc-fecha');
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
 });
 
 $$('#listado-horas ul').on('singleTap', 'li', function(event) {
-    // var url = "http://localhost/futbolcracksapi/web/v1/usuario/equipos";
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/equipos";
+    // var url = "http://localhost/futbolcracksapi/web/v1/site/equipos";
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/equipos";
     Lungo.Notification.show();
 	hora = $$(this).attr('data-fc-hora');
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
+});
+
+$$('#unirse-blanco').on('singleTap', function(event) {
+    if(localStorage["_chrome-rel-back"]){
+        console.log("existe");
+    }else{
+        Lungo.Router.section("login");
+    }
 });
