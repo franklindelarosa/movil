@@ -10,6 +10,10 @@ Lungo.ready(function() {
         }
         console.log(type); /*------------------------------------------------------------------------------------*/
     };
+    // localStorage.prueba = {nombre: "Hello", twitter: "twitter"};
+    // var x = localStorage.getItem("_chrome-rel-back");
+    // console.log(localStorage["_chrome-rel-back"]);
+    
     Lungo.Service.Settings.headers["Content-Type"] = "application/json";
     // Lungo.Service.Settings.headers["Access-Control-Allow-Origin"] = "*";
     Lungo.Service.Settings.crossDomain = false;
@@ -65,9 +69,38 @@ $$('#listado-horas ul').on('singleTap', 'li', function(event) {
 });
 
 $$('#unirse-blanco').on('singleTap', function(event) {
+    equipo = "blancos"; //se envía en plurarl porque la Api la necesita así.
+    if(sessionStorage["lanzadoDesdeHome"]){
+        sessionStorage.removeItem("lanzadoDesdeHome");
+    }
     if(localStorage["_chrome-rel-back"]){
-        console.log("existe");
+        adicionarJugador("usuario");
     }else{
         Lungo.Router.section("login");
+    }
+});
+
+$$('#unirse-negro').on('singleTap', function(event) {
+    equipo = "negros"; //se envía en plurarl porque la Api la necesita así.
+    if(sessionStorage["lanzadoDesdeHome"]){
+        sessionStorage.removeItem("lanzadoDesdeHome");
+    }
+    if(localStorage["_chrome-rel-back"]){
+        adicionarJugador("usuario");
+    }else{
+        Lungo.Router.section("login");
+    }
+});
+
+$$('#iniciar-sesion').on('singleTap', function(event) {
+    // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/login";
+    Lungo.Notification.show();
+    var correo = $$('#correo').val();
+    var contrasena = $$('#contrasena').val();
+    if(correo === "" || contrasena === ""){
+        Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
+    }else{
+        Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
     }
 });

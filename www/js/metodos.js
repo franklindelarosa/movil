@@ -2,7 +2,8 @@ var mensajes = ["Anímate", "No lo pienses más", "Esta es la hora perfecta", "Q
 
 function mostrarError(){
     var html_error = '<h1>Error</h1><p class="centrar"><img src="images/error.png"/></p><p class="centrar">Problemas con el servidor, intenta mas tarde</p>';
-    Lungo.Notification.html(html_error, "Cerrar");
+    // Lungo.Notification.html(html_error, "Cerrar");
+    Lungo.Notification.error("Error", "Problemas con el servidor, intenta mas tarde", "remove", function(){return});
 }
 
 // este método imprime el listado de las canchas en la primera vista
@@ -59,7 +60,8 @@ var imprimirHoras = function (result){
 
 // este método imprime el listado de los jugadores de cada equipo
 var imprimirEquipos = function (result){
-    console.log(result);
+    // console.log(result);
+    partido = result.partido;
     $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+(result.data[0][0].length + result.data[0][1].length) +"/"+(cancha.cupo_max/2));
     $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+(result.data[1][0].length + result.data[1][1].length) +"/"+(cancha.cupo_max/2));
     $$('#equipo-blanco').empty();
@@ -97,6 +99,64 @@ var imprimirEquipos = function (result){
     }else{
         mostrarError();
     }
+}
+
+function adicionarJugador(entidad){
+    var data_base = {
+        
+    }
+    if(entidad === "usuario"){
+        // var url = "http://localhost/futbolcracksapi/web/v1/usuario/registrar-usuario";
+        var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/registrar-usuario?access-token="+localStorage["_chrome-rel-back"];
+        console.log(url);
+        Lungo.Service.post(url, {equipo: equipo, partido: partido}, imprimirJugador, "json");
+    }else{
+        // var url = "http://localhost/futbolcracksapi/web/v1/usuario/registrar-invitado";
+        var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/registrar-invitado?access-token="+localStorage["_chrome-rel-back"];
+        var complemento = {
+            equipo: "",
+            partido: partido,
+            nombres: "",
+            apellidos: "",
+            correo: "",
+            sexo: "",
+            telefono: "",
+        }
+        Lungo.Service.post(url, Lungo.Core.mix(data_base,complemento), imprimirjugador, "json");
+    }
+}
+
+var verificarLogin = function (result){
+    if(result.status === "ok"){
+        localStorage["_chrome-rel-back"] = result.key[0].accessToken;
+        if(sessionStorage["lanzadoDesdeHome"]){
+            Lungo.Router.section("perfil");
+        }else{
+            adicionarJugador("usuario");
+            Lungo.Router.section("main");
+        }
+    }else{
+        Lungo.Notification.error("Error", "El correo y/o la contraseña diligenciados, no coinciden", "remove", function(){return});
+    }
+}
+
+var verificarRegistro = function (result){
+    if(result.status === "ok"){
+        localStorage["_chrome-rel-back"] = result.key;
+        if(sessionStorage["lanzadoDesdeHome"]){
+            Lungo.Router.section("perfil");
+        }else{
+            adicionarJugador("usuario");
+            Lungo.Router.section("main");
+        }
+    }else{
+        Lungo.Notification.error("Error", "No se pudo registrar, verifique sus datos e intente nuevamente", "remove", function(){return});
+    }
+}
+
+var imprimirJugador = function(result){
+    console.log(result);
+    Lungo.Notification.hide();
 }
 
 
