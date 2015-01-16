@@ -7,12 +7,12 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Elecsis S.A.S
     </author>
-    <!-- <icon src="icon.png" />
-    <gap:splash src="splash.png"/> -->
+    <icon src="icon.png" />
+    <gap:splash src="splash.png"/>
 
     <!-- Preferencias -->
     <preference name="permissions" value="none"/>
-    <preference name="phonegap-version" value="3.5.0" /> <!-- all: current version of PhoneGap -->
+    <preference name="phonegap-version" value="3.6.3" /> <!-- all: current version of PhoneGap -->
     <preference name="orientation" value="default" /> <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device" value="universal" /> <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen" value="true" /> <!-- all: hides the status bar at the top of the screen -->
@@ -27,14 +27,13 @@
     <preference name="disable-cursor" value="true" /> <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
     <preference name="android-minSdkVersion" value="17" /> 
     <preference name="android-installLocation" value="auto" />
-    <preference name="phonegap-version" value="3.6.3" />
 
     <!-- Plugins -->
     <gap:plugin name="org.apache.cordova.device-orientation" />
     <gap:plugin name="org.apache.cordova.file" />
 
     <!--app iconos -->
-    <icon src="icon.png" />
+    <!-- <icon src="icon.png" /> -->
     <!-- <icon src="www/img/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
     <icon src="www/img/android/icon-48-mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
     <icon src="www/img/android/icon-72-hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
@@ -45,7 +44,7 @@
     <icon src="www/img/ios/icon-72-2x.png" gap:platform="ios" width="144" height="144" /> -->
 
     <!-- splash screen -->
-    <gap:splash src="splash.png" />
+    <!-- <gap:splash src="splash.png" /> -->
     <!-- <gap:splash src="www/img/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="port-ldpi" />
     <gap:splash src="www/img/android/screen-mdpi-portrait.png" gap:platform="android" gap:qualifier="port-mdpi" />
     <gap:splash src="www/img/android/screen-hdpi-portrait.png" gap:platform="android" gap:qualifier="port-hdpi" />
