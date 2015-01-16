@@ -47,7 +47,12 @@ $$('#listado-equipos').on('load', function(event) {
     $$("#main h1.title").html("Equipos");
 });
 $$('#lanzar-login').on('singleTap', function(event) {
-    sessionStorage["lanzadoDesdeHome"] = "_crfs";
+    if(localStorage["_chrome-rel-back"]){
+        Lungo.Notification.error("", "Ya has iniciado sesión", "warning-sign", function(){return});
+    }else{
+        sessionStorage["lanzadoDesdeHome"] = "_crfs";
+        Lungo.Router.section("login");
+    }
 });
 $$('#cerrar-sesion').on('singleTap', function(event) {
     localStorage.removeItem("_chrome-rel-back");
