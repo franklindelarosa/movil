@@ -87,7 +87,8 @@ var imprimirEquipos = function (result){
                         $$.each(perfil, function(index, jugador) {
                             if(jugador.id_usuario === sessionStorage["id"]){
                                 $$('#equipo-blanco').append('<li data-fc-id-usuario="'+jugador.id_usuario+'" data-fc-equipo="b" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
-                                $$('#unirse-blanco > span').attr('class', 'icon minus');
+                                $$('#unirse-blanco > span').removeClass();
+                                $$('#unirse-blanco > span').html('<h3>Invitar</h3>');
                                 $$('#unirse-blanco').attr('data-fc-estado', 'si');
                             }else{
                                 $$('#equipo-blanco').append('<li data-fc-id-usuario="'+jugador.id_usuario+'" data-fc-equipo="b" data-fc-entidad="usuario"><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
@@ -95,11 +96,11 @@ var imprimirEquipos = function (result){
                         });
                     }else{ //Usuarios Invitados
                         $$.each(perfil, function(index, jugador) {
-                            // if(jugador.responsable === sessionStorage["id"]){
-                                // $$('#equipo-blanco').append('<li data-fc-id-responsable="'+jugador.responsable+'" data-fc-id-invitado="'+jugador.id_invitado+'" data-fc-equipo="b" data-fc-entidad="invitado"><span class=" icon user"></span><a id="sacar-invitado-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Invitado</small></li>');
-                            // }else{
+                            if(jugador.responsable === sessionStorage["id"]){
+                                $$('#equipo-blanco').append('<li data-fc-id-responsable="'+jugador.responsable+'" data-fc-id-invitado="'+jugador.id_invitado+'" data-fc-equipo="b" data-fc-entidad="invitado"><span class=" icon group"></span><a id="sacar-invitado-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Invitado</small></li>');
+                            }else{
                                 $$('#equipo-blanco').append('<li data-fc-id-responsable="'+jugador.responsable+'" data-fc-id-invitado="'+jugador.id_invitado+'" data-fc-equipo="b" data-fc-entidad="invitado"><strong>'+jugador.nombre+'</strong><small>Invitado</small></li>');
-                            // }
+                            }
                         });
                     }
                 });
@@ -109,19 +110,20 @@ var imprimirEquipos = function (result){
                         $$.each(perfil, function(index, jugador) {
                             if(jugador.id_usuario === sessionStorage["id"]){
                                 $$('#equipo-negro').append('<li data-fc-id-usuario="'+jugador.id_usuario+'" data-fc-equipo="n" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
-                                $$('#unirse-negro > span').attr('class', 'icon minus');
-                                $$('#unirse-blanco').attr('data-fc-estado', 'si');
+                                $$('#unirse-negro > span').removeClass();
+                                $$('#unirse-negro > span').html('<h3>Invitar</h3>');
+                                $$('#unirse-negro').attr('data-fc-estado', 'si');
                             }else{
                                 $$('#equipo-negro').append('<li data-fc-id-usuario="'+jugador.id_usuario+'" data-fc-equipo="n" data-fc-entidad="usuario"><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
                             }
                         });
                     }else{ //Usuarios Invitados
                         $$.each(perfil, function(index, jugador) {
-                            // if(jugador.responsable === sessionStorage["id"]){
-                                // $$('#equipo-negro').append('<li data-fc-id-responsable="'+jugador.responsable+'" data-fc-id-invitado="'+jugador.id_invitado+'" data-fc-equipo="n" data-fc-entidad="invitado"><span class=" icon user"></span><a id="sacar-invitado-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Invitado</small></li>');
-                            // }else{
+                            if(jugador.responsable === sessionStorage["id"]){
+                                $$('#equipo-negro').append('<li data-fc-id-responsable="'+jugador.responsable+'" data-fc-id-invitado="'+jugador.id_invitado+'" data-fc-equipo="n" data-fc-entidad="invitado"><span class=" icon group"></span><a id="sacar-invitado-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Invitado</small></li>');
+                            }else{
                                 $$('#equipo-negro').append('<li data-fc-id-responsable="'+jugador.responsable+'" data-fc-id-invitado="'+jugador.id_invitado+'" data-fc-equipo="n" data-fc-entidad="invitado"><strong>'+jugador.nombre+'</strong><small>Invitado</small></li>');
-                            // }
+                            }
                         });
                     }
                 });
@@ -159,17 +161,10 @@ function adicionarJugador(entidad){
     }
 }
 
-function sustraerJugador(entidad){
-    if(entidad === "usuario"){
-
-    }else{
-
-    }
-}
-
 var verificarLogin = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key[0].accessToken;
+        sessionStorage["id"] = result.key[0].id_usuario;
         imprimirPerfil(result);
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("perfil");
@@ -186,12 +181,13 @@ var verificarLogin = function (result){
 var verificarRegistro = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key;
+        sessionStorage["id"] = result.id;
         imprimirPerfil(result);
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("perfil");
             Lungo.Notification.hide();
         }else{
-            adicionarJugador("invitado");
+            adicionarJugador("usuario");
             Lungo.Router.section("main");
         }
     }else{
@@ -208,7 +204,8 @@ var imprimirJugador = function(result){
                 $$('#unirse-blanco').hide();
             }
             $$('#unirse-blanco').attr('data-fc-estado', 'si');
-            $$('#unirse-blanco > span').attr('class', 'icon minus');
+            $$('#unirse-blanco > span').removeClass();
+            $$('#unirse-blanco > span').html('<h3>Invitar</h3>');
             $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
             $$('#equipo-blanco').append('<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="b" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
         }else{
@@ -217,7 +214,8 @@ var imprimirJugador = function(result){
                 $$('#unirse-negro').hide();
             }
             $$('#unirse-negro').attr('data-fc-estado', 'si');
-            $$('#unirse-negro > span').attr('class', 'icon minus');
+            $$('#unirse-negro > span').removeClass();
+            $$('#unirse-negro > span').html('<h3>Invitar</h3>');
             $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
             $$('#equipo-negro').append('<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
         }
@@ -248,6 +246,38 @@ var imprimirInvitado = function(result){
         Lungo.Notification.hide();
     }else{
 
+    }
+}
+
+var verificarEliminacion = function(result){
+    if(result.status === "ok"){
+        // localStorage.removeItem("_chrome-rel-back");
+        // sessionStorage.removeItem("id");
+        current.remove();
+        console.log(result);
+        if(result.equipo === "blancos"){
+            console.log(total_blancos);
+            total_blancos = total_blancos-1;
+            if(total_blancos < cancha.cupo_max/2){
+                $$('#unirse-blanco').show();
+            }
+            $$('#unirse-blanco').attr('data-fc-estado', 'no');
+            $$('#unirse-blanco > span').attr('class', 'icon plus');
+            $$('#unirse-blanco > span').html('');
+            $$('#unirse-blanco').removeClass('accept');
+            $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
+        }else{
+            total_negros = total_negros-1;
+            if(total_negros < cancha.cupo_max/2){
+                $$('#unirse-negro').show();
+            }
+            $$('#unirse-negro').attr('data-fc-estado', 'no');
+            $$('#unirse-negro > span').attr('class', 'icon plus');
+            $$('#unirse-negro > span').html('');
+            $$('#unirse-blanco').removeClass('accept');
+            $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
+        }
+        Lungo.Notification.hide();
     }
 }
 

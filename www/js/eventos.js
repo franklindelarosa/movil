@@ -82,10 +82,10 @@ $$('#unirse-blanco').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         if($$(this).attr('data-fc-estado') === 'no'){
             adicionarJugador("usuario");
+            Lungo.Notification.show();
         }else{
-            // sustraerJugador("usuario");
+            Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
         }
-        Lungo.Notification.show();
     }else{
         Lungo.Router.section("login");
     }
@@ -99,10 +99,10 @@ $$('#unirse-negro').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         if($$(this).attr('data-fc-estado') === 'no'){
             adicionarJugador("usuario");
+            Lungo.Notification.show();
         }else{
-            // sustraerJugador("usuario");
+            Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
         }
-        Lungo.Notification.show();
     }else{
         Lungo.Router.section("login");
     }
@@ -119,4 +119,54 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
     }else{
         Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
     }
+});
+
+$$('#btn_registrar').on('singleTap', function(event) {
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/registrar-perfil";
+    Lungo.Notification.show();
+    var datos = {
+        nombres: $$('#campo_nombres').val(),
+        apellidos: $$('#campo_apellidos').val(),
+        correo: $$('#campo_correo').val(),
+        contrasena: $$('#campo_contrasena').val(),
+        sexo: $$('#campo_sexo').val(),
+        telefono: $$('#campo_telefono').val()
+    };
+    if(datos.nombres === "" || datos.apellidos === "" || datos.correo === "" || datos.contrasena === "" || datos.sexo === "" || datos.telefono === ""){
+        Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
+    }else{
+        Lungo.Service.post(url, datos, verificarRegistro, "json");
+    }
+});
+
+$$(document).on('singleTap', '#sacarme-blanco', function(event) {
+    Lungo.Notification.show();
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
+    var datos = {
+        partido: partido,
+        equipo: "blancos",
+        entidad: "usuario"
+    };
+    current = $$(this).parent("li").first();
+    Lungo.Service.post(url, datos, verificarEliminacion, "json");
+});
+
+$$(document).on('singleTap', '#sacarme-negro', function(event) {
+    Lungo.Notification.show();
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
+    var datos = {
+        partido: partido,
+        equipo: "negros",
+        entidad: "usuario"
+    };
+    current = $$(this).parent("li").first();
+    Lungo.Service.post(url, datos, verificarEliminacion, "json");
+});
+
+$$(document).on('singleTap', '#sacar-invitado-blanco', function(event) {
+
+});
+
+$$(document).on('singleTap', '#sacar-invitado-negro', function(event) {
+    
 });

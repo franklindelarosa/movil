@@ -82,7 +82,7 @@
                 <div data-layout="middle"><p id="label-telefono"></p></div>
             </div>
             <p id="label-direccion"></p>
-            <p class="centrar"><button id="seleccionar-cancha" class="accept anchor" data-label="Seleccionar"></button></p><br><br>
+            <p class="centrar"><button id="seleccionar-cancha" class="accept anchor" data-icon="check" data-label="Seleccionar"></button></p><br><br>
         </article>
 
         <article id="listado-dias" class="list scroll">
@@ -123,9 +123,9 @@
                 <fieldset data-icon="user">
                     <input id="contrasena" class="border" type="password" placeholder="Contraseña">
                 </fieldset>
-                <p class="centrar"><button id="iniciar-sesion" class="accept margin-top margin-bottom" data-label="Ingresa"></button></p>
+                <p class="centrar"><button id="iniciar-sesion" class="anchor accept margin-top margin-bottom" data-icon="check" data-label="Ingresar"></button></p>
                 <h5 class="margin-top margin-bottom centrar">o:</h5>
-                <button id="iniciar-facebook" class="anchor margin-top margin-bottom" data-icon="facebook" data-label="Entra con Facebook"></button>
+                <button id="iniciar-facebook" class="anchor margin-top margin-bottom" data-icon="facebook" data-label="Entrar con Facebook"></button>
             </div>
         </article>
     </section>
@@ -159,7 +159,37 @@
                 <fieldset data-icon="phone">
                     <input id="campo_telefono" class="border" type="tel" placeholder="Telefono">
                 </fieldset>
-                <p class="centrar"><button id="btn_registrar" class="accept margin-top margin-bottom" data-icon="check" data-label="Crear cuenta"></button></p>
+                <a href="#" id="btn_registrar" class="button anchor accept margin-top margin-bottom" data-icon="check" data-label="Crear cuenta"></a>
+            </div>
+        </article>
+    </section>
+
+    <section id="invitar" data-transition="fade">
+        <header data-title="Invitando jugador">
+            <nav class="on-left"><button data-icon="chevron-left" data-view-section="back"></button></nav>
+        </header>
+        <article class="active scroll indented">
+            <div class="form">
+                <fieldset data-icon="user">
+                    <input id="inv_nombres" class="border" type="text" placeholder="Nombre(s)">
+                </fieldset>
+                <fieldset data-icon="user">
+                    <input id="inv_apellidos" class="border" type="text" placeholder="Apellido(s)">
+                </fieldset>
+                <fieldset data-icon="inbox">
+                    <input id="inv_correo" class="border" type="email" placeholder="Correo electrónico">
+                </fieldset>
+                <label class="select border">
+                    <select id="inv_sexo">
+                        <option value="">Selecciona tu sexo</option>
+                        <option value="m">Masculino</option>
+                        <option value="f">Femenino</option>
+                    </select>
+                </label>
+                <fieldset data-icon="phone">
+                    <input id="inv_telefono" class="border" type="tel" placeholder="Telefono">
+                </fieldset>
+                <a href="#" id="btn_invitar" class="button anchor accept margin-top margin-bottom" data-icon="check" data-label="Crear cuenta"></a>
             </div>
         </article>
     </section>
