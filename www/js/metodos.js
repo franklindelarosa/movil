@@ -151,19 +151,6 @@ function adicionarJugador(entidad){
         // var url = "http://localhost/futbolcracksapi/web/v1/usuario/registrar-usuario";
         var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/registrar-usuario?access-token="+localStorage["_chrome-rel-back"];
         Lungo.Service.post(url, data_base, imprimirJugador, "json");
-    }else{
-        // var url = "http://localhost/futbolcracksapi/web/v1/usuario/registrar-invitado";
-        var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/registrar-invitado?access-token="+localStorage["_chrome-rel-back"];
-        var complemento = {
-            equipo: "",
-            partido: partido,
-            nombres: "",
-            apellidos: "",
-            correo: "",
-            sexo: "",
-            telefono: "",
-        }
-        Lungo.Service.post(url, Lungo.Core.mix(data_base,complemento), imprimirInvitado, "json");
     }
 }
 
@@ -231,29 +218,29 @@ var imprimirJugador = function(result){
     }
 }
 
-var imprimirInvitado = function(result){
-    // console.log(result);
-    if(result.status === 'ok'){
-        if(result.data.equipo === "b"){
-            total_blancos += 1;
-            if(total_blancos === cancha.cupo_max/2){
-                $$('#unirse-blanco').hide();
-            }
-            $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
-            $$('#equipo-blanco').append('<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="b" data-fc-entidad="usuario"><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
-        }else{
-            total_negros += 1;
-            if(total_negros === cancha.cupo_max/2){
-                $$('#unirse-negro').hide();
-            }
-            $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
-            $$('#equipo-negro').append('<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="usuario"><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
-        }
-        Lungo.Notification.hide();
-    }else{
-        //Error
-    }
-}
+// var imprimirInvitado = function(result){
+//     // console.log(result);
+//     if(result.status === 'ok'){
+//         if(result.data.equipo === "b"){
+//             total_blancos += 1;
+//             if(total_blancos === cancha.cupo_max/2){
+//                 $$('#unirse-blanco').hide();
+//             }
+//             $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
+//             $$('#equipo-blanco').append('<li data-fc-id-invitado="'+result.data.id+'" data-fc-equipo="b" data-fc-entidad="invitado"><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
+//         }else{
+//             total_negros += 1;
+//             if(total_negros === cancha.cupo_max/2){
+//                 $$('#unirse-negro').hide();
+//             }
+//             $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
+//             $$('#equipo-negro').append('<li data-fc-id-invitado="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="invitado"><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
+//         }
+//         Lungo.Notification.hide();
+//     }else{
+//         //Error
+//     }
+// }
 
 var verificarEliminacion = function(result){
     if(result.status === "ok"){
@@ -262,7 +249,6 @@ var verificarEliminacion = function(result){
         // console.log(result);
         current.remove();
         if(result.equipo === "blancos"){
-            console.log(total_blancos);
             total_blancos = total_blancos-1;
             if(total_blancos < cancha.cupo_max/2){
                 $$('#unirse-blanco').show();
@@ -296,6 +282,7 @@ var verificarInvitacion = function(result){
         }else{
             $$('#equipo-negro').append('<li data-fc-id-responsable="'+result.data.responsable+'" data-fc-id-invitado="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="invitado"><span class=" icon group"></span><a id="sacar-invitado-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Invitado</small></li>');
         }
+        Lungo.Router.section("main");
     }else{
         Lungo.Notification.error("Error", "No se pudo registrar el invitado, verifique sus datos e intente nuevamente", "remove", function(){return});
     }

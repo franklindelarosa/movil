@@ -84,7 +84,8 @@ $$('#unirse-blanco').on('singleTap', function(event) {
             adicionarJugador("usuario");
             Lungo.Notification.show();
         }else{
-            Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
+            // Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
+            Lungo.Router.section("invitar");
         }
     }else{
         Lungo.Router.section("login");
@@ -101,7 +102,8 @@ $$('#unirse-negro').on('singleTap', function(event) {
             adicionarJugador("usuario");
             Lungo.Notification.show();
         }else{
-            Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
+            // Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
+            Lungo.Router.section("invitar");
         }
     }else{
         Lungo.Router.section("login");
@@ -164,11 +166,15 @@ $$(document).on('singleTap', '#sacarme-negro', function(event) {
 });
 
 $$(document).on('singleTap', '#sacar-invitado-blanco', function(event) {
-
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
+    current = $$(this).parent("li").first();
+    Lungo.Service.post(url, {equipo: "blancos", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
 });
 
 $$(document).on('singleTap', '#sacar-invitado-negro', function(event) {
-    
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
+    current = $$(this).parent("li").first();
+    Lungo.Service.post(url, {equipo: "negros", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
 });
 
 $$(document).on('singleTap', '#btn_invitar', function(event) {
@@ -180,7 +186,8 @@ $$(document).on('singleTap', '#btn_invitar', function(event) {
         correo: $$('#inv_correo').val(),
         sexo: $$('#inv_sexo').val(),
         telefono: $$('#inv_telefono').val(),
-        equipo: equipo
+        equipo: equipo,
+        partido: partido
     };
     if(datos.nombres === "" || datos.apellidos === "" || datos.correo === "" || datos.sexo === "" || datos.telefono === ""){
         Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
