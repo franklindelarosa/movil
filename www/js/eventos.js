@@ -185,14 +185,14 @@ $$(document).on('singleTap', '#sacar-invitado-blanco', function(event) {
     Lungo.Notification.show();
     var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
     current = $$(this).parent("li").first();
-    Lungo.Service.post(url, {equipo: "blancos", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
+    Lungo.Service.post(url, {entidad: current.attr('data-fc-entidad'), equipo: "blancos", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
 });
 
 $$(document).on('singleTap', '#sacar-invitado-negro', function(event) {
     Lungo.Notification.show();
     var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
     current = $$(this).parent("li").first();
-    Lungo.Service.post(url, {equipo: "negros", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
+    Lungo.Service.post(url, {entidad: current.attr('data-fc-entidad'), equipo: "negros", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
 });
 
 $$(document).on('singleTap', '#btn_invitar', function(event) {

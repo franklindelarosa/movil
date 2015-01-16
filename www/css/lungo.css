@@ -128,7 +128,7 @@ footer nav.with-labels abbr{z-index:1;display:block !important;margin-top:-1.3em
 .on-left{float:left}
 .on-right{float:right}
 .overthrow-enabled .overthrow{overflow:auto;-webkit-overflow-scrolling:touch}
-.scroll{overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch;-webkit-box-flex:1;}
+.scroll{overflow-x:hidden;/*overflow-y:scroll;*/-webkit-overflow-scrolling:touch;-webkit-box-flex:1;}
 .scroll.horizontal{overflow-x:scroll;overflow-y:hidden;white-space:nowrap}
 .scroll > *{-webkit-transform:translate3d(0,0,0)}
 .tag{font-size:11px;min-width:17px;height:16px;line-height:16px !important;text-align:center;z-index:1;display:inline-block !important}
