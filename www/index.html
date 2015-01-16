@@ -82,7 +82,7 @@
                 <div data-layout="middle"><p id="label-telefono"></p></div>
             </div>
             <p id="label-direccion"></p>
-            <p class="centrar"><button id="seleccionar-cancha" class="accept" data-label="Seleccionar"></button></p><br><br>
+            <p class="centrar"><button id="seleccionar-cancha" class="accept anchor" data-label="Seleccionar"></button></p><br><br>
         </article>
 
         <article id="listado-dias" class="list scroll">
@@ -95,10 +95,10 @@
 
         <article id="listado-equipos" class="list scroll indented">
             <ul>
-                <li class="anchor"><a id="unirse-blanco" href="#" class="icono" data-icon="plus"></a><h2>Equipo Blanco</h2>
+                <li class="anchor"><a id="unirse-blanco" data-fc-estado="no" href="#" class="icono" data-icon="plus"></a><h2>Equipo Blanco</h2>
                     <ul id="equipo-blanco"></ul>
                 </li>
-                <li class="anchor"><a id="unirse-negro" href="#" class="icono" data-icon="plus"></a><h2>Equipo Negro</h2>
+                <li class="anchor"><a id="unirse-negro" data-fc-estado="no" href="#" class="icono" data-icon="plus"></a><h2>Equipo Negro</h2>
                     <ul id="equipo-negro"></ul>
                 </li>
             </ul>
@@ -183,7 +183,7 @@
         </footer>
     </section>
 
-    <section id="cuenta" data-transition="fade">
+    <section id="cuenta" data-transition="cover">
         <header data-title="Configuración">
             <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
         </header>
@@ -193,12 +193,6 @@
                 <img src="images/profile.png" alt="...">
             </p>
         </article>
-        <footer>
-            <nav>
-                <a href="#" data-icon="trophy" data-view-section="main"></a>
-                <a href="#" data-icon="user" data-view-section="back"></a>
-            </nav>
-        </footer>
     </section>
 
     <script src="js/quojs/quo.js"></script>

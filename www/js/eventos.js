@@ -18,6 +18,12 @@ Lungo.ready(function() {
     // Lungo.Service.Settings.headers["Access-Control-Allow-Origin"] = "*";
     Lungo.Service.Settings.crossDomain = false;
     Lungo.Service.Settings.timeout = 10000;
+    if(localStorage["_chrome-rel-back"]){
+        var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/quien-soy?access-token="+localStorage["_chrome-rel-back"];
+        Lungo.Service.post(url, {cancha:cancha.id}, function(result){sessionStorage["id"] = result.id}, "json");
+    }else{
+        sessionStorage.removeItem("id");
+    }
     var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/listar-canchas";
     // var url = "http://localhost/futbolcracksapi/web/v1/site/listar-canchas";
     // var url = "https://futbolcracksapi.herokuapp.com/web/v1/site/listar-canchas";
@@ -74,7 +80,12 @@ $$('#unirse-blanco').on('singleTap', function(event) {
         sessionStorage.removeItem("lanzadoDesdeHome");
     }
     if(localStorage["_chrome-rel-back"]){
-        adicionarJugador("usuario");
+        if($$(this).attr('data-fc-estado') === 'no'){
+            adicionarJugador("usuario");
+        }else{
+            // sustraerJugador("usuario");
+        }
+        Lungo.Notification.show();
     }else{
         Lungo.Router.section("login");
     }
@@ -86,7 +97,12 @@ $$('#unirse-negro').on('singleTap', function(event) {
         sessionStorage.removeItem("lanzadoDesdeHome");
     }
     if(localStorage["_chrome-rel-back"]){
-        adicionarJugador("usuario");
+        if($$(this).attr('data-fc-estado') === 'no'){
+            adicionarJugador("usuario");
+        }else{
+            // sustraerJugador("usuario");
+        }
+        Lungo.Notification.show();
     }else{
         Lungo.Router.section("login");
     }
