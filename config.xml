@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.elecsis.fcmovil" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.elecsis.fcmovil" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>FutbolCracks</name>
     <description>
         FutbolCracks, diviértete con el deporte rey.
@@ -27,6 +27,7 @@
     <preference name="disable-cursor" value="true" /> <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
     <preference name="android-minSdkVersion" value="17" /> 
     <preference name="android-installLocation" value="auto" />
+    <preference name="phonegap-version" value="3.6.3" />
 
     <!-- Plugins -->
     <gap:plugin name="org.apache.cordova.device-orientation" />
