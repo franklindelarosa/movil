@@ -31,6 +31,22 @@ Lungo.ready(function() {
 
 });
 
+$$('#listado-canchas').on('load', function(event) {
+    $$("#main h1.title").html("Canchas");
+});
+$$('#cancha').on('load', function(event) {
+    $$("#main h1.title").html(cancha.nombre);
+});
+$$('#listado-dias').on('load', function(event) {
+    $$("#main h1.title").html("Dias Disponibles");
+});
+$$('#listado-horas').on('load', function(event) {
+    $$("#main h1.title").html("Horas Disponibles");
+});
+$$('#listado-equipos').on('load', function(event) {
+    $$("#main h1.title").html("Equipos");
+});
+
 $$('#listado-canchas ul').on('singleTap', 'li', function(event) {
 	cancha = {
 		id : $$(this).attr('data-fc-id'),
@@ -196,6 +212,3 @@ $$(document).on('singleTap', '#btn_invitar', function(event) {
     }
 });
 
-$$('#cancha').on('load', function(event) {
-    // $$(this).parent(selector)("h1.title").html('cancha.nombre');
-});
