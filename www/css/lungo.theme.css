@@ -381,7 +381,7 @@ body > section > footer {
 }
 body > section > article,
 body > section > [data-control="pull"] {
-  background-color: #e7e7e7;
+  background-color: #FFF;
 }
 body > section > article,
 body > section > [data-control="pull"],
@@ -476,11 +476,11 @@ article .button abbr,
 article button abbr {
   color: #fff;
   font-weight: 600;
-  -webkit-text-shadow: 0 1px rgba(0,0,0,0.1);
+  /*-webkit-text-shadow: 0 1px rgba(0,0,0,0.1);
   -moz-text-shadow: 0 1px rgba(0,0,0,0.1);
   -ms-text-shadow: 0 1px rgba(0,0,0,0.1);
   -o-text-shadow: 0 1px rgba(0,0,0,0.1);
-  text-shadow: 0 1px rgba(0,0,0,0.1);
+  text-shadow: 0 1px rgba(0,0,0,0.1);*/
 }
 article .button:hover,
 article button:hover {
