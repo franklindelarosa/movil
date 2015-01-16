@@ -196,6 +196,6 @@ $$(document).on('singleTap', '#btn_invitar', function(event) {
     }
 });
 
-$$('article').on('load', '#main', function(event) {
-    console.log("cargooo");
+$$('#cancha').on('load', function(event) {
+    // $$(this).parent(selector)("h1.title").html('cancha.nombre');
 });
