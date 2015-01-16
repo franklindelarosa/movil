@@ -170,3 +170,21 @@ $$(document).on('singleTap', '#sacar-invitado-blanco', function(event) {
 $$(document).on('singleTap', '#sacar-invitado-negro', function(event) {
     
 });
+
+$$(document).on('singleTap', '#btn_invitar', function(event) {
+    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/registrar-invitado?access-token="+localStorage["_chrome-rel-back"];
+    Lungo.Notification.show();
+    var datos = {
+        nombres: $$('#inv_nombres').val(),
+        apellidos: $$('#inv_apellidos').val(),
+        correo: $$('#inv_correo').val(),
+        sexo: $$('#inv_sexo').val(),
+        telefono: $$('#inv_telefono').val(),
+        equipo: equipo
+    };
+    if(datos.nombres === "" || datos.apellidos === "" || datos.correo === "" || datos.sexo === "" || datos.telefono === ""){
+        Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
+    }else{
+        Lungo.Service.post(url, datos, verificarInvitacion, "json");
+    }
+});

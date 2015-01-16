@@ -66,14 +66,20 @@ var imprimirEquipos = function (result){
     total_negros = result.data[1][0].length + result.data[1][1].length;
     if(total_blancos < cancha.cupo_max/2){
         $$('#unirse-blanco').show();
+    }else{
+        $$('#unirse-blanco').hide();
     }
     if(total_negros < cancha.cupo_max/2){
         $$('#unirse-negro').show();
+    }else{
+        $$('#unirse-negro').hide();
     }
     $$('#unirse-blanco > span').attr('class', 'icon plus');
     $$('#unirse-blanco').attr('data-fc-estado', 'no');
+    $$('#unirse-blanco > span').html('');
     $$('#unirse-negro > span').attr('class', 'icon plus');
     $$('#unirse-negro').attr('data-fc-estado', 'no');
+    $$('#unirse-blanco > span').html('');
 
     $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
     $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
@@ -221,7 +227,7 @@ var imprimirJugador = function(result){
         }
         Lungo.Notification.hide();
     }else{
-
+        //Error
     }
 }
 
@@ -245,7 +251,7 @@ var imprimirInvitado = function(result){
         }
         Lungo.Notification.hide();
     }else{
-
+        //Error
     }
 }
 
@@ -253,8 +259,8 @@ var verificarEliminacion = function(result){
     if(result.status === "ok"){
         // localStorage.removeItem("_chrome-rel-back");
         // sessionStorage.removeItem("id");
+        // console.log(result);
         current.remove();
-        console.log(result);
         if(result.equipo === "blancos"){
             console.log(total_blancos);
             total_blancos = total_blancos-1;
@@ -278,7 +284,22 @@ var verificarEliminacion = function(result){
             $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
         }
         Lungo.Notification.hide();
+    }else{
+        //Error
     }
+}
+
+var verificarInvitacion = function(result){
+    if(result.status === "ok"){
+        if(result.data.equipo === "blancos"){
+            $$('#equipo-blanco').append('<li data-fc-id-responsable="'+result.data.responsable+'" data-fc-id-invitado="'+result.data.id+'" data-fc-equipo="b" data-fc-entidad="invitado"><span class=" icon group"></span><a id="sacar-invitado-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Invitado</small></li>');
+        }else{
+            $$('#equipo-negro').append('<li data-fc-id-responsable="'+result.data.responsable+'" data-fc-id-invitado="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="invitado"><span class=" icon group"></span><a id="sacar-invitado-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Invitado</small></li>');
+        }
+    }else{
+        Lungo.Notification.error("Error", "No se pudo registrar el invitado, verifique sus datos e intente nuevamente", "remove", function(){return});
+    }
+    Lungo.Notification.hide();
 }
 
 function imprimirPerfil(datos){
