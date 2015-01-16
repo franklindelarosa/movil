@@ -195,3 +195,7 @@ $$(document).on('singleTap', '#btn_invitar', function(event) {
         Lungo.Service.post(url, datos, verificarInvitacion, "json");
     }
 });
+
+$$('article').on('load', '#main', function(event) {
+    console.log("cargooo");
+});

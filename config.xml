@@ -29,8 +29,8 @@
     <preference name="android-installLocation" value="auto" />
 
     <!-- Plugins -->
-    <gap:plugin name="org.apache.cordova.device-orientation" />
-    <gap:plugin name="org.apache.cordova.file" />
+    <!-- <gap:plugin name="org.apache.cordova.device-orientation" />
+    <gap:plugin name="org.apache.cordova.file" /> -->
 
     <!--app iconos -->
     <!-- <icon src="icon.png" /> -->
@@ -55,6 +55,6 @@
     <gap:splash src="www/img/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024" />
     <gap:splash src="www/img/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768" /> -->
 
-    <content src="index.html" />
+    <!-- <content src="index.html" /> -->
     <access origin="*" />
 </widget>
