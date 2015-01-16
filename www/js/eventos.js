@@ -46,6 +46,14 @@ $$('#listado-horas').on('load', function(event) {
 $$('#listado-equipos').on('load', function(event) {
     $$("#main h1.title").html("Equipos");
 });
+$$('#lanzar-login').on('singleTap', function(event) {
+    sessionStorage["lanzadoDesdeHome"] = "_crfs";
+});
+$$('#cerrar-sesion').on('singleTap', function(event) {
+    localStorage.removeItem("_chrome-rel-back");
+    sessionStorage.removeItem("id");
+    Lungo.Router.article("main", "listado-canchas");
+});
 
 $$('#listado-canchas ul').on('singleTap', 'li', function(event) {
 	cancha = {

@@ -273,11 +273,6 @@ function imprimirPerfil(datos){
     return
 }
 
-function logOut(){
-    localStorage.removeItem("_chrome-rel-back");
-    sessionStorage.removeItem("id");
-}
-
 
 
 
