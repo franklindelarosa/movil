@@ -3,6 +3,7 @@ Lungo.init({
 });
 Lungo.ready(function() {
     Lungo.Notification.show();
+    direccionBase = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/";
     Lungo.Service.Settings.async = true;
     Lungo.Service.Settings.error = function(type, xhr){
         if(type === "QuoJS.ajax: Timeout exceeded"){
@@ -19,12 +20,14 @@ Lungo.ready(function() {
     Lungo.Service.Settings.crossDomain = false;
     Lungo.Service.Settings.timeout = 10000;
     if(localStorage["_chrome-rel-back"]){
-        var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/quien-soy?access-token="+localStorage["_chrome-rel-back"];
+        var url = direccionBase+"usuario/quien-soy?access-token="+localStorage["_chrome-rel-back"];
         Lungo.Service.post(url, {cancha:cancha.id}, function(result){sessionStorage["id"] = result.id}, "json");
     }else{
         sessionStorage.removeItem("id");
     }
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/listar-canchas";
+    sessionStorage.removeItem("lanzadoDesdeHome");
+    listadoDeEquipos = "no";
+    var url = direccionBase+"site/listar-canchas";
     // var url = "http://localhost/futbolcracksapi/web/v1/site/listar-canchas";
     // var url = "https://futbolcracksapi.herokuapp.com/web/v1/site/listar-canchas";
     Lungo.Service.post(url, "id=1", imprimirCanchas, "json");
@@ -83,13 +86,13 @@ $$('#listado-canchas ul').on('singleTap', 'li', function(event) {
 $$('#seleccionar-cancha').on('singleTap', function(event) {
     Lungo.Notification.show();
     // var url = "http://localhost/futbolcracksapi/web/v1/site/cancha-dias";
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/cancha-dias";
+    var url = direccionBase+"site/cancha-dias";
     Lungo.Service.post(url, {cancha:cancha.id}, imprimirDias, "json");
 });
 
 $$('#listado-dias ul').on('singleTap', 'li', function(event) {
     // var url = "http://localhost/futbolcracksapi/web/v1/site/cancha-horas";
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/cancha-horas";
+    var url = direccionBase+"site/cancha-horas";
     Lungo.Notification.show();
 	fecha = $$(this).attr('data-fc-fecha');
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
@@ -97,7 +100,7 @@ $$('#listado-dias ul').on('singleTap', 'li', function(event) {
 
 $$('#listado-horas ul').on('singleTap', 'li', function(event) {
     // var url = "http://localhost/futbolcracksapi/web/v1/site/equipos";
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/equipos";
+    var url = direccionBase+"site/equipos";
     Lungo.Notification.show();
 	hora = $$(this).attr('data-fc-hora');
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
@@ -110,7 +113,7 @@ $$('#unirse-blanco').on('singleTap', function(event) {
     }
     if(localStorage["_chrome-rel-back"]){
         if($$(this).attr('data-fc-estado') === 'no'){
-            adicionarJugador("usuario");
+            adicionarJugador();
             Lungo.Notification.show();
         }else{
             // Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
@@ -128,7 +131,7 @@ $$('#unirse-negro').on('singleTap', function(event) {
     }
     if(localStorage["_chrome-rel-back"]){
         if($$(this).attr('data-fc-estado') === 'no'){
-            adicionarJugador("usuario");
+            adicionarJugador();
             Lungo.Notification.show();
         }else{
             // Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
@@ -141,7 +144,7 @@ $$('#unirse-negro').on('singleTap', function(event) {
 
 $$('#iniciar-sesion').on('singleTap', function(event) {
     // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/login";
+    var url = direccionBase+"site/login";
     Lungo.Notification.show();
     var correo = $$('#correo').val();
     var contrasena = $$('#contrasena').val();
@@ -153,7 +156,7 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
 });
 
 $$('#btn_registrar').on('singleTap', function(event) {
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/site/registrar-perfil";
+    var url = direccionBase+"site/registrar-perfil";
     Lungo.Notification.show();
     var datos = {
         nombres: $$('#campo_nombres').val(),
@@ -172,7 +175,7 @@ $$('#btn_registrar').on('singleTap', function(event) {
 
 $$(document).on('singleTap', '#sacarme-blanco', function(event) {
     Lungo.Notification.show();
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
+    var url = direccionBase+"usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
     var datos = {
         partido: partido,
         equipo: "blancos",
@@ -184,7 +187,7 @@ $$(document).on('singleTap', '#sacarme-blanco', function(event) {
 
 $$(document).on('singleTap', '#sacarme-negro', function(event) {
     Lungo.Notification.show();
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
+    var url = direccionBase+"usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
     var datos = {
         partido: partido,
         equipo: "negros",
@@ -196,20 +199,20 @@ $$(document).on('singleTap', '#sacarme-negro', function(event) {
 
 $$(document).on('singleTap', '#sacar-invitado-blanco', function(event) {
     Lungo.Notification.show();
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
+    var url = direccionBase+"usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
     current = $$(this).parent("li").first();
     Lungo.Service.post(url, {entidad: current.attr('data-fc-entidad'), equipo: "blancos", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
 });
 
 $$(document).on('singleTap', '#sacar-invitado-negro', function(event) {
     Lungo.Notification.show();
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
+    var url = direccionBase+"usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
     current = $$(this).parent("li").first();
     Lungo.Service.post(url, {entidad: current.attr('data-fc-entidad'), equipo: "negros", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
 });
 
 $$(document).on('singleTap', '#btn_invitar', function(event) {
-    var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/registrar-invitado?access-token="+localStorage["_chrome-rel-back"];
+    var url = direccionBase+"usuario/registrar-invitado?access-token="+localStorage["_chrome-rel-back"];
     Lungo.Notification.show();
     var datos = {
         nombres: $$('#inv_nombres').val(),

@@ -1,9 +1,9 @@
 var mensajes = ["Anímate", "No lo pienses más", "Esta es la hora perfecta", "Qué estás esperando?"];
 
 function mostrarError(){
-    var html_error = '<h1>Error</h1><p class="centrar"><img src="images/error.png"/></p><p class="centrar">Problemas con el servidor, intenta mas tarde</p>';
+    // var html_error = '<h1>Error</h1><p class="centrar"><img src="images/error.png"/></p><p class="centrar">Problemas con el servidor, intenta mas tarde</p>';
     // Lungo.Notification.html(html_error, "Cerrar");
-    Lungo.Notification.error("Error", "Problemas con el servidor, intenta mas tarde", "remove", function(){return});
+    Lungo.Notification.error("Error de conexión", "Por favor verifica que tengas acceso a internet", "remove", function(){return});
 }
 
 // este método imprime el listado de las canchas en la primera vista
@@ -61,6 +61,7 @@ var imprimirHoras = function (result){
 // este método imprime el listado de los jugadores de cada equipo
 var imprimirEquipos = function (result){
     // console.log(result);
+    listadoDeEquipos = result;
     partido = result.partido;
     total_blancos = result.data[0][0].length + result.data[0][1].length;
     total_negros = result.data[1][0].length + result.data[1][1].length;
@@ -144,16 +145,14 @@ var imprimirEquipos = function (result){
     }
 }
 
-function adicionarJugador(entidad){
-    var data_base = {
+function adicionarJugador(){
+    var data = {
         equipo: equipo,
         partido: partido
     }
-    if(entidad === "usuario"){
-        // var url = "http://localhost/futbolcracksapi/web/v1/usuario/registrar-usuario";
-        var url = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/usuario/registrar-usuario?access-token="+localStorage["_chrome-rel-back"];
-        Lungo.Service.post(url, data_base, imprimirJugador, "json");
-    }
+    // var url = "http://localhost/futbolcracksapi/web/v1/usuario/registrar-usuario";
+    var url = direccionBase+"usuario/registrar-usuario?access-token="+localStorage["_chrome-rel-back"];
+    Lungo.Service.post(url, data, imprimirJugador, "json");
 }
 
 var verificarLogin = function (result){
@@ -163,9 +162,12 @@ var verificarLogin = function (result){
         imprimirPerfil(result);
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("perfil");
+            if(listadoDeEquipos !== "no") {
+                imprimirEquipos(listadoDeEquipos);
+            }
             Lungo.Notification.hide();
         }else{
-            adicionarJugador("usuario");
+            adicionarJugador();
             Lungo.Router.section("main");
         }
     }else{
@@ -180,9 +182,10 @@ var verificarRegistro = function (result){
         imprimirPerfil(result);
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("perfil");
+            imprimirEquipos(listadoDeEquipos);
             Lungo.Notification.hide();
         }else{
-            adicionarJugador("usuario");
+            adicionarJugador();
             Lungo.Router.section("main");
         }
     }else{
@@ -191,7 +194,7 @@ var verificarRegistro = function (result){
 }
 
 var imprimirJugador = function(result){
-    // console.log(result);
+    console.log(result);
     if(result.status === 'ok'){
         if(result.data.equipo === "b"){
             total_blancos += 1;
@@ -218,7 +221,16 @@ var imprimirJugador = function(result){
         }
         Lungo.Notification.hide();
     }else{
-        //Error
+        if(result.data.tipo === 1){
+            Lungo.Notification.error("Error", result.mensaje, "remove", function(){return});
+        }else{
+            if(result.data.tipo === 2){
+                imprimirEquipos(listadoDeEquipos);
+                Lungo.Notification.hide();
+            }else{
+                Lungo.Notification.error("Error", result.mensaje, "remove", function(){return});
+            }
+        }
     }
 }
 
