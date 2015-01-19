@@ -12,7 +12,7 @@ li > a.icono {
 	color: gray;
 	padding-top: 4px;
 }
-header {
+header, nav#options{
 	margin-top: 20px;
 }
 

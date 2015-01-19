@@ -201,8 +201,14 @@
     <section id="perfil" data-transition="slide">
         <header data-title="Perfil">
             <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
-            <nav class="on-right"><button data-icon="cog" data-view-section="cuenta"></button></nav>
+            <nav class="on-right"><button data-icon="cogs" data-view-menu="options"></button></nav>
         </header>
+        <nav id="options" data-control="menu" class="icons">
+            <a href="#" data-view-section="back" data-icon="chevron-left">Volver a Canchas</a>
+            <a href="#" data-view-section="fourth" data-icon="pencil">Editar Perfil</a>
+            <a id="cerrar-sesion" href="#" data-view-section="fourth" data-icon="off">Cerrar Sesión</a>
+            <a href="#" data-icon="chevron-up">Cancelar</a>
+        </nav>
         <article id="article_perfil" class="active scroll indented">
             <div class="empty">
                 <strong>Sesión no iniciada</strong>
