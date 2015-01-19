@@ -149,13 +149,15 @@
                 <fieldset data-icon="lock">
                     <input id="campo_contrasena" class="border" type="password" placeholder="Contraseña">
                 </fieldset>
-                <label class="select border margen-select">
-                    <select id="campo_sexo">
-                        <option value="">Selecciona tu sexo</option>
-                        <option value="m">Masculino</option>
-                        <option value="f">Femenino</option>
-                    </select>
-                </label>
+                <fieldset>
+                    <label class="select border">
+                        <select id="inv_sexo">
+                            <option value="">Selecciona sexo</option>
+                            <option value="m">Masculino</option>
+                            <option value="f">Femenino</option>
+                        </select>
+                    </label>
+                </fieldset>
                 <fieldset data-icon="phone">
                     <input id="campo_telefono" class="border" type="tel" placeholder="Telefono">
                 </fieldset>
@@ -179,13 +181,15 @@
                 <fieldset data-icon="inbox">
                     <input id="inv_correo" class="border" type="email" placeholder="Correo electrónico">
                 </fieldset>
-                <label class="select border">
-                    <select id="inv_sexo">
-                        <option value="">Selecciona sexo</option>
-                        <option value="m">Masculino</option>
-                        <option value="f">Femenino</option>
-                    </select>
-                </label>
+                <fieldset>
+                    <label class="select border">
+                        <select id="inv_sexo">
+                            <option value="">Selecciona sexo</option>
+                            <option value="m">Masculino</option>
+                            <option value="f">Femenino</option>
+                        </select>
+                    </label>
+                </fieldset>
                 <fieldset data-icon="phone">
                     <input id="inv_telefono" class="border" type="tel" placeholder="Telefono">
                 </fieldset>
@@ -196,7 +200,7 @@
 
     <section id="perfil" data-transition="slide">
         <header data-title="Perfil">
-            <nav><button data-icon="chevron-left" data-view-section="main"></button></nav>
+            <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
             <nav class="on-right"><button data-icon="cog" data-view-section="cuenta"></button></nav>
         </header>
         <article id="article_perfil" class="active scroll">
