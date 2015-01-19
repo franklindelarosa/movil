@@ -9,6 +9,7 @@
     </author>
 
 	<preference name="permissions" value="none"/>
+	<preference name="StatusBarBackgroundColor" value="#003c5a" />
 
 	<preference name="android-windowSoftInputMode" value="adjustResize" />
 
