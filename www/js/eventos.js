@@ -22,6 +22,7 @@ Lungo.ready(function() {
     if(localStorage["_chrome-rel-back"]){
         var url = direccionBase+"usuario/quien-soy?access-token="+localStorage["_chrome-rel-back"];
         Lungo.Service.post(url, {cancha:cancha.id}, function(result){sessionStorage["id"] = result.id}, "json");
+        imprimirPerfil();
     }else{
         sessionStorage.removeItem("id");
     }
@@ -56,15 +57,8 @@ $$('#registrar').on('unload', function(event) {
     $$('#registrar div.form').find(':not(button)[id]').val('');
 });
 $$('#invitar').on('unload', function(event) {
-    $$('#invitar div.form').find('[id]').val('');
+    // $$('#invitar div.form').find('[id]').val('');
 });
-// $$('#perfil').on('load', function(event) {
-//     if(localStorage["_chrome-rel-back"]){
-
-//     }else{
-//     Lungo.Article.clean("article_perfil","user","Sesión no iniciada","Para poder acceder al perfil debes iniciar sesión","lanzar-login");
-//     }
-// });
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         Lungo.Notification.error("", "Ya has iniciado sesión", "warning-sign", function(){return});

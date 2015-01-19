@@ -153,7 +153,7 @@ var verificarLogin = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key[0].accessToken;
         sessionStorage["id"] = result.key[0].id_usuario;
-        imprimirPerfil(result);
+        imprimirPerfil();
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("back");
             if(listadoDeEquipos !== "no") {
@@ -173,7 +173,7 @@ var verificarRegistro = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key;
         sessionStorage["id"] = result.id;
-        imprimirPerfil(result);
+        imprimirPerfil();
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("perfil");
             imprimirEquipos(listadoDeEquipos);
@@ -323,11 +323,30 @@ var verificarInvitacion = function(result){
     Lungo.Notification.hide();
 }
 
-function imprimirPerfil(datos){
+function imprimirPerfil(){
+
     var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
     Lungo.Service.post(url, "id=1", function(result){
-        
+        console.log(result);
+        var articulo = $$('#article_perfil');
+        articulo.empty();
+        // articulo.append('<div class="layout horizontal"><div data-layout="primary"><img class="on-left" src="images/profile.png" height="90px" width="auto"/></div><div data-layout="primary"><small>Nombre: '+
+        // result.data.nombre+'</small><br><small>Correo: '+result.data.correo+'</small><br><small>Sexo: '+result.data.sexo+
+        // '</small><br><small>Teléfono: '+result.data.telefono+'</small></div></div><div class="list"><li><strong>Último partido jugado</strong><span></span><small></small></li></div>');
+        articulo.append('<p class="centrar"><img src="images/profile.png"/></p><br><strong>Nombre: '+result.data.nombre+'</strong><br><br><strong>Correo: '+
+            result.data.correo+'</strong><br><br><strong>Sexo: '+result.data.sexo+'</strong><br><br><strong>Teléfono: '+result.data.telefono+
+            '</strong><br><div class="list"><ul><li></li><p class="centrar"><strong>Último partido jugado:</strong></p><li id="ultimo"></li></ul></div>');
+        if(result.ultimo_partido !== false){
+            console.log(result.ultimo_partido);
+            $$('#ultimo').append('<strong>Cancha: '+result.ultimo_partido.nombre+'</strong><br><strong>Dirección: '+
+            result.ultimo_partido.direccion+'</strong><br><strong>Fecha: '+result.ultimo_partido.label_fecha+'</strong><br><strong>Hora: '+result.ultimo_partido.label_hora+
+            '</strong>'
+            );
+        }else{
+            $$('#ultimo').append('<p class="centrar"><strong>Aún no has jugado ningún partido</strong></p>');
+        }
     }, "json");
+    Lungo.Notification.hide();
 }
 
 
