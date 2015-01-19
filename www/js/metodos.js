@@ -155,15 +155,14 @@ var verificarLogin = function (result){
         sessionStorage["id"] = result.key[0].id_usuario;
         imprimirPerfil(result);
         if(sessionStorage["lanzadoDesdeHome"]){
-            Lungo.Router.section("perfil");
             if(listadoDeEquipos !== "no") {
                 imprimirEquipos(listadoDeEquipos);
             }
             Lungo.Notification.hide();
         }else{
             adicionarJugador();
-            Lungo.Router.section("main");
         }
+        Lungo.Router.section("back");
     }else{
         Lungo.Notification.error("Error", "El correo y/o la contraseña diligenciados, no coinciden", "remove", function(){return});
     }
