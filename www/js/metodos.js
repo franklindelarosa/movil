@@ -243,25 +243,31 @@ var imprimirJugador = function(result){
 }
 
 var verificarEliminacion = function(result){
-    console.log(result);
+    // console.log(result);
     if(result.status === "ok"){
         current.remove();
-        var invitados = $$('a[data-fc-id-responsable="'+result.yo+'"]');
-        console.log(invitados);
+        total_blancos -= $$('li[data-fc-equipo="b"][data-fc-id-responsable="'+result.yo+'"]').length;
+        total_negros -= $$('li[data-fc-equipo="n"][data-fc-id-responsable="'+result.yo+'"]').length;
         $$('li[data-fc-id-responsable="'+result.yo+'"]').remove();
         if(result.equipo === "blancos"){
             total_blancos -= 1;
-            if(total_blancos < cancha.cupo_max/2){
-                $$('#unirse-blanco').show();
-            }
-            $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
         }else{
             total_negros -= 1;
-            if(total_negros < cancha.cupo_max/2){
-                $$('#unirse-negro').show();
-            }
-            $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
         }
+        $$('#unirse-blanco').attr('data-fc-estado', 'no');
+        $$('#unirse-blanco > span').attr('class', 'icon plus');
+        $$('#unirse-blanco > span').html('');
+        $$('#unirse-negro').attr('data-fc-estado', 'no');
+        $$('#unirse-negro > span').attr('class', 'icon plus');
+        $$('#unirse-negro > span').html('');
+        if(total_blancos < cancha.cupo_max/2){
+            $$('#unirse-blanco').show();
+        }
+        if(total_negros < cancha.cupo_max/2){
+            $$('#unirse-negro').show();
+        }
+        $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
+        $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
         Lungo.Notification.hide();
     }else{
         //Error
@@ -274,17 +280,11 @@ var verificarEliminacionInvitado = function(result){
         current.remove();
         if(result.equipo === "blancos"){
             total_blancos -= 1;
-            $$('#unirse-blanco').attr('data-fc-estado', 'no');
-            $$('#unirse-blanco > span').attr('class', 'icon plus');
-            $$('#unirse-blanco > span').html('');
-            $$('#unirse-blanco').removeClass('accept');
+            
             $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
         }else{
             total_negros -= 1;
-            $$('#unirse-negro').attr('data-fc-estado', 'no');
-            $$('#unirse-negro > span').attr('class', 'icon plus');
-            $$('#unirse-negro > span').html('');
-            $$('#unirse-blanco').removeClass('accept');
+            
             $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
         }
         if(total_blancos < cancha.cupo_max/2){

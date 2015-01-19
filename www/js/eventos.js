@@ -49,6 +49,15 @@ $$('#listado-horas').on('load', function(event) {
 $$('#listado-equipos').on('load', function(event) {
     $$("#main h1.title").html("Equipos");
 });
+$$('#login').on('unload', function(event) {
+    $$('#login div.form').find(':not(button)[id]').val('');
+});
+$$('#registrar').on('unload', function(event) {
+    $$('#registrar div.form').find(':not(button)[id]').val('');
+});
+$$('#invitar').on('unload', function(event) {
+    $$('#invitar div.form').find('[id]').val('');
+});
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         Lungo.Notification.error("", "Ya has iniciado sesión", "warning-sign", function(){return});
