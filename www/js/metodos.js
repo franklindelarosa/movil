@@ -155,6 +155,7 @@ var verificarLogin = function (result){
         sessionStorage["id"] = result.key[0].id_usuario;
         imprimirPerfil(result);
         if(sessionStorage["lanzadoDesdeHome"]){
+            // Lungo.Router.section("back");
             if(listadoDeEquipos !== "no") {
                 imprimirEquipos(listadoDeEquipos);
             }
@@ -162,7 +163,7 @@ var verificarLogin = function (result){
         }else{
             adicionarJugador();
         }
-        Lungo.Router.section("back");
+        // Lungo.Router.section("main");
     }else{
         Lungo.Notification.error("Error", "El correo y/o la contraseña diligenciados, no coinciden", "remove", function(){return});
     }
@@ -315,7 +316,7 @@ var verificarInvitacion = function(result){
             $$('#equipo-negro').append('<li data-fc-id-responsable="'+result.data.responsable+'" data-fc-id-invitado="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="invitado"><span class=" icon group"></span><a id="sacar-invitado-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Invitado</small></li>');
             $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
         }
-        Lungo.Router.section("back");
+        // Lungo.Router.section("main");
     }else{
         Lungo.Notification.error("Error", "No se pudo registrar el invitado, verifique los datos e intente nuevamente", "remove", function(){return});
     }

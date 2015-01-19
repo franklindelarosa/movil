@@ -70,6 +70,7 @@ $$('#cerrar-sesion').on('singleTap', function(event) {
     localStorage.removeItem("_chrome-rel-back");
     sessionStorage.removeItem("id");
     Lungo.Router.article("main", "listado-canchas");
+    Lungo.Router.section("perfil");
 });
 
 $$('#listado-canchas ul').on('singleTap', 'li', function(event) {
