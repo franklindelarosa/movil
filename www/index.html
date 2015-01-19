@@ -203,12 +203,13 @@
             <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
             <nav class="on-right"><button data-icon="cog" data-view-section="cuenta"></button></nav>
         </header>
-        <article id="article_perfil" class="active scroll">
-            <h1 class="centrar">Datos...</h1>
-            <p class="centrar">
-                <img src="images/profile.png" alt="...">
-            </p>
-            <a id="lanzar-login" class="button anchor accept" href="#" data-label="Iniciar Sesión"></a>
+        <article id="article_perfil" class="active scroll indented">
+            <div class="empty">
+                <strong>Sesión no iniciada</strong>
+                <span class="icon user"></span>
+                <small>Debes iniciar sesión para poder acceder al perfil</small><br>
+                <a id="lanzar-login" class="button anchor accept" href="#" data-label="Iniciar Sesión"></a>
+            </div>
         </article>
         <footer>
             <nav>
@@ -222,12 +223,14 @@
         <header data-title="Configuración">
             <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
         </header>
-        <article class="active scroll">
+        <article class="active scroll indented">
             <h1 class="centrar">Config...</h1>
             <p class="centrar">
                 <img src="images/profile.png" alt="...">
             </p>
-            <a id="cerrar-sesion" class="button anchor cancel" href="#" data-label="Cerrar Sesión"></a>
+            <p class="centrar">
+                <a id="cerrar-sesion" class="button anchor cancel" href="#" data-label="Cerrar Sesión"></a>
+            </p>
         </article>
     </section>
 

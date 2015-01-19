@@ -324,7 +324,10 @@ var verificarInvitacion = function(result){
 }
 
 function imprimirPerfil(datos){
-    return
+    var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
+    Lungo.Service.post(url, "id=1", function(result){
+        
+    }, "json");
 }
 
 
