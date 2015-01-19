@@ -227,7 +227,7 @@ section header > nav:not(.on-right) button {
 }
 section header > nav.on-right a,
 section header > nav.on-right button {
-  color: #f1fcff;
+  color: #f7f7f7;
   /*-webkit-text-shadow: 0 0.1em #009ecc;
   -moz-text-shadow: 0 0.1em #009ecc;
   -ms-text-shadow: 0 0.1em #009ecc;

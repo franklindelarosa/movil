@@ -246,9 +246,9 @@ var verificarEliminacion = function(result){
     console.log(result);
     if(result.status === "ok"){
         current.remove();
-        var invitados = $$('a[data-fc-responsable="'+result.yo+'"]');
+        var invitados = $$('a[data-fc-id-responsable="'+result.yo+'"]');
         console.log(invitados);
-        $$('li[data-fc-responsable="'+result.yo+'"]').remove();
+        $$('li[data-fc-id-responsable="'+result.yo+'"]').remove();
         if(result.equipo === "blancos"){
             total_blancos -= 1;
             if(total_blancos < cancha.cupo_max/2){
