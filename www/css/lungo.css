@@ -128,11 +128,11 @@ footer nav.with-labels abbr{z-index:1;display:block !important;margin-top:-1.3em
 .on-left{float:left}
 .on-right{float:right}
 .overthrow-enabled .overthrow{overflow:auto;-webkit-overflow-scrolling:touch}
-.scroll{overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch;-webkit-box-flex:1;}/*scroll aquí*/
+.scroll{overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch;-webkit-box-flex:1;}
 .scroll.horizontal{overflow-x:scroll;overflow-y:hidden;white-space:nowrap}
 .scroll > *{-webkit-transform:translate3d(0,0,0)}
 .tag{font-size:11px;min-width:17px;height:16px;line-height:16px !important;text-align:center;z-index:1;display:inline-block !important}
-.layout{display:-webkit-box;display:-moz-box;display:-ms-box;display:-o-box;display:box;/*height:inherit !important;*/}
+.layout{display:-webkit-box;display:-moz-box;display:-ms-box;display:-o-box;display:box;height:inherit !important;}
 .layout:not(.horizontal){-webkit-box-orient:vertical;-moz-box-orient:vertical;-ms-box-orient:vertical;-o-box-orient:vertical;box-orient:vertical;}
 .layout:not(.horizontal) > [data-layout=middle]{height:50%}
 .layout:not(.horizontal) > [data-layout=third]{height:33%}
