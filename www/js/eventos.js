@@ -57,7 +57,7 @@ $$('#registrar').on('unload', function(event) {
     $$('#registrar div.form').find(':not(button)[id]').val('');
 });
 $$('#invitar').on('unload', function(event) {
-    // $$('#invitar div.form').find('[id]').val('');
+    $$('#invitar div.form').find('[id]').val('');
 });
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){

@@ -48,7 +48,7 @@ var imprimirHoras = function (result){
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             $$('#horas').append('<li class="thumb selectable arrow" data-fc-hora="'+
-                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><div class="on-right"><span class="icon money"></span>$'+(Math.floor(val.venta.substr(0,(val.venta.length-3))))/cancha.cupo_max+' c/u</div><strong>'+val.label+
+                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><div class="on-right"><span class="icon money"></span>$'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max)+' c/u</div><strong>'+val.label+
                 '</strong><span>'+mensajes[Math.floor((Math.random() * mensajes.length))]+'</span><small>$'+val.venta.substr(0,(val.venta.length-3))+' Total por la cancha</small></div></li>');
         });
         Lungo.Router.article("main", "listado-horas");
@@ -327,7 +327,7 @@ function imprimirPerfil(){
 
     var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
     Lungo.Service.post(url, "id=1", function(result){
-        console.log(result);
+        // console.log(result);
         var articulo = $$('#article_perfil');
         articulo.empty();
         // articulo.append('<div class="layout horizontal"><div data-layout="primary"><img class="on-left" src="images/profile.png" height="90px" width="auto"/></div><div data-layout="primary"><small>Nombre: '+
@@ -337,7 +337,6 @@ function imprimirPerfil(){
             result.data.correo+'</strong><br><br><strong>Sexo: '+result.data.sexo+'</strong><br><br><strong>Teléfono: '+result.data.telefono+
             '</strong><br><div class="list"><ul><li></li><p class="centrar"><strong>Último partido jugado:</strong></p><li id="ultimo"></li></ul></div>');
         if(result.ultimo_partido !== false){
-            console.log(result.ultimo_partido);
             $$('#ultimo').append('<strong>Cancha: '+result.ultimo_partido.nombre+'</strong><br><strong>Dirección: '+
             result.ultimo_partido.direccion+'</strong><br><strong>Fecha: '+result.ultimo_partido.label_fecha+'</strong><br><strong>Hora: '+result.ultimo_partido.label_hora+
             '</strong>'
