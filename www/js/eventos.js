@@ -58,6 +58,13 @@ $$('#registrar').on('unload', function(event) {
 $$('#invitar').on('unload', function(event) {
     $$('#invitar div.form').find('[id]').val('');
 });
+// $$('#perfil').on('load', function(event) {
+//     if(localStorage["_chrome-rel-back"]){
+
+//     }else{
+//     Lungo.Article.clean("article_perfil","user","Sesión no iniciada","Para poder acceder al perfil debes iniciar sesión","lanzar-login");
+//     }
+// });
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         Lungo.Notification.error("", "Ya has iniciado sesión", "warning-sign", function(){return});
