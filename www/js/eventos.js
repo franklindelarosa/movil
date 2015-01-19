@@ -201,19 +201,18 @@ $$(document).on('singleTap', '#sacar-invitado-blanco', function(event) {
     Lungo.Notification.show();
     var url = direccionBase+"usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
     current = $$(this).parent("li").first();
-    Lungo.Service.post(url, {entidad: current.attr('data-fc-entidad'), equipo: "blancos", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
+    Lungo.Service.post(url, {entidad: current.attr('data-fc-entidad'), equipo: "blancos", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacionInvitado, "json");
 });
 
 $$(document).on('singleTap', '#sacar-invitado-negro', function(event) {
     Lungo.Notification.show();
     var url = direccionBase+"usuario/sacar-jugador?access-token="+localStorage["_chrome-rel-back"];
     current = $$(this).parent("li").first();
-    Lungo.Service.post(url, {entidad: current.attr('data-fc-entidad'), equipo: "negros", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacion, "json");
+    Lungo.Service.post(url, {entidad: current.attr('data-fc-entidad'), equipo: "negros", partido: partido, jugador: current.attr('data-fc-id-invitado')}, verificarEliminacionInvitado, "json");
 });
 
 $$(document).on('singleTap', '#btn_invitar', function(event) {
     var url = direccionBase+"usuario/registrar-invitado?access-token="+localStorage["_chrome-rel-back"];
-    Lungo.Notification.show();
     var datos = {
         nombres: $$('#inv_nombres').val(),
         apellidos: $$('#inv_apellidos').val(),
@@ -226,6 +225,7 @@ $$(document).on('singleTap', '#btn_invitar', function(event) {
     if(datos.nombres === "" || datos.apellidos === "" || datos.correo === "" || datos.sexo === "" || datos.telefono === ""){
         Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
     }else{
+        Lungo.Notification.show();
         Lungo.Service.post(url, datos, verificarInvitacion, "json");
     }
 });

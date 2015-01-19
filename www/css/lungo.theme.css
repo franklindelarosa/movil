@@ -228,11 +228,11 @@ section header > nav:not(.on-right) button {
 section header > nav.on-right a,
 section header > nav.on-right button {
   color: #f1fcff;
-  -webkit-text-shadow: 0 0.1em #009ecc;
+  /*-webkit-text-shadow: 0 0.1em #009ecc;
   -moz-text-shadow: 0 0.1em #009ecc;
   -ms-text-shadow: 0 0.1em #009ecc;
   -o-text-shadow: 0 0.1em #009ecc;
-  text-shadow: 0 0.1em #009ecc;
+  text-shadow: 0 0.1em #009ecc;*/
 }
 aside header > nav a,
 aside header > nav button {
