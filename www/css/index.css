@@ -13,8 +13,8 @@ li > a.icono {
 	padding-top: 4px;
 }
 
-.angle-left {
-	font-size: 12px;
+.separado {
+	margin-left: 5%;
 }
 /*header, nav#options{
 	margin-top: 20px; inactivo: #A1A6A8; activo: #003c5a;
