@@ -66,7 +66,7 @@ $$('#perfil').on('unload', function(event) {
 $$('#perfil').on('load', function(event) {
     var environment = Lungo.Core.environment();
     console.log(environment);
-    var texto = "a";
+    texto = "";
     $$.each(environment.os, function(index, val) {
          texto =+ "campo: "+val;
     });
