@@ -92,8 +92,10 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
 $$('#cerrar-sesion').on('singleTap', function(event) {
     localStorage.removeItem("_chrome-rel-back");
     sessionStorage.removeItem("id");
-    $$('#article_perfil div#contenido').empty();
-    $$('#article_perfil > div.empty').show();
+    setTimeout(function(){
+        $$('#article_perfil div#contenido').empty();
+        $$('#article_perfil > div.empty').show();
+    }, 300);
     Lungo.Router.article("main", "listado-canchas");
 });
 
