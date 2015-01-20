@@ -12,9 +12,10 @@ li > a.icono {
 	color: gray;
 	padding-top: 4px;
 }
-header, nav#options{
+
+/*header, nav#options{
 	margin-top: 20px;
-}
+}*/
 
 section{
 	background-color: #003c5a;
