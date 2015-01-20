@@ -153,6 +153,7 @@ var verificarLogin = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key[0].accessToken;
         sessionStorage["id"] = result.key[0].id_usuario;
+        $$('#lanzar-login').hide();
         imprimirPerfil();
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("back");

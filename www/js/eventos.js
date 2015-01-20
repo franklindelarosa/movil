@@ -92,10 +92,10 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
 $$('#cerrar-sesion').on('singleTap', function(event) {
     localStorage.removeItem("_chrome-rel-back");
     sessionStorage.removeItem("id");
-    var html = '<div class="empty"><strong>Sesión no iniciada</strong><span class="icon user"></span>'+
-    '<small>Debes iniciar sesión para poder acceder al perfil</small><br><a id="lanzar-login" '+
-    'class="button anchor accept" href="#">Iniciar Sesión</a></div>';
-    $$('#article_perfil').html(html);
+    var html = '<strong>Sesión no iniciada</strong><span class="icon user"></span>'+
+    '<small>Debes iniciar sesión para poder acceder al perfil</small><br>';
+    $$('#article_perfil > div.principal').html(html);
+    $$('#lanzar-login').show();
     Lungo.Router.article("main", "listado-canchas");
 });
 
