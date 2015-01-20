@@ -3,11 +3,11 @@ Lungo.init({
 });
 Lungo.ready(function() {
     Lungo.Notification.show();
-    var environment = Lungo.Core.environment();
-    // console.log(environment.os.name);
-    if(environment.os.name === "ios"){
-        $$('header').style('margin-top', '20px');
-    }
+    // var environment = Lungo.Core.environment();
+    // // console.log(environment.os.name);
+    // if(environment.os.name === "ios"){
+    //     $$('header').style('margin-top', '20px');
+    // }
     direccionBase = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/";
     Lungo.Service.Settings.async = true;
     Lungo.Service.Settings.error = function(type, xhr){
@@ -64,9 +64,9 @@ $$('#registrar').on('unload', function(event) {
 $$('#invitar').on('unload', function(event) {
     $$('#invitar div.form').find(':not(button)[id]').val('');
 });
-$$('#perfil').on('unload', function(event) {
-    $$('#perfil nav.on-right > button > span').removeClass().addClass('icon cogs');
-});
+// $$('#perfil').on('unload', function(event) {
+//     $$('#perfil nav.on-right > button > span').removeClass().addClass('icon cogs');
+// });
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         Lungo.Notification.error("", "Ya has iniciado sesión", "warning-sign", function(){return});
@@ -75,12 +75,26 @@ $$('#lanzar-login').on('singleTap', function(event) {
         Lungo.Router.section("login");
     }
 });
+$$('#iniciar-sesion').on('singleTap', function(event) {
+    $$('#login div.form').find(':not(button)[id]').trigger('blur');
+    // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
+    var url = direccionBase+"site/login";
+    Lungo.Notification.show();
+    var correo = $$('#correo').val();
+    var contrasena = $$('#contrasena').val();
+    if(correo === "" || contrasena === ""){
+        Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
+    }else{
+        Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
+    }
+});
+
 $$('#cerrar-sesion').on('singleTap', function(event) {
     localStorage.removeItem("_chrome-rel-back");
     sessionStorage.removeItem("id");
     var html = '<div class="empty"><strong>Sesión no iniciada</strong><span class="icon user"></span>'+
     '<small>Debes iniciar sesión para poder acceder al perfil</small><br><a id="lanzar-login" '+
-    'class="button anchor accept" href="#" data-label="Iniciar Sesión"></a></div>';
+    'class="button anchor accept" href="#">Iniciar Sesión</a></div>';
     $$('#article_perfil').html(html);
     Lungo.Router.article("main", "listado-canchas");
 });
@@ -164,19 +178,6 @@ $$('#unirse-negro').on('singleTap', function(event) {
     }
 });
 
-$$('#iniciar-sesion').on('singleTap', function(event) {
-    $$(this).trigger('blur');
-    // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
-    var url = direccionBase+"site/login";
-    Lungo.Notification.show();
-    var correo = $$('#correo').val();
-    var contrasena = $$('#contrasena').val();
-    if(correo === "" || contrasena === ""){
-        Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
-    }else{
-        Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
-    }
-});
 
 $$('#btn_registrar').on('singleTap', function(event) {
     var url = direccionBase+"site/registrar-perfil";
