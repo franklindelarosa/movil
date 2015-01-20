@@ -60,6 +60,9 @@
 		<icon src="res/android/res/drawable-xxxhdpi/appicon.png" gap:qualifier="xxxhdpi" />
 	</platform>
 
+    <!-- plugins -->
+    <gap:plugin name="com.ionic.keyboard" version="1.0.3" />
+
     <!-- splash screen -->
     <gap:splash src="splash.png" />    
     <gap:splash src="res/ios/Default.png" gap:platform="ios" width="320" height="480" />    

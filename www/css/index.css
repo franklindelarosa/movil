@@ -13,17 +13,19 @@ li > a.icono {
 	padding-top: 4px;
 }
 
-.angle-left{
+.angle-left {
 	font-size: 12px;
 }
 /*header, nav#options{
 	margin-top: 20px; inactivo: #A1A6A8; activo: #003c5a;
 }*/
-
-.derecha{
+.no-margin {
+	margin: 0px;
+}
+.derecha {
 	position: absolute;
 	right: 3.8em;
-	font-size: 11px;
+	font-size: 12px;
 	color: #808080;
 	font-weight: 400;
 }

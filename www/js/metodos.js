@@ -48,7 +48,7 @@ var imprimirHoras = function (result){
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             $$('#horas').append('<li class="thumb selectable arrow" data-fc-hora="'+
-                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><div class="derecha"><span class="icon money"></span>$'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max)+' c/u</div><strong>'+val.label+
+                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><div class="derecha"><span class="icon money no-margin"></span>$'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max)+' c/u</div><strong>'+val.label+
                 '</strong><span>'+mensajes[Math.floor((Math.random() * mensajes.length))]+'</span><small>$'+val.venta.substr(0,(val.venta.length-3))+' Total por la cancha</small></div></li>');
         });
         Lungo.Router.article("main", "listado-horas");
