@@ -327,7 +327,7 @@ function imprimirPerfil(){
     $$('#article_perfil > div.empty').hide();
     var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
     Lungo.Service.post(url, "id=1", function(result){
-        console.log(result);
+        // console.log(result);
         var articulo = $$('#article_perfil div#contenido');
         articulo.empty();
         // articulo.append('<div class="layout horizontal"><div data-layout="primary"><img class="on-left" src="images/profile.png" height="90px" width="auto"/></div><div data-layout="primary"><small>Nombre: '+
