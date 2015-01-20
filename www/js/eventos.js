@@ -66,7 +66,11 @@ $$('#perfil').on('unload', function(event) {
 $$('#perfil').on('load', function(event) {
     var environment = Lungo.Core.environment();
     console.log(environment);
-    Lungo.Notification.success("Msj","os: "+environment.os+" browser: "+environment.browser, 'check', function(){return});
+    var texto;
+    $$.each(environment.os, function(index, val) {
+         texto =+ "campo: "+val;
+    });
+    Lungo.Notification.success("Msj","os: "+texto, '', function(){return});
 });
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
