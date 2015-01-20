@@ -1,20 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.elecsis.fcmovil" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>FutbolCracks</name>
-    <description>
-        FutbolCracks, diviértete con el deporte rey.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Elecsis S.A.S
-    </author>
-
+	<name>FutbolCracks</name>
+	<description>
+		FutbolCracks, diviértete con el deporte rey.
+	</description>
+	<author email="dev@cordova.apache.org" href="http://cordova.io">
+		Elecsis S.A.S
+	</author>
 	<preference name="permissions" value="none"/>
 	<preference name="StatusBarOverlaysWebView" value="true" />
 	<preference name="StatusBarBackgroundColor" value="#003c5a" />
-
 	<preference name="webviewbounce" value="false" />
 	<preference name="DisallowOverscroll" value="true" />
-
 	<!-- Customize your app and platform with the preference element. -->
 	<preference name="phonegap-version" value="3.5.0" /> <!-- all: current version of PhoneGap -->
 	<preference name="orientation" value="portrait" /><!-- all: default means both landscape and portrait are enabled -->
@@ -32,23 +29,36 @@
 	<preference name="android-minSdkVersion" value="14" /> <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
 	<preference name="android-installLocation" value="auto" /><!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
 
+	<!--app iconos -->
+    <icon src="icon.png" />    
+    <icon src="www/images/iphone/appicon@2x.png" gap:platform="ios" width="144" height="144" />
+    <icon src="www/images/iphone/appicon-60.png" gap:platform="ios" width="60" height="60" />
+    <icon src="www/images/iphone/appicon-60@2x.png" gap:platform="ios" width="120" height="120" />
+    <icon src="www/images/iphone/appicon-60@3x.png" gap:platform="ios" width="180" height="180" />
+    <icon src="www/images/iphone/appicon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="www/images/iphone/appicon-72@2x.png" gap:platform="ios" width="144" height="144" />
+    <icon src="www/images/iphone/appicon-76.png" gap:platform="ios" width="76" height="76" />
+    <icon src="www/images/iphone/appicon-76@2x.png" gap:platform="ios" width="152" height="152" />
+    <icon src="www/images/iphone/appicon-Small.png" gap:platform="ios" width="29" height="29" />
+    <icon src="www/images/iphone/appicon-Small@2x.png" gap:platform="ios" width="58" height="58" />
+    <icon src="www/images/iphone/appicon-Small@3x.png" gap:platform="ios" width="87" height="87" />
+    <icon src="www/images/iphone/appicon-Small-40.png" gap:platform="ios" width="40" height="40" />
+    <icon src="www/images/iphone/appicon-Small-40@2x.png" gap:platform="ios" width="80" height="80" />
+    <icon src="www/images/iphone/appicon-Small-50.png" gap:platform="ios" width="50" height="50" />
+    <icon src="www/images/iphone/appicon-Small-50@2x.png" gap:platform="ios" width="50" height="50" />
 
-	<icon src="icon.png" />
-	<!-- <icon src="images/drawable-ldpi/Icon.png" gap:platform="android" gap:qualifier="ldpi" /> -->
-	<!-- <icon src="images/drawable-mdpi/Icon.png" gap:platform="android" gap:qualifier="mdpi" /> -->
-	<!-- <icon src="images/drawable-hdpi/Icon.png" gap:platform="android" gap:qualifier="hdpi" /> -->
-	<!-- <icon src="images/drawable-xhdpi/Icon.png" gap:platform="android" gap:qualifier="xhdpi" /> -->
+    <!-- splash screen -->
+    <gap:splash src="splash.png" />    
+    <gap:splash src="www/images/iphone/Default@2x.png" gap:platform="ios" width="640" height="960" />
+    <gap:splash src="www/images/iphone/Default-portrait.png" gap:platform="ios" width="768" height="1024" />
+    <gap:splash src="www/images/iphone/Default-portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
+    <gap:splash src="www/images/iphone/Default-portrait-736h@3x.png" gap:platform="ios" width="1242" height="2208" />
+    <gap:splash src="www/images/iphone/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
+    <gap:splash src="www/images/iphone/Default-667h@2x.png" gap:platform="ios" width="750" height="1334" />
 
-	<gap:splash src="splash.png" />
-	<!-- <gap:splash src="images/drawable-ldpi/splash.png" gap:platform="android" gap:qualifier="ldpi" /> -->
-	<!-- <gap:splash src="images/drawable-mdpi/splash.png" gap:platform="android" gap:qualifier="mdpi" /> -->
-	<!-- <gap:splash src="images/drawable-hdpi/splash.png" gap:platform="android" gap:qualifier="hdpi" /> -->
-	<!-- <gap:splash src="images/drawable-xhdpi/splash.png" gap:platform="android" gap:qualifier="xhdpi" /> -->
-
-	<!-- <gap:splash src="images/drawable-ldpi/splash.png" gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="images/drawable-mdpi/splash.png" gap:platform="android" gap:density="mdpi" />
-	<gap:splash src="images/drawable-hdpi/splash.png" gap:platform="android" gap:density="hdpi" />
-	<gap:splash src="images/drawable-xhdpi/splash.png" gap:platform="android" gap:density="xhdpi" /> -->
-
-	<access origin="*" />
+<!-- <gap:splash src="images/drawable-ldpi/splash.png" gap:platform="android" gap:density="ldpi" />
+<gap:splash src="images/drawable-mdpi/splash.png" gap:platform="android" gap:density="mdpi" />
+<gap:splash src="images/drawable-hdpi/splash.png" gap:platform="android" gap:density="hdpi" />
+<gap:splash src="images/drawable-xhdpi/splash.png" gap:platform="android" gap:density="xhdpi" /> -->
+<access origin="*" />
 </widget>

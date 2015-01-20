@@ -153,10 +153,10 @@ var verificarLogin = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key[0].accessToken;
         sessionStorage["id"] = result.key[0].id_usuario;
-        $$('#lanzar-login').hide();
+        $$('#article_perfil > div.empty').hide();
         imprimirPerfil();
         if(sessionStorage["lanzadoDesdeHome"]){
-            Lungo.Router.section("back");
+            // Lungo.Router.section("back");
             if(listadoDeEquipos !== "no") {
                 imprimirEquipos(listadoDeEquipos);
             }
@@ -164,7 +164,7 @@ var verificarLogin = function (result){
         }else{
             adicionarJugador();
         }
-        Lungo.Router.section("main");
+        // Lungo.Router.section("main");
     }else{
         Lungo.Notification.error("Error", "El correo y/o la contraseña diligenciados, no coinciden", "remove", function(){return});
     }
@@ -329,7 +329,7 @@ function imprimirPerfil(){
     var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
     Lungo.Service.post(url, "id=1", function(result){
         // console.log(result);
-        var articulo = $$('#article_perfil');
+        var articulo = $$('#article_perfil div#contenido');
         articulo.empty();
         // articulo.append('<div class="layout horizontal"><div data-layout="primary"><img class="on-left" src="images/profile.png" height="90px" width="auto"/></div><div data-layout="primary"><small>Nombre: '+
         // result.data.nombre+'</small><br><small>Correo: '+result.data.correo+'</small><br><small>Sexo: '+result.data.sexo+

@@ -3,11 +3,11 @@ Lungo.init({
 });
 Lungo.ready(function() {
     Lungo.Notification.show();
-    // var environment = Lungo.Core.environment();
-    // // console.log(environment.os.name);
-    // if(environment.os.name === "ios"){
-    //     $$('header').style('margin-top', '20px');
-    // }
+    var environment = Lungo.Core.environment();
+    // console.log(environment.os.name);
+    if(environment.os.name === "ios"){
+        $$('header').style('margin-top', '20px');
+    }
     direccionBase = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/";
     Lungo.Service.Settings.async = true;
     Lungo.Service.Settings.error = function(type, xhr){
@@ -92,10 +92,8 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
 $$('#cerrar-sesion').on('singleTap', function(event) {
     localStorage.removeItem("_chrome-rel-back");
     sessionStorage.removeItem("id");
-    var html = '<strong>Sesión no iniciada</strong><span class="icon user"></span>'+
-    '<small>Debes iniciar sesión para poder acceder al perfil</small><br>';
-    $$('#article_perfil > div.principal').html(html);
-    $$('#lanzar-login').show();
+    $$('#article_perfil div#contenido').empty();
+    $$('#article_perfil > div.empty').show();
     Lungo.Router.article("main", "listado-canchas");
 });
 
