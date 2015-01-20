@@ -52,23 +52,23 @@
 </head>
 
 <body class="app">
-    <section id="main" data-transition="slide">
+    <section id="main" data-transition="fade">
         <header data-title="Canchas">
             <nav>
-                <button data-article="cancha" data-view-article="listado-canchas" data-icon="chevron-left"></button>
-                <button data-article="listado-dias" data-view-article="cancha" data-icon="chevron-left"></button>
-                <button data-article="listado-horas" data-view-article="listado-dias" data-icon="chevron-left"></button>
-                <button data-article="listado-equipos" data-view-article="listado-horas" data-icon="chevron-left"></button>
+                <button data-article="cancha" data-view-article="listado-canchas" data-icon="angle-left"></button>
+                <button data-article="listado-dias" data-view-article="cancha" data-icon="angle-left"></button>
+                <button data-article="listado-horas" data-view-article="listado-dias" data-icon="angle-left"></button>
+                <button data-article="listado-equipos" data-view-article="listado-horas" data-icon="angle-left"></button>
             </nav>
         </header>
         <footer>
             <nav>
-                <a href="#" data-icon="trophy" data-view-section="main"></a>
-                <a href="#" data-icon="user" data-view-section="perfil"></a>
+                <a href="#" data-view-section="main"><span class="icon trophy" style="color: #003C5A"></span></a>
+                <a href="#" data-view-section="perfil"><span class="icon user" style="color: #A1A6A8"></span></a>
             </nav>
         </footer>
 
-        <article id="listado-canchas" class="active list scroll">
+        <article id="listado-canchas" class="active list scroll indented">
             <ul id="canchas"></ul>
         </article>
 
@@ -85,11 +85,11 @@
             <p class="centrar"><button id="seleccionar-cancha" class="accept anchor" data-label="RESERVAR"></button></p><br><br>
         </article>
 
-        <article id="listado-dias" class="list scroll">
+        <article id="listado-dias" class="list scroll indented">
             <ul id="dias"></ul>
         </article>
 
-        <article id="listado-horas" class="list scroll">
+        <article id="listado-horas" class="list scroll indented">
             <ul id="horas"></ul>
         </article>
 
@@ -108,14 +108,14 @@
     <section id="login" data-transition="cover">
         <header data-title="Iniciar Sesión">
             <nav class="on-left">
-                <button data-view-section="back" data-icon="chevron-left"></button>
+                <button data-view-section="back" data-icon="angle-left"></button>
             </nav>
             <nav class="on-right">
                 <button data-view-section="registrar" data-label="Registrar&nbsp"></button>
             </nav>
         </header>
         <article id="article_login" class="active indented scroll">
-            <img src="images/login.png" style="width: 100%; height: auto;">
+            <img src="res/login.png" style="width: 100%; height: auto;">
             <div class="form">
                 <fieldset data-icon="inbox">
                     <input id="correo" type="email" placeholder="Correo">
@@ -132,7 +132,7 @@
 
     <section id="registrar" data-transition="fade">
         <header data-title="Registarse">
-            <nav class="on-left"><button data-icon="chevron-left" data-view-section="back"></button></nav>
+            <nav class="on-left"><button data-icon="angle-left" data-view-section="back"></button></nav>
             <!-- <nav class="on-right"><button data-label="Crear&nbsp"></button></nav> -->
         </header>
         <article class="active scroll indented">
@@ -168,7 +168,7 @@
 
     <section id="invitar" data-transition="fade">
         <header data-title="Invitando jugador">
-            <nav class="on-left"><button data-icon="chevron-left" data-view-section="back"></button></nav>
+            <nav class="on-left"><button data-icon="angle-left" data-view-section="back"></button></nav>
         </header>
         <article class="active scroll indented">
             <div class="form">
@@ -198,13 +198,19 @@
         </article>
     </section>
 
-    <section id="perfil" data-transition="slide">
+    <section id="perfil" data-transition="fade">
         <header data-title="Perfil">
-            <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
+            <nav><button data-icon="angle-left" data-view-section="back"></button></nav>
             <nav class="on-right"><button id="cerrar-sesion" data-icon="off"></button></nav>
         </header>
+        <footer>
+            <nav>
+                <a href="#" data-view-section="back"><span class="icon trophy" style="color: #A1A6A8"></span></a>
+                <a href="#" data-view-section="perfil"><span class="icon user" style="color: #003C5A"></span></a>
+            </nav>
+        </footer>
         <nav id="options" data-control="menu" class="icons">
-            <a href="#" data-view-section="back" data-icon="chevron-left">Volver a Canchas</a>
+            <a href="#" data-view-section="back" data-icon="angle-left">Volver a Canchas</a>
             <a href="#" data-view-section="fourth" data-icon="pencil">Editar Perfil</a>
             <a href="#" data-view-section="fourth" data-icon="off">Cerrar Sesión</a>
             <a href="#" data-icon="chevron-up">Cancelar</a>
@@ -218,17 +224,11 @@
             </div>
             <div id="contenido"></div>
         </article>
-        <footer>
-            <nav>
-                <a href="#" data-icon="trophy" data-view-section="back"></a>
-                <a href="#" data-icon="user" data-view-section="perfil"></a>
-            </nav>
-        </footer>
     </section>
 
     <section id="cuenta" data-transition="cover">
         <header data-title="Configuración">
-            <nav><button data-icon="chevron-left" data-view-section="back"></button></nav>
+            <nav><button data-icon="angle-left" data-view-section="back"></button></nav>
         </header>
         <article class="active scroll indented">
             <h1 class="centrar">Config...</h1>

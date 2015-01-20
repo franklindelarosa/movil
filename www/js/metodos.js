@@ -48,7 +48,7 @@ var imprimirHoras = function (result){
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             $$('#horas').append('<li class="thumb selectable arrow" data-fc-hora="'+
-                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><div class="on-right"><span class="icon money"></span>$'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max)+' c/u</div><strong>'+val.label+
+                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><div class="derecha"><span class="icon money"></span>$'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max)+' c/u</div><strong>'+val.label+
                 '</strong><span>'+mensajes[Math.floor((Math.random() * mensajes.length))]+'</span><small>$'+val.venta.substr(0,(val.venta.length-3))+' Total por la cancha</small></div></li>');
         });
         Lungo.Router.article("main", "listado-horas");
@@ -333,7 +333,7 @@ function imprimirPerfil(){
         // articulo.append('<div class="layout horizontal"><div data-layout="primary"><img class="on-left" src="images/profile.png" height="90px" width="auto"/></div><div data-layout="primary"><small>Nombre: '+
         // result.data.nombre+'</small><br><small>Correo: '+result.data.correo+'</small><br><small>Sexo: '+result.data.sexo+
         // '</small><br><small>Teléfono: '+result.data.telefono+'</small></div></div><div class="list"><li><strong>Último partido jugado</strong><span></span><small></small></li></div>');
-        articulo.append('<p class="centrar"><img src="images/profile.png"/></p><br><strong>Nombre: '+result.data.nombre+'</strong><br><br><strong>Correo: '+
+        articulo.append('<p class="centrar"><img src="res/profile.png"/></p><br><strong>Nombre: '+result.data.nombre+'</strong><br><br><strong>Correo: '+
             result.data.correo+'</strong><br><br><strong>Sexo: '+result.data.sexo+'</strong><br><br><strong>Teléfono: '+result.data.telefono+
             '</strong><br><div class="list"><ul><li></li><p class="centrar"><strong>Último partido jugado:</strong></p><li id="ultimo"></li></ul></div>');
         if(result.ultimo_partido !== false){

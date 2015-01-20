@@ -509,7 +509,8 @@ article button .icon {
 }
 article button,
 article .button {
-  background-color: #0095c1;
+  /*background-color: #0095c1;*/
+  background-color: #3A5795;
 }
 article button.color,
 article .button.color {
