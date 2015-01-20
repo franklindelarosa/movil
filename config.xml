@@ -31,6 +31,7 @@
 
 	<!--app iconos -->
     <icon src="icon.png" />    
+    <icon src="www/images/iphone/appicon.png" />    
     <icon src="www/images/iphone/appicon@2x.png" gap:platform="ios" width="144" height="144" />
     <icon src="www/images/iphone/appicon-60.png" gap:platform="ios" width="60" height="60" />
     <icon src="www/images/iphone/appicon-60@2x.png" gap:platform="ios" width="120" height="120" />
@@ -49,6 +50,7 @@
 
     <!-- splash screen -->
     <gap:splash src="splash.png" />    
+    <gap:splash src="www/images/iphone/Default.png" />    
     <gap:splash src="www/images/iphone/Default@2x.png" gap:platform="ios" width="640" height="960" />
     <gap:splash src="www/images/iphone/Default-portrait.png" gap:platform="ios" width="768" height="1024" />
     <gap:splash src="www/images/iphone/Default-portrait@2x.png" gap:platform="ios" width="1536" height="2048" />

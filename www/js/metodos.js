@@ -153,7 +153,6 @@ var verificarLogin = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key[0].accessToken;
         sessionStorage["id"] = result.key[0].id_usuario;
-        $$('#article_perfil > div.empty').hide();
         imprimirPerfil();
         if(sessionStorage["lanzadoDesdeHome"]){
             // Lungo.Router.section("back");
@@ -325,7 +324,7 @@ var verificarInvitacion = function(result){
 }
 
 function imprimirPerfil(){
-
+    $$('#article_perfil > div.empty').hide();
     var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
     Lungo.Service.post(url, "id=1", function(result){
         // console.log(result);
