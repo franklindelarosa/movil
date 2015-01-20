@@ -67,16 +67,6 @@ $$('#invitar').on('unload', function(event) {
 $$('#perfil').on('unload', function(event) {
     $$('#perfil nav.on-right > button > span').removeClass().addClass('icon cogs');
 });
-var texto="";
-$$('#perfil').on('load', function(event) {    
-    var environment = Lungo.Core.environment();
-    console.log(environment);
-    $$.each(environment.os, function(index, val) {
-        texto = texto+"";
-        texto = texto+" "+index+": "+val;
-    });
-    Lungo.Notification.success("Msj","os: "+texto, '', function(){return});
-});
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         Lungo.Notification.error("", "Ya has iniciado sesión", "warning-sign", function(){return});
