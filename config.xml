@@ -7,6 +7,7 @@
 	<author email="dev@cordova.apache.org" href="http://cordova.io">
 		Elecsis S.A.S
 	</author>
+
 	<preference name="permissions" value="none"/>
 	<preference name="StatusBarOverlaysWebView" value="true" />
 	<preference name="StatusBarBackgroundColor" value="#003c5a" />
@@ -60,7 +61,8 @@
     <gap:splash src="./images/iphone/Default-portrait-736h@3x.png" width="1242" height="2208" />
     <gap:splash src="./images/iphone/Default-568h@2x.png" width="640" height="1136" />
     <gap:splash src="./images/iphone/Default-667h@2x.png" width="750" height="1334" />
-
+	
+	<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
 <!-- <gap:splash src="images/drawable-ldpi/splash.png" gap:platform="android" gap:density="ldpi" />
 <gap:splash src="images/drawable-mdpi/splash.png" gap:platform="android" gap:density="mdpi" />
 <gap:splash src="images/drawable-hdpi/splash.png" gap:platform="android" gap:density="hdpi" />
