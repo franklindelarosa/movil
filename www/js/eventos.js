@@ -165,6 +165,7 @@ $$('#unirse-negro').on('singleTap', function(event) {
 });
 
 $$('#iniciar-sesion').on('singleTap', function(event) {
+    $$(this).trigger('blur');
     // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
     var url = direccionBase+"site/login";
     Lungo.Notification.show();
