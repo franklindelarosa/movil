@@ -76,9 +76,8 @@ $$('#lanzar-login').on('singleTap', function(event) {
     }
 });
 $$('#iniciar-sesion').on('singleTap', function(event) {
-    // $$('#login div.form').find(':not(button)[id]').trigger('blur');
-    cordova.plugins.Keyboard.close();
     // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
+    cordova.plugins.Keyboard.close();
     var url = direccionBase+"site/login";
     Lungo.Notification.show();
     var correo = $$('#correo').val();
@@ -179,6 +178,7 @@ $$('#unirse-negro').on('singleTap', function(event) {
 
 
 $$('#btn_registrar').on('singleTap', function(event) {
+    cordova.plugins.Keyboard.close();
     var url = direccionBase+"site/registrar-perfil";
     Lungo.Notification.show();
     var datos = {
@@ -235,6 +235,7 @@ $$(document).on('singleTap', '#sacar-invitado-negro', function(event) {
 });
 
 $$(document).on('singleTap', '#btn_invitar', function(event) {
+    cordova.plugins.Keyboard.close();
     var url = direccionBase+"usuario/registrar-invitado?access-token="+localStorage["_chrome-rel-back"];
     var datos = {
         nombres: $$('#inv_nombres').val(),
