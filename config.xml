@@ -11,7 +11,8 @@
 	<preference name="permissions" value="none"/>
 	<preference name="StatusBarBackgroundColor" value="#003c5a" />
 
-	<preference name="android-windowSoftInputMode" value="adjustResize" />
+	<preference name="webviewbounce" value="false" />
+	<preference name="DisallowOverscroll" value="true" />
 
 	<!-- Customize your app and platform with the preference element. -->
 	<preference name="phonegap-version" value="3.5.0" /> <!-- all: current version of PhoneGap -->
