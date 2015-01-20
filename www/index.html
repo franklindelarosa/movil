@@ -63,7 +63,7 @@
         </header>
         <footer>
             <nav>
-                <a href="#" class="active" data-icon="trophy" data-view-section="main"></a>
+                <a href="#" data-icon="trophy" data-view-section="main"></a>
                 <a href="#" data-icon="user" data-view-section="perfil"></a>
             </nav>
         </footer>
@@ -79,10 +79,10 @@
             <h2></h2>
             <div class="layout horizontal">
                 <div data-layout="middle"><p id="label-cupo"></p></div>
-                <div data-layout="middle"><p id="label-telefono"></p></div>
+                <!-- <div data-layout="middle"><p id="label-telefono"></p></div> -->
             </div>
             <p id="label-direccion"></p>
-            <p class="centrar"><button id="seleccionar-cancha" class="accept anchor" data-icon="check" data-label="RESERVAR"></button></p><br><br>
+            <p class="centrar"><button id="seleccionar-cancha" class="accept anchor" data-label="RESERVAR"></button></p><br><br>
         </article>
 
         <article id="listado-dias" class="list scroll">
@@ -118,12 +118,12 @@
             <img src="images/login.png" style="width: 100%; height: auto;">
             <div class="form">
                 <fieldset data-icon="inbox">
-                    <input id="correo" class="border" type="email" placeholder="Correo">
+                    <input id="correo" type="email" placeholder="Correo">
                 </fieldset>
                 <fieldset data-icon="user">
-                    <input id="contrasena" class="border" type="password" placeholder="Contraseña">
+                    <input id="contrasena" type="password" placeholder="Contraseña">
                 </fieldset>
-                <p class="centrar"><button id="iniciar-sesion" class="anchor accept margin-top margin-bottom" data-icon="check" data-label="Ingresar"></button></p>
+                <p class="centrar"><button id="iniciar-sesion" class="anchor accept margin-top margin-bottom" data-label="Ingresar"></button></p>
                 <h5 class="margin-top margin-bottom centrar">o:</h5>
                 <button id="iniciar-facebook" class="anchor margin-top margin-bottom" data-icon="facebook" data-label="Entrar con Facebook"></button>
             </div>
@@ -138,16 +138,16 @@
         <article class="active scroll indented">
             <div class="form">
                 <fieldset data-icon="user">
-                    <input id="campo_nombres" class="border" type="text" placeholder="Nombre(s)">
+                    <input id="campo_nombres" type="text" placeholder="Nombre(s)">
                 </fieldset>
                 <fieldset data-icon="user">
-                    <input id="campo_apellidos" class="border" type="text" placeholder="Apellido(s)">
+                    <input id="campo_apellidos" type="text" placeholder="Apellido(s)">
                 </fieldset>
                 <fieldset data-icon="inbox">
-                    <input id="campo_correo" class="border" type="email" placeholder="Correo electrónico">
+                    <input id="campo_correo" type="email" placeholder="Correo electrónico">
                 </fieldset>
                 <fieldset data-icon="lock">
-                    <input id="campo_contrasena" class="border" type="password" placeholder="Contraseña">
+                    <input id="campo_contrasena" type="password" placeholder="Contraseña">
                 </fieldset>
                 <fieldset>
                     <label class="select border">
@@ -159,9 +159,9 @@
                     </label>
                 </fieldset>
                 <fieldset data-icon="phone">
-                    <input id="campo_telefono" class="border" type="tel" placeholder="Telefono">
+                    <input id="campo_telefono" type="tel" placeholder="Telefono">
                 </fieldset>
-                <a href="#" id="btn_registrar" class="button anchor accept margin-top margin-bottom" data-icon="check" data-label="Crear cuenta"></a>
+                <a href="#" id="btn_registrar" class="button anchor accept margin-top margin-bottom" data-label="Crear cuenta"></a>
             </div>
         </article>
     </section>
@@ -173,13 +173,13 @@
         <article class="active scroll indented">
             <div class="form">
                 <fieldset data-icon="user">
-                    <input id="inv_nombres" class="border" type="text" placeholder="Nombre(s)">
+                    <input id="inv_nombres" type="text" placeholder="Nombre(s)">
                 </fieldset>
                 <fieldset data-icon="user">
-                    <input id="inv_apellidos" class="border" type="text" placeholder="Apellido(s)">
+                    <input id="inv_apellidos" type="text" placeholder="Apellido(s)">
                 </fieldset>
                 <fieldset data-icon="inbox">
-                    <input id="inv_correo" class="border" type="email" placeholder="Correo electrónico">
+                    <input id="inv_correo" type="email" placeholder="Correo electrónico">
                 </fieldset>
                 <fieldset>
                     <label class="select border">
@@ -191,9 +191,9 @@
                     </label>
                 </fieldset>
                 <fieldset data-icon="phone">
-                    <input id="inv_telefono" class="border" type="tel" placeholder="Telefono">
+                    <input id="inv_telefono" type="tel" placeholder="Telefono">
                 </fieldset>
-                <a href="#" id="btn_invitar" class="button anchor accept margin-top margin-bottom" data-icon="check" data-label="Invitar"></a>
+                <a href="#" id="btn_invitar" class="button anchor accept margin-top margin-bottom" data-label="Invitar"></a>
             </div>
         </article>
     </section>
@@ -220,7 +220,7 @@
         <footer>
             <nav>
                 <a href="#" data-icon="trophy" data-view-section="back"></a>
-                <a href="#" class="active" data-icon="user" data-view-section="perfil"></a>
+                <a href="#" data-icon="user" data-view-section="perfil"></a>
             </nav>
         </footer>
     </section>

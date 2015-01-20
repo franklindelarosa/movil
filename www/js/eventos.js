@@ -78,8 +78,11 @@ $$('#lanzar-login').on('singleTap', function(event) {
 $$('#cerrar-sesion').on('singleTap', function(event) {
     localStorage.removeItem("_chrome-rel-back");
     sessionStorage.removeItem("id");
+    var html = '<div class="empty"><strong>Sesión no iniciada</strong><span class="icon user"></span>'+
+    '<small>Debes iniciar sesión para poder acceder al perfil</small><br><a id="lanzar-login" '+
+    'class="button anchor accept" href="#" data-label="Iniciar Sesión"></a></div>';
+    $$('#article_perfil').html(html);
     Lungo.Router.article("main", "listado-canchas");
-    Lungo.Router.section("perfil");
 });
 
 $$('#listado-canchas ul').on('singleTap', 'li', function(event) {
@@ -94,7 +97,7 @@ $$('#listado-canchas ul').on('singleTap', 'li', function(event) {
 	};
     $$('article#cancha img').attr('src', 'http://elecsis.com.co/fcracks/web/images/canchas/'+cancha.imagen);
     $$('article#cancha h2').html(cancha.nombre);
-    $$('#label-telefono').html("Tel: "+cancha.telefono);
+    // $$('#label-telefono').html("Tel: "+cancha.telefono);
     $$('#label-cupo').html("Cupo: "+cancha.cupo_max+" jugadores");
     $$('#label-direccion').html("Dirección: "+cancha.direccion);
     Lungo.Notification.show();
