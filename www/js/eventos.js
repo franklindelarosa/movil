@@ -67,9 +67,6 @@ $$('#invitar').on('unload', function(event) {
 $$('button').on('singleTap', function(event) {
     cordova.plugins.Keyboard.close();
 });
-$$('a.button').on('singleTap', function(event) {
-    cordova.plugins.Keyboard.close();
-});
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         Lungo.Notification.error("", "Ya has iniciado sesión", "warning-sign", function(){return});
@@ -79,7 +76,8 @@ $$('#lanzar-login').on('singleTap', function(event) {
     }
 });
 $$('#iniciar-sesion').on('singleTap', function(event) {
-    $$('#login div.form').find(':not(button)[id]').trigger('blur');
+    // $$('#login div.form').find(':not(button)[id]').trigger('blur');
+    cordova.plugins.Keyboard.close();
     // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
     var url = direccionBase+"site/login";
     Lungo.Notification.show();
