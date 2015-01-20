@@ -86,7 +86,6 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
     }else{
         Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
     }
-    cordova.plugins.Keyboard.close();
 });
 
 $$('#cerrar-sesion').on('singleTap', function(event) {

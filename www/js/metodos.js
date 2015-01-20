@@ -150,6 +150,7 @@ var imprimirEquipos = function (result){
 }
 
 var verificarLogin = function (result){
+    cordova.plugins.Keyboard.close();
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key[0].accessToken;
         sessionStorage["id"] = result.key[0].id_usuario;
@@ -335,7 +336,7 @@ function imprimirPerfil(){
         // '</small><br><small>Teléfono: '+result.data.telefono+'</small></div></div><div class="list"><li><strong>Último partido jugado</strong><span></span><small></small></li></div>');
         articulo.append('<p class="centrar"><img src="res/profile.png"/></p><br><strong class="separado">Nombre: '+result.data.nombre+'</strong><br><br><strong class="separado">Correo: '+
             result.data.correo+'</strong><br><br><strong class="separado">Sexo: '+result.data.sexo+'</strong><br><br><strong class="separado">Teléfono: '+result.data.telefono+
-            '</strong><br><br><strong class="separado">Partidos jugados: '+result.total+'</strong><br><div class="list"><ul><li></li><p class="centrar" style="margin-top: 10px"><strong>Último partido jugado:</strong></p><li id="ultimo"></li></ul></div>');
+            '</strong><br><br><strong class="separado">Partidos jugados: '+result.total+'</strong><br><div class="list"><ul><li></li><p class="centrar" style="margin-top: 10px"><strong>Último partido:</strong></p><li id="ultimo"></li></ul></div>');
         if(result.ultimo_partido !== false){
             $$('#ultimo').append('<strong>Cancha: '+result.ultimo_partido.nombre+'</strong><br><strong>Dirección: '+
             result.ultimo_partido.direccion+'</strong><br><strong>Fecha: '+result.ultimo_partido.label_fecha+'</strong><br><strong>Hora: '+result.ultimo_partido.label_hora+
