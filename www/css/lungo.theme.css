@@ -86,7 +86,7 @@ section .list li.contrast,
 section .list li a.contrast {
   background: #cfcfcf;
 }
-section .list li.selectable:active,
+section .list li.selectable:active,/*li activo*/
 section .list li a.selectable:active,
 section .list li.theme,
 section .list li a.theme,
@@ -281,7 +281,7 @@ section > footer > nav > a.active,
 nav[data-control=groupbar] > a.active,
 section > footer > nav > a:active,
 nav[data-control=groupbar] > a:active {
-  color: #fff;
+  color: #003c5a;
 }
 nav[data-control=groupbar] > a.active,
 nav[data-control=groupbar] > a:active {
@@ -293,11 +293,11 @@ nav[data-control=groupbar] > a:active {
 }
 section > footer > nav > a.active,
 section > footer > nav > a:active {
-  -webkit-box-shadow: inset 0 0.3em #00afe3;
-  -moz-box-shadow: inset 0 0.3em #00afe3;
-  -ms-box-shadow: inset 0 0.3em #00afe3;
-  -o-box-shadow: inset 0 0.3em #00afe3;
-  box-shadow: inset 0 0.3em #00afe3;
+  -webkit-box-shadow: inset 0 0.3em #003c5a;/*footer activo*/
+  -moz-box-shadow: inset 0 0.3em #003c5a;
+  -ms-box-shadow: inset 0 0.3em #003c5a;
+  -o-box-shadow: inset 0 0.3em #003c5a;
+  box-shadow: inset 0 0.3em #003c5a;
 }
 nav[data-control=menu] {
   background-color: rgba(0,0,0,0.9);
