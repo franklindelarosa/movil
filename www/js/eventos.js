@@ -63,10 +63,10 @@ $$('#invitar').on('unload', function(event) {
 $$('#perfil').on('unload', function(event) {
     $$('#perfil nav.on-right > button > span').removeClass().addClass('icon cogs');
 });
-$$('#perfil').on('load', function(event) {
+var texto=""
+$$('#perfil').on('load', function(event) {    
     var environment = Lungo.Core.environment();
     console.log(environment);
-    texto = "";
     $$.each(environment.os, function(index, val) {
          texto =+ "campo: "+val;
     });
