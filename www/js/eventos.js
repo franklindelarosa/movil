@@ -3,6 +3,7 @@ Lungo.init({
 });
 Lungo.ready(function() {
     Lungo.Notification.show();
+
     direccionBase = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/";
     Lungo.Service.Settings.async = true;
     Lungo.Service.Settings.error = function(type, xhr){
@@ -60,7 +61,12 @@ $$('#invitar').on('unload', function(event) {
     $$('#invitar div.form').find(':not(button)[id]').val('');
 });
 $$('#perfil').on('unload', function(event) {
-    $$('#perfil nav.on-right > button > span').removeClass().addClass('icon cogs')
+    $$('#perfil nav.on-right > button > span').removeClass().addClass('icon cogs');
+});
+$$('#perfil').on('load', function(event) {
+    var environment = Lungo.Core.environment();
+    console.log(environment);
+    Lungo.Notification.success("Msj","os: "+environment.os+" browser: "+environment.browser, 'check', function(){return});
 });
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
