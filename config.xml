@@ -37,7 +37,7 @@
 	<preference name="android-installLocation" value="auto" /><!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
     
     <!-- plugins -->
-    <gap:plugin name="com.phonegap.plugin.statusbar"/>
+    <gap:plugin name="org..apache.cordova.statusbar"/>
     <gap:plugin name="com.ionic.keyboard"/>
 
 	<!--app iconos -->
