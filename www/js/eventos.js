@@ -81,9 +81,9 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
     var correo = $$('#correo').val();
     var contrasena = $$('#contrasena').val();
     if(correo === "" || contrasena === ""){
-        setTimeout(function(){Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return})},1000);
-        // Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
-        cordova.plugins.Keyboard.close();
+        // setTimeout(function(){Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return})},1000);
+        Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
+        // cordova.plugins.Keyboard.close();
     }else{
         Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
     }
