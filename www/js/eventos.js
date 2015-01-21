@@ -77,7 +77,7 @@ $$('#lanzar-login').on('singleTap', function(event) {
 $$('#iniciar-sesion').on('singleTap', function(event) {
     // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
     var url = direccionBase+"site/login";
-    Lungo.Notification.show();
+    // Lungo.Notification.show();
     var correo = $$('#correo').val();
     var contrasena = $$('#contrasena').val();
     if(correo === "" || contrasena === ""){
