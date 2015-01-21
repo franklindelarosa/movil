@@ -5,8 +5,10 @@ Lungo.ready(function() {
     Lungo.Notification.show();
     var environment = Lungo.Core.environment();
     // console.log(environment.os.name);
-    if(environment.os.name === "ios"){
-        $$('header').style('margin-top', '20px');
+    if(typeof(environment.os) != "undefined" && environment.os !== null) {
+        if(environment.os.name === "ios"){
+            $$('header').style('margin-top', '20px');
+        }
     }
     direccionBase = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/";
     Lungo.Service.Settings.async = true;
