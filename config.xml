@@ -8,6 +8,9 @@
 		Elecsis S.A.S
 	</author>
 	<preference name="permissions" value="none"/>
+	<feature name="Keyboard">
+        <param name="ios-package" value="IonicKeyboard" onload="true" />
+    </feature>
 	<preference name="StatusBarOverlaysWebView" value="false" />
 	<preference name="StatusBarBackgroundColor" value="#003c5a" />
 	<preference name="webviewbounce" value="false" />
