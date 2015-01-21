@@ -7,7 +7,7 @@
 	<author email="dev@cordova.apache.org" href="http://cordova.io">
 		Elecsis S.A.S
 	</author>
-	<preference name="permissions" value="none"/>
+	<!-- <preference name="permissions" value="none"/> -->
 	<feature name="Keyboard">
         <param name="ios-package" value="IonicKeyboard" onload="true" />
     </feature>
