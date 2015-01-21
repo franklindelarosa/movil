@@ -333,7 +333,7 @@ function imprimirPerfil(){
         // articulo.append('<div class="layout horizontal"><div data-layout="primary"><img class="on-left" src="images/profile.png" height="90px" width="auto"/></div><div data-layout="primary"><small>Nombre: '+
         // result.data.nombre+'</small><br><small>Correo: '+result.data.correo+'</small><br><small>Sexo: '+result.data.sexo+
         // '</small><br><small>Teléfono: '+result.data.telefono+'</small></div></div><div class="list"><li><strong>Último partido jugado</strong><span></span><small></small></li></div>');
-        articulo.append('<p class="centrar"><img src="res/profile.png"/></p><br><strong class="separado">Nombre: '+result.data.nombre+'</strong><br><br><strong class="separado">Correo: '+
+        articulo.append('<p class="centrar"><img src="images/profile.png"/></p><br><strong class="separado">Nombre: '+result.data.nombre+'</strong><br><br><strong class="separado">Correo: '+
             result.data.correo+'</strong><br><br><strong class="separado">Sexo: '+result.data.sexo+'</strong><br><br><strong class="separado">Teléfono: '+result.data.telefono+
             '</strong><br><br><strong class="separado">Partidos jugados: '+result.total+'</strong><br><div class="list"><ul><li></li><p class="centrar" style="margin-top: 10px"><strong>Último partido:</strong></p><li id="ultimo"></li></ul></div>');
         if(result.ultimo_partido !== false){
