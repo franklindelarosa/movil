@@ -64,9 +64,6 @@ $$('#registrar').on('unload', function(event) {
 $$('#invitar').on('unload', function(event) {
     $$('#invitar div.form').find(':not(button)[id]').val('');
 });
-$$('button').on('singleTap', function(event) {
-    cordova.plugins.Keyboard.close();
-});
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         Lungo.Notification.error("", "Ya has iniciado sesión", "warning-sign", function(){return});
@@ -86,6 +83,7 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
     }else{
         Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
     }
+    cordova.plugins.Keyboard.close();
 });
 
 $$('#cerrar-sesion').on('singleTap', function(event) {

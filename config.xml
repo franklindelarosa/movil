@@ -74,12 +74,12 @@
     <gap:splash src="res/ios/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
     <gap:splash src="res/ios/Default-667h@2x.png" gap:platform="ios" width="750" height="1334" />
 
-	<!-- <gap:splash src="res/android/images/res-long-port-ldpi/dafault.png" gap:platform="android" gap:density="ldpi" />
+	<gap:splash src="res/android/images/res-long-port-ldpi/dafault.png" gap:platform="android" gap:density="ldpi" />
 	<gap:splash src="res/android/images/res-long-port-mdpi/dafault.png" gap:platform="android" gap:density="mdpi" />
 	<gap:splash src="res/android/images/res-long-port-hdpi/dafault.png" gap:platform="android" gap:density="hdpi" />
 	<gap:splash src="res/android/images/res-long-port-xhdpi/dafault.png" gap:platform="android" gap:density="xhdpi" />
 	<gap:splash src="res/android/images/res-long-port-xxhdpi/dafault.png" gap:platform="android" gap:density="xxhdpi" />
-	<gap:splash src="res/android/images/res-long-port-xxxhdpi/dafault.png" gap:platform="android" gap:density="xxxhdpi" /> -->
+	<gap:splash src="res/android/images/res-long-port-xxxhdpi/dafault.png" gap:platform="android" gap:density="xxxhdpi" />
 	<gap:splash src="res/android/images/res-notlong-port-ldpi/dafault.png" gap:platform="android" gap:density="ldpi" />
 	<gap:splash src="res/android/images/res-notlong-port-mdpi/dafault.png" gap:platform="android" gap:density="mdpi" />
 	<gap:splash src="res/android/images/res-notlong-port-hdpi/dafault.png" gap:platform="android" gap:density="hdpi" />

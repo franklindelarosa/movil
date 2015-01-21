@@ -150,7 +150,6 @@ var imprimirEquipos = function (result){
 }
 
 var verificarLogin = function (result){
-    cordova.plugins.Keyboard.close();
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key[0].accessToken;
         sessionStorage["id"] = result.key[0].id_usuario;
