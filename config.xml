@@ -4,18 +4,19 @@
 	<description>
 		FutbolCracks, diviértete con el deporte rey.
 	</description>
-	<author email="dev@cordova.apache.org" href="http://cordova.io">
+	<author email="info@elecsis.com.co" href="http://www.fcracks.com">
 		Elecsis S.A.S
 	</author>
-	<!-- <preference name="permissions" value="none"/> -->
-	<feature name="Keyboard">
+	<preference name="permissions" value="none"/>
+	<!-- <feature name="Keyboard">
         <param name="ios-package" value="IonicKeyboard" onload="true" />
     </feature>
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true" />
-    </feature>
-	<preference name="StatusBarOverlaysWebView" value="false" />
-	<preference name="StatusBarBackgroundColor" value="#003c5a" />
+    </feature> -->
+	<preference name="StatusBarOverlaysWebView" value="true" />
+	<preference name="StatusBarStyle" value="lightcontent" />
+	<!-- <preference name="StatusBarBackgroundColor" value="#003c5a" /> -->
 	<preference name="webviewbounce" value="false" />
 	<preference name="DisallowOverscroll" value="true" />
 	<!-- Customize your app and platform with the preference element. -->

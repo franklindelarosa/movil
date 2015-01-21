@@ -3,11 +3,11 @@ Lungo.init({
 });
 Lungo.ready(function() {
     Lungo.Notification.show();
-    // var environment = Lungo.Core.environment();
-    // // console.log(environment.os.name);
-    // if(environment.os.name === "ios"){
-    //     $$('header').style('margin-top', '20px');
-    // }
+    var environment = Lungo.Core.environment();
+    // console.log(environment.os.name);
+    if(environment.os.name === "ios"){
+        $$('header').style('margin-top', '20px');
+    }
     direccionBase = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/";
     Lungo.Service.Settings.async = true;
     Lungo.Service.Settings.error = function(type, xhr){
@@ -79,8 +79,9 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
     var correo = $$('#correo').val();
     var contrasena = $$('#contrasena').val();
     if(correo === "" || contrasena === ""){
-        cordo;
-        Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
+        setTimeout(function(){Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return})},1000);
+        // Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
+        cordova.plugins.Keyboard.close();
     }else{
         Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
     }
