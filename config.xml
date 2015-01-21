@@ -14,7 +14,7 @@
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true" />
     </feature> -->
-	<preference name="StatusBarOverlaysWebView" value="false" />
+	<preference name="StatusBarOverlaysWebView" value="true" />
 	<preference name="StatusBarStyle" value="lightcontent" />
 	<!-- <preference name="StatusBarBackgroundColor" value="#003c5a" /> -->
 	<preference name="webviewbounce" value="false" />
