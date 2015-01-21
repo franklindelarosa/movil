@@ -77,13 +77,14 @@ $$('#lanzar-login').on('singleTap', function(event) {
 $$('#iniciar-sesion').on('singleTap', function(event) {
     // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
     var url = direccionBase+"site/login";
-    // Lungo.Notification.show();
+    document.activeElement.blur();
+    Lungo.Notification.show();
     var correo = $$('#correo').val();
     var contrasena = $$('#contrasena').val();
     if(correo === "" || contrasena === ""){
-        setTimeout(function(){Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return})},1000);
-        // Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
-        cord;
+        // setTimeout(function(){Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return})},1000);
+        Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
+        // cord;
     }else{
         Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
     }
