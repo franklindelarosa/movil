@@ -27,10 +27,12 @@ Lungo.ready(function() {
     Lungo.Service.Settings.crossDomain = false;
     Lungo.Service.Settings.timeout = 10000;
     if(localStorage["_chrome-rel-back"]){
+        $$('#cerrar-sesion').show();
         var url = direccionBase+"usuario/quien-soy?access-token="+localStorage["_chrome-rel-back"];
         Lungo.Service.post(url, {cancha:cancha.id}, function(result){sessionStorage["id"] = result.id}, "json");
         imprimirPerfil();
     }else{
+        $$('#cerrar-sesion').hide();
         sessionStorage.removeItem("id");
     }
     sessionStorage.removeItem("lanzadoDesdeHome");
@@ -94,13 +96,14 @@ $$('#cerrar-sesion').on('singleTap', function(event) {
     localStorage.removeItem("_chrome-rel-back");
     sessionStorage.removeItem("id");
     setTimeout(function(){
+        $$('#cerrar-sesion').hide();
         $$('#article_perfil div#contenido').empty();
         $$('#article_perfil > div.empty').show();
-    }, 300);
+    }, 400);
     Lungo.Router.article("main", "listado-canchas");
 });
 
-$$('#listado-canchas ul').on('singleTap', 'li', function(event) {
+$$('#listado-canchas ul').on('singleTap', 'li.selectable', function(event) {
 	cancha = {
 		id : $$(this).attr('data-fc-id'),
 		nombre : $$(this).find("strong").html(),
@@ -127,15 +130,16 @@ $$('#seleccionar-cancha').on('singleTap', function(event) {
     Lungo.Service.post(url, {cancha:cancha.id}, imprimirDias, "json");
 });
 
-$$('#listado-dias ul').on('singleTap', 'li', function(event) {
+$$('#listado-dias ul').on('singleTap', 'li.selectable', function(event) {
     // var url = "http://localhost/futbolcracksapi/web/v1/site/cancha-horas";
     var url = direccionBase+"site/cancha-horas";
     Lungo.Notification.show();
-	fecha = $$(this).attr('data-fc-fecha');
+    fecha = $$(this).attr('data-fc-fecha');
+	label_fecha = $$(this).find('strong').html();
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
 });
 
-$$('#listado-horas ul').on('singleTap', 'li', function(event) {
+$$('#listado-horas ul').on('singleTap', 'li.selectable', function(event) {
     // var url = "http://localhost/futbolcracksapi/web/v1/site/equipos";
     var url = direccionBase+"site/equipos";
     Lungo.Notification.show();

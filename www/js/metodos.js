@@ -27,10 +27,12 @@ var imprimirCanchas = function (result){
 var imprimirDias = function (result){
     // console.log(result);
     $$('#dias').empty();
+    $$('#dias').append('<li class="thumb big"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><h3>'+cancha.nombre+
+    '</h3></div></li>');
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
-            $$('#dias').append('<li class="thumb selectable arrow" data-fc-fecha="'+
-                val.fecha+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><strong>'+val.label+
+            $$('#dias').append('<li class="selectable arrow" data-fc-fecha="'+
+                val.fecha+'"><div><strong>'+val.label+
                 '</strong><small>'+val.fecha+'</small></div></li>');
         });
         Lungo.Router.article("main", "listado-dias");
@@ -45,10 +47,12 @@ var imprimirDias = function (result){
 var imprimirHoras = function (result){
     // console.log(result);
     $$('#horas').empty();
+    $$('#horas').append('<li class="thumb big"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><h3>'+cancha.nombre+
+    '</h3><strong>'+label_fecha+'</strong></div></li>');
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
-            $$('#horas').append('<li class="thumb selectable arrow" data-fc-hora="'+
-                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><div class="derecha"><span class="icon money no-margin"></span>$'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max)+' c/u</div><strong>'+val.label+
+            $$('#horas').append('<li class="selectable arrow" data-fc-hora="'+
+                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha"><span class="icon money no-margin"></span>$'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max)+' c/u</div><strong>'+val.label+
                 '</strong><span>'+mensajes[Math.floor((Math.random() * mensajes.length))]+'</span><small>$'+val.venta.substr(0,(val.venta.length-3))+' Total por la cancha</small></div></li>');
         });
         Lungo.Router.article("main", "listado-horas");
@@ -153,6 +157,7 @@ var verificarLogin = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key[0].accessToken;
         sessionStorage["id"] = result.key[0].id_usuario;
+        $$('#cerrar-sesion').show();
         imprimirPerfil();
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("back");

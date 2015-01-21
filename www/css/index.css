@@ -2,10 +2,13 @@
     text-align: center;
 }
 
-article {
+.color-texto {
 	color: gray;
 }
 
+li.thumb.big:not(.selectable) {
+	padding-bottom: .4em
+}
 label.margen-select{
 	margin-left: 5px;
 	margin-right: 5px;

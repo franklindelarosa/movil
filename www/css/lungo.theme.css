@@ -92,7 +92,7 @@ section .list li.theme,
 section .list li a.theme,
 section .list li.active,
 section .list li a.active {
-  background: #0ec8ff;
+  background: #DBEEF7;
 }
 section .list li.light,
 section .list li a.light {
@@ -129,7 +129,7 @@ section .list li.selectable:active .arrow::after,
 section .list li a.selectable:active .arrow::after,
 section .list li.theme .arrow::after,
 section .list li a.theme .arrow::after {
-  color: #fff;
+  color: gray;
 }
 section .list li.contrast.arrow::after,
 section .list li a.contrast.arrow::after,
