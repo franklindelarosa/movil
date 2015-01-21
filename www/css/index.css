@@ -13,6 +13,12 @@ li > a.icono {
 	padding-top: 4px;
 }
 
+.registrar {
+	font-size: 1.1em;
+	color: #003c5a;
+	text-decoration: underline;
+}
+
 .icon.off {
 	font-size: 1.6em;
 }

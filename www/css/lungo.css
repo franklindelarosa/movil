@@ -38,7 +38,7 @@ body[data-os=android] [data-os=ios],body[data-os=android] [data-os=blackerry],bo
 body[data-os=blackberry] [data-os=android],body[data-os=blackberry] [data-os=ios],body[data-os=blackberry] [data-os=firefoxos]{display:none}
 body[data-os=firefoxos] [data-os=android],body[data-os=firefoxos] [data-os=ios],body[data-os=firefoxos] [data-os=blackberry]{display:none}
 
-.list li{list-style-type:none;position:relative;text-align:-webkit-match-parent;line-height:inherit;}
+.list li{list-style-type:none;position:relative;text-align:-webkit-match-parent;line-height:inherit; color: gray;}
 .list li:not(.big){padding:.8em}
 .list li.thumb{display:-webkit-box;display:-moz-box;display:-ms-box;display:-o-box;display:box;-webkit-box-orient:horizontal;-moz-box-orient:horizontal;-ms-box-orient:horizontal;-o-box-orient:horizontal;box-orient:horizontal;}
 .list li.thumb > div{-webkit-box-flex:1;-moz-box-flex:1;-ms-box-flex:1;-o-box-flex:1;box-flex:1}

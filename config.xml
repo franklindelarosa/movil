@@ -8,7 +8,7 @@
 		Elecsis S.A.S
 	</author>
 	<preference name="permissions" value="none"/>
-	<preference name="StatusBarOverlaysWebView" value="true" />
+	<preference name="StatusBarOverlaysWebView" value="false" />
 	<preference name="StatusBarBackgroundColor" value="#003c5a" />
 	<preference name="webviewbounce" value="false" />
 	<preference name="DisallowOverscroll" value="true" />
@@ -33,31 +33,31 @@
     <!-- <icon src="icon.png" />-->
 
   	<platform name="ios">
-	    <icon src="res/ios/appicon.png" width="57" height="57"/>
-	    <icon src="res/ios/appicon@2x.png" width="144" height="144" />
-	    <icon src="res/ios/appicon-60.png" width="60" height="60" />
-	    <icon src="res/ios/appicon-60@2x.png" width="120" height="120" />
-	    <icon src="res/ios/appicon-60@3x.png" width="180" height="180" />
-	    <icon src="res/ios/appicon-72.png" width="72" height="72" />
-	    <icon src="res/ios/appicon-72@2x.png" width="144" height="144" />
-	    <icon src="res/ios/appicon-76.png" width="76" height="76" />
-	    <icon src="res/ios/appicon-76@2x.png" width="152" height="152" />
-	    <icon src="res/ios/appicon-Small.png" width="29" height="29" />
-	    <icon src="res/ios/appicon-Small@2x.png" width="58" height="58" />
-	    <icon src="res/ios/appicon-Small@3x.png" width="87" height="87" />
-	    <icon src="res/ios/appicon-Small-40.png" width="40" height="40" />
-	    <icon src="res/ios/appicon-Small-40@2x.png" width="80" height="80" />
-	    <icon src="res/ios/appicon-Small-50.png" width="50" height="50" />
-	    <icon src="res/ios/appicon-Small-50@2x.png" width="100" height="100" />
+	    <icon src="www/res/ios/appicon.png" width="57" height="57"/>
+	    <icon src="www/res/ios/appicon@2x.png" width="144" height="144" />
+	    <icon src="www/res/ios/appicon-60.png" width="60" height="60" />
+	    <icon src="www/res/ios/appicon-60@2x.png" width="120" height="120" />
+	    <icon src="www/res/ios/appicon-60@3x.png" width="180" height="180" />
+	    <icon src="www/res/ios/appicon-72.png" width="72" height="72" />
+	    <icon src="www/res/ios/appicon-72@2x.png" width="144" height="144" />
+	    <icon src="www/res/ios/appicon-76.png" width="76" height="76" />
+	    <icon src="www/res/ios/appicon-76@2x.png" width="152" height="152" />
+	    <icon src="www/res/ios/appicon-Small.png" width="29" height="29" />
+	    <icon src="www/res/ios/appicon-Small@2x.png" width="58" height="58" />
+	    <icon src="www/res/ios/appicon-Small@3x.png" width="87" height="87" />
+	    <icon src="www/res/ios/appicon-Small-40.png" width="40" height="40" />
+	    <icon src="www/res/ios/appicon-Small-40@2x.png" width="80" height="80" />
+	    <icon src="www/res/ios/appicon-Small-50.png" width="50" height="50" />
+	    <icon src="www/res/ios/appicon-Small-50@2x.png" width="100" height="100" />
 	</platform>
 
 	<platform name="android">
-		<icon src="res/android/res/drawable-ldpi/appicon.png" gap:qualifier="ldpi" />
-		<icon src="res/android/res/drawable-mdpi/appicon.png" gap:qualifier="mdpi" />
-		<icon src="res/android/res/drawable-hdpi/appicon.png" gap:qualifier="hdpi" />
-		<icon src="res/android/res/drawable-xhdpi/appicon.png" gap:qualifier="xhdpi" />
-		<icon src="res/android/res/drawable-xxhdpi/appicon.png" gap:qualifier="xxhdpi" />
-		<icon src="res/android/res/drawable-xxxhdpi/appicon.png" gap:qualifier="xxxhdpi" />
+		<icon src="www/res/android/res/drawable-ldpi/appicon.png" gap:qualifier="ldpi" />
+		<icon src="www/res/android/res/drawable-mdpi/appicon.png" gap:qualifier="mdpi" />
+		<icon src="www/res/android/res/drawable-hdpi/appicon.png" gap:qualifier="hdpi" />
+		<icon src="www/res/android/res/drawable-xhdpi/appicon.png" gap:qualifier="xhdpi" />
+		<icon src="www/res/android/res/drawable-xxhdpi/appicon.png" gap:qualifier="xxhdpi" />
+		<icon src="www/res/android/res/drawable-xxxhdpi/appicon.png" gap:qualifier="xxxhdpi" />
 	</platform>
 
     <!-- plugins -->
@@ -66,26 +66,26 @@
 
     <!-- splash screen -->
     <gap:splash src="splash.png" />
-    <gap:splash src="res/ios/Default.png" gap:platform="ios" width="320" height="480" />
-    <gap:splash src="res/ios/Default@2x.png" gap:platform="ios" width="640" height="960" />
-    <gap:splash src="res/ios/Default-portrait.png" gap:platform="ios" width="768" height="1024" />
-    <gap:splash src="res/ios/Default-portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
-    <gap:splash src="res/ios/Default-portrait-736h@3x.png" gap:platform="ios" width="1242" height="2208" />
-    <gap:splash src="res/ios/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
-    <gap:splash src="res/ios/Default-667h@2x.png" gap:platform="ios" width="750" height="1334" />
+    <gap:splash src="www/res/ios/Default.png" gap:platform="ios" width="320" height="480" />
+    <gap:splash src="www/res/ios/Default@2x.png" gap:platform="ios" width="640" height="960" />
+    <gap:splash src="www/res/ios/Default-portrait.png" gap:platform="ios" width="768" height="1024" />
+    <gap:splash src="www/res/ios/Default-portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
+    <gap:splash src="www/res/ios/Default-portrait-736h@3x.png" gap:platform="ios" width="1242" height="2208" />
+    <gap:splash src="www/res/ios/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
+    <gap:splash src="www/res/ios/Default-667h@2x.png" gap:platform="ios" width="750" height="1334" />
 
-	<gap:splash src="res/android/images/res-long-port-ldpi/dafault.png" gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="res/android/images/res-long-port-mdpi/dafault.png" gap:platform="android" gap:density="mdpi" />
-	<gap:splash src="res/android/images/res-long-port-hdpi/dafault.png" gap:platform="android" gap:density="hdpi" />
-	<gap:splash src="res/android/images/res-long-port-xhdpi/dafault.png" gap:platform="android" gap:density="xhdpi" />
-	<gap:splash src="res/android/images/res-long-port-xxhdpi/dafault.png" gap:platform="android" gap:density="xxhdpi" />
-	<gap:splash src="res/android/images/res-long-port-xxxhdpi/dafault.png" gap:platform="android" gap:density="xxxhdpi" />
-	<gap:splash src="res/android/images/res-notlong-port-ldpi/dafault.png" gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="res/android/images/res-notlong-port-mdpi/dafault.png" gap:platform="android" gap:density="mdpi" />
-	<gap:splash src="res/android/images/res-notlong-port-hdpi/dafault.png" gap:platform="android" gap:density="hdpi" />
-	<gap:splash src="res/android/images/res-notlong-port-xhdpi/dafault.png" gap:platform="android" gap:density="xhdpi" />
-	<gap:splash src="res/android/images/res-notlong-port-xxhdpi/dafault.png" gap:platform="android" gap:density="xxhdpi" />
-	<gap:splash src="res/android/images/res-notlong-port-xxxhdpi/dafault.png" gap:platform="android" gap:density="xxxhdpi" />
+	<gap:splash src="www/res/android/images/res-long-port-ldpi/default.png" gap:platform="android" gap:density="ldpi" />
+	<gap:splash src="www/res/android/images/res-long-port-mdpi/default.png" gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="www/res/android/images/res-long-port-hdpi/default.png" gap:platform="android" gap:density="hdpi" />
+	<gap:splash src="www/res/android/images/res-long-port-xhdpi/default.png" gap:platform="android" gap:density="xhdpi" />
+	<gap:splash src="www/res/android/images/res-long-port-xxhdpi/default.png" gap:platform="android" gap:density="xxhdpi" />
+	<gap:splash src="www/res/android/images/res-long-port-xxxhdpi/default.png" gap:platform="android" gap:density="xxxhdpi" />
+	<gap:splash src="www/res/android/images/res-notlong-port-ldpi/default.png" gap:platform="android" gap:density="ldpi" />
+	<gap:splash src="www/res/android/images/res-notlong-port-mdpi/default.png" gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="www/res/android/images/res-notlong-port-hdpi/default.png" gap:platform="android" gap:density="hdpi" />
+	<gap:splash src="www/res/android/images/res-notlong-port-xhdpi/default.png" gap:platform="android" gap:density="xhdpi" />
+	<gap:splash src="www/res/android/images/res-notlong-port-xxhdpi/default.png" gap:platform="android" gap:density="xxhdpi" />
+	<gap:splash src="www/res/android/images/res-notlong-port-xxxhdpi/default.png" gap:platform="android" gap:density="xxxhdpi" />
 
 <access origin="*" />
 </widget>
