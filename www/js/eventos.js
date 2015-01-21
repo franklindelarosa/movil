@@ -79,7 +79,7 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
     var correo = $$('#correo').val();
     var contrasena = $$('#contrasena').val();
     if(correo === "" || contrasena === ""){
-        cordova.plugins.Keyboard.close();
+        cordo;
         Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
     }else{
         Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
