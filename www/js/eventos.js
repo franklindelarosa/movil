@@ -182,6 +182,7 @@ $$('#unirse-negro').on('singleTap', function(event) {
 
 $$('#btn_registrar').on('singleTap', function(event) {
     var url = direccionBase+"site/registrar-perfil";
+    document.activeElement.blur();
     Lungo.Notification.show();
     var datos = {
         nombres: $$('#campo_nombres').val(),
@@ -239,6 +240,7 @@ $$(document).on('singleTap', '#sacar-invitado-negro', function(event) {
 
 $$(document).on('singleTap', '#btn_invitar', function(event) {
     var url = direccionBase+"usuario/registrar-invitado?access-token="+localStorage["_chrome-rel-back"];
+    document.activeElement.blur();
     var datos = {
         nombres: $$('#inv_nombres').val(),
         apellidos: $$('#inv_apellidos').val(),
