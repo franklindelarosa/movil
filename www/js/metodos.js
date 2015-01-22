@@ -167,8 +167,8 @@ var verificarLogin = function (result){
             Lungo.Notification.hide();
         }else{
             adicionarJugador();
+            Lungo.Router.section("main");
         }
-        Lungo.Router.section("main");
     }else{
         Lungo.Notification.error("Error", "El correo y/o la contraseña diligenciados, no coinciden", "remove", function(){return});
     }
