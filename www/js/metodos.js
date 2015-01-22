@@ -160,7 +160,7 @@ var verificarLogin = function (result){
         $$('#cerrar-sesion').show();
         imprimirPerfil();
         if(sessionStorage["lanzadoDesdeHome"]){
-            Lungo.Router.section("back");
+            Lungo.Router.section("perfil");
             if(listadoDeEquipos !== "no") {
                 imprimirEquipos(listadoDeEquipos);
             }
