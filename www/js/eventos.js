@@ -50,14 +50,26 @@ $$('#listado-canchas').on('load', function(event) {
 $$('#cancha').on('load', function(event) {
     $$("#main h1.title").html(cancha.nombre);
 });
+$$('#cancha').on('swipeRight', function(event) {
+    Lungo.Router.article("main", "listado-canchas");
+});
 $$('#listado-dias').on('load', function(event) {
     $$("#main h1.title").html("Dias Disponibles");
+});
+$$('#listado-dias').on('swipeRight', function(event) {
+    Lungo.Router.article("main", "cancha");
 });
 $$('#listado-horas').on('load', function(event) {
     $$("#main h1.title").html("Horas Disponibles");
 });
+$$('#listado-horas').on('swipeRight', function(event) {
+    Lungo.Router.article("main", "listado-dias");
+});
 $$('#listado-equipos').on('load', function(event) {
     $$("#main h1.title").html("Equipos");
+});
+$$('#listado-equipos').on('swipeRight', function(event) {
+    Lungo.Router.article("main", "listado-horas");
 });
 $$('#login').on('unload', function(event) {
     $$('#login div.form').find(':not(button)[id]').val('');
