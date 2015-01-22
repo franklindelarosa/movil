@@ -178,6 +178,7 @@ var verificarRegistro = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key;
         sessionStorage["id"] = result.id;
+        $$('#cerrar-sesion').show();
         imprimirPerfil();
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("perfil");
