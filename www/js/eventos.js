@@ -80,6 +80,11 @@ $$('#registrar').on('unload', function(event) {
 $$('#invitar').on('unload', function(event) {
     $$('#invitar div.form').find(':not(button)[id]').val('');
 });
+// navigator.Backbutton.goHome(function() {
+//     console.log('success')
+// }, function() {
+//     console.log('fail')
+// });
 $$('#lanzar-login').on('singleTap', function(event) {
     if(localStorage["_chrome-rel-back"]){
         Lungo.Notification.error("", "Ya has iniciado sesión", "warning-sign", function(){return});
