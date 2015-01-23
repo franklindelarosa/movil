@@ -66,6 +66,13 @@ article#listado-equipos > div {
 	width: auto;
 	background-image: url(../images/vs.png) no-repeat;
 }
+footer > nav > a{
+	font-size: 0.8em;
+}
+
+footer > nav > a > p img {
+	height: 25px;
+}
 
 .list li.thumb > img {
 	padding: 5px;
