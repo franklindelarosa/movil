@@ -369,7 +369,7 @@ function imprimirPerfil(){
                 '</small></div></div><div class="layout horizontal"><div data-layout="primary"><small>'+val.direccion+'</small></div><div data-layout="primary"><small> '+val.label_hora+'</small></div></div></li>');
             });
         }else{
-            
+            $$('#history').append('<li><p class="centrar"><small>No tienes partidos pendientes</small></p></li>');
         }
     }, "json");
     Lungo.Notification.hide();
