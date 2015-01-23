@@ -62,9 +62,7 @@ span.icon.plus {
 }
 
 article#listado-equipos > div {
-	height: 235px;
-	width: auto;
-	background-image: url(../images/vs.png) no-repeat;
+	
 }
 footer > nav > a{
 	font-size: 0.8em;
