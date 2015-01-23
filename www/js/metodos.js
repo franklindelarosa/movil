@@ -1,9 +1,27 @@
-var mensajes = ["Anímate", "No lo pienses más", "Esta es la hora perfecta", "Qué estás esperando?"];
+// var mensajes = ["Anímate", "No lo pienses más", "Esta es la hora perfecta", "Qué estás esperando?"];
 
+//Esta función combierte un número en formato de dinero
+Number.prototype.formatMoney = function(places, symbol, thousand, decimal) {
+    places = !isNaN(places = Math.abs(places)) ? places : 2;
+    symbol = symbol !== undefined ? symbol : "$";
+    thousand = thousand || ",";
+    decimal = decimal || ".";
+    var number = this, 
+        negative = number < 0 ? "-" : "",
+        i = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
+        j = (j = i.length) > 3 ? j % 3 : 0;
+    return symbol + negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "");
+};
 function mostrarError(){
     // var html_error = '<h1>Error</h1><p class="centrar"><img src="images/error.png"/></p><p class="centrar">Problemas con el servidor, intenta mas tarde</p>';
     // Lungo.Notification.html(html_error, "Cerrar");
     Lungo.Notification.error("Error de conexión", "Por favor verifica que tengas acceso a internet", "remove", function(){return});
+}
+
+//Este método capitaliza un string
+function capitaliseFirstLetter(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 // este método imprime el listado de las canchas en la primera vista
@@ -14,7 +32,8 @@ var imprimirCanchas = function (result){
         $$.each(result['data'], function(index, val) {
             $$('#canchas').append('<li class="thumb selectable arrow" data-fc-id="'+
                 val.id_cancha+'" data-fc-cupo="'+val.cupo_max+'" data-fc-tel="'+val.telefono+'" data-fc-logo="'+val.imagen_logo+'" data-fc-image="'+val.imagen_cancha+
-                '"> <img src="http://elecsis.com.co/fcracks/web/images/logos/'+val.imagen_logo+'"/><div><strong>'+val.nombre+
+                // '"> <img src="http://elecsis.com.co/fcracks/web/images/logos/'+val.imagen_logo+'"/><div><strong>'+val.nombre+
+                '"> <img src="http://fcracks.com/fcadm/web/images/logos/'+val.imagen_logo+'"/><div><strong>'+val.nombre+
                 '</strong><small>'+val.direccion+'</small></div></li>');
         });
         Lungo.Notification.hide();
@@ -27,8 +46,9 @@ var imprimirCanchas = function (result){
 var imprimirDias = function (result){
     // console.log(result);
     $$('#dias').empty();
-    $$('#dias').append('<li class="thumb big"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><h3>'+cancha.nombre+
-    '</h3></div></li>');
+    $$('article#listado-dias header > h5').html(cancha.nombre);
+    // $$('#dias').append('<li class="thumb big"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><h3>'+cancha.nombre+
+    // '</h3></div></li>');
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             $$('#dias').append('<li class="selectable arrow" data-fc-fecha="'+
@@ -47,13 +67,14 @@ var imprimirDias = function (result){
 var imprimirHoras = function (result){
     // console.log(result);
     $$('#horas').empty();
-    $$('#horas').append('<li class="thumb big"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><h3>'+cancha.nombre+
-    '</h3><strong>'+label_fecha+'</strong></div></li>');
+    $$('article#listado-horas header > h5').html(cancha.nombre+' - '+capitaliseFirstLetter(label_fecha));
+    // $$('#horas').append('<li class="thumb big"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><h3>'+cancha.nombre+
+    // '</h3><strong>'+label_fecha+'</strong></div></li>');
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             $$('#horas').append('<li class="selectable arrow" data-fc-hora="'+
-                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha"><span class="icon money no-margin"></span>$'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max)+' c/u</div><strong>'+val.label+
-                '</strong><span>'+mensajes[Math.floor((Math.random() * mensajes.length))]+'</span><small>$'+val.venta.substr(0,(val.venta.length-3))+' Total por la cancha</small></div></li>');
+                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha">'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max).formatMoney()+' c/u</div><strong>'+val.label+
+                '</strong><small>'+Math.floor(val.venta.substr(0,(val.venta.length-3))).formatMoney()+' Total</small></div></li>');
         });
         Lungo.Router.article("main", "listado-horas");
         Lungo.Notification.hide();
@@ -333,22 +354,22 @@ function imprimirPerfil(){
     $$('#article_perfil > div.empty').hide();
     var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
     Lungo.Service.post(url, "id=1", function(result){
-        // console.log(result);
+        console.log(result);
         var articulo = $$('#article_perfil div#contenido');
         articulo.empty();
-        // articulo.append('<div class="layout horizontal"><div data-layout="primary"><img class="on-left" src="images/profile.png" height="90px" width="auto"/></div><div data-layout="primary"><small>Nombre: '+
-        // result.data.nombre+'</small><br><small>Correo: '+result.data.correo+'</small><br><small>Sexo: '+result.data.sexo+
-        // '</small><br><small>Teléfono: '+result.data.telefono+'</small></div></div><div class="list"><li><strong>Último partido jugado</strong><span></span><small></small></li></div>');
-        articulo.append('<p class="centrar"><img src="images/profile.png"/></p><br><strong class="separado">Nombre: '+result.data.nombre+'</strong><br><br><strong class="separado">Correo: '+
-            result.data.correo+'</strong><br><br><strong class="separado">Sexo: '+result.data.sexo+'</strong><br><br><strong class="separado">Teléfono: '+result.data.telefono+
-            '</strong><br><br><strong class="separado">Partidos jugados: '+result.total+'</strong><br><div class="list"><ul><li></li><p class="centrar" style="margin-top: 10px"><strong>Último partido:</strong></p><li id="ultimo"></li></ul></div>');
-        if(result.ultimo_partido !== false){
-            $$('#ultimo').append('<strong>Cancha: '+result.ultimo_partido.nombre+'</strong><br><strong>Dirección: '+
-            result.ultimo_partido.direccion+'</strong><br><strong>Fecha: '+result.ultimo_partido.label_fecha+'</strong><br><strong>Hora: '+result.ultimo_partido.label_hora+
-            '</strong>'
-            );
+        articulo.append('<div class="layout horizontal"><div data-layout="quarter"><p class="centrar"><img class="img-perfil" src="images/profile.png"/></p></div><div style="margin-left: 10px" data-layout="primary"><h4>'+
+        result.data.nombre+'</h4><small><span class="icon envelope"></span> '+result.data.correo+'</small><br><small><span class="icon phone"></span> '+result.data.telefono+'</small><br><small><span class="icon ok"></span> '+result.total+
+        ' partidos</small></div></div><div class="list"><ul id="history"><li><p class="centrar">Partidos pendientes</p></li></ul></div>');
+        // articulo.append('<p class="centrar"><img src="images/profile.png"/></p><br><strong class="separado">Nombre: '+result.data.nombre+'</strong><br><br><strong class="separado">Correo: '+
+        //     result.data.correo+'</strong><br><br><strong class="separado">Sexo: '+result.data.sexo+'</strong><br><br><strong class="separado">Teléfono: '+result.data.telefono+
+        //     '</strong><br><br><strong class="separado">Partidos jugados: '+result.total+'</strong><br><div class="list"><ul><li></li><p class="centrar" style="margin-top: 10px"><strong>Último partido:</strong></p><li id="ultimo"></li></ul></div>');
+        if(result.pendientes.length > 0){
+            $$.each(result.pendientes, function(index, val) {
+                $$('#history').append('<li class="selectable"><div class="layout horizontal"><div data-layout="primary"><strong>'+val.nombre+'</strong></div><div data-layout="primary"><small>'+capitaliseFirstLetter(val.label_fecha)+
+                '</small></div></div><div class="layout horizontal"><div data-layout="primary"><small>'+val.direccion+'</small></div><div data-layout="primary"><small> '+val.label_hora+'</small></div></div></li>');
+            });
         }else{
-            $$('#ultimo').append('<p class="centrar"><strong>Aún no has jugado ningún partido</strong></p>');
+            
         }
     }, "json");
     Lungo.Notification.hide();

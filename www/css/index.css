@@ -20,6 +20,15 @@ li > a.icono {
 	padding-top: 4px;
 }
 
+article#cancha h2{
+	padding: 8.53333px;
+}
+
+article header{
+	color: #FFF;
+	background-color: #155474;
+}
+
 .registrar {
 	font-size: 1.1em;
 	color: #003c5a;
@@ -28,6 +37,10 @@ li > a.icono {
 
 .icon.off {
 	font-size: 1.6em;
+}
+
+span.icon.plus {
+	color: #E5E5E5;
 }
 
 .separado {
@@ -41,8 +54,34 @@ li > a.icono {
 }
 .derecha {
 	position: absolute;
-	right: 3.8em;
-	font-size: 12px;
+	right: 1.8em;
+	top: 30%;
+	font-size: 1.1em;
 	color: #808080;
 	font-weight: 400;
+}
+
+article#listado-equipos > div {
+	height: 235px;
+	width: auto;
+	background-image: url(../images/vs.png) no-repeat;
+}
+
+.list li.thumb > img {
+	padding: 5px;
+	border: solid 1px;
+	border-color: #DCDCDC;
+}
+
+.img-perfil {
+	height: 90px;
+	width: auto;
+}
+
+#contenido small{
+	font-size: 0.8em;
+}
+
+#contenido span {
+	margin-right: 5px;
 }

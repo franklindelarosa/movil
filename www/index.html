@@ -63,7 +63,7 @@
         </header>
         <footer>
             <nav>
-                <a href="#" data-view-section="main"><span class="icon trophy" style="color: #003C5A"></span></a>
+                <a href="#" data-view-section="main"><span class="icon trpphy" style="color: #003C5A"></span></a>
                 <a href="#" data-view-section="perfil"><span class="icon user" style="color: #A1A6A8"></span></a>
             </nav>
         </footer>
@@ -77,24 +77,29 @@
                 <img style="width: 100%; height: auto;" src="">
             </p>
             <h2></h2>
-            <div class="layout horizontal">
-                <div data-layout="middle"><p id="label-cupo"></p></div>
-                <!-- <div data-layout="middle"><p id="label-telefono"></p></div> -->
-            </div>
+            <p id="label-cupo"></p>
+            <!-- <p id="label-telefono"></p> -->
             <p id="label-direccion"></p>
             <p class="centrar"><button id="seleccionar-cancha" class="accept anchor" data-label="RESERVAR"></button></p><br><br>
         </article>
 
         <article id="listado-dias" class="list scroll indented">
+            <header><h5 class="centrar"></h5></header>
             <ul id="dias"></ul>
         </article>
 
         <article id="listado-horas" class="list scroll indented">
+            <header><h5 class="centrar"></h5></header>
             <ul id="horas"></ul>
         </article>
 
         <article id="listado-equipos" class="list scroll indented">
             <img src="images/vs.png" width="100%" height="auto" alt="vs">
+            <!-- <div>
+                <h5>Nombre cancha</h5>
+                <span>Dia de partido</span>
+                <small>Hora</small>
+            </div> -->
             <ul>
                 <li class="anchor"><a id="unirse-blanco" data-fc-estado="no" href="#" class="icono" data-icon="plus"></a><h2>Equipo Blanco</h2>
                     <ul id="equipo-blanco"></ul>
@@ -118,10 +123,10 @@
         <article id="article_login" class="active indented scroll">
             <img src="images/login.png" style="width: 100%; height: auto;">
             <div class="form">
-                <fieldset data-icon="inbox">
+                <fieldset>
                     <input id="correo" type="email" placeholder="Correo">
                 </fieldset>
-                <fieldset data-icon="user">
+                <fieldset>
                     <input id="contrasena" type="password" placeholder="Contraseña">
                 </fieldset>
                 <p class="centrar"><button id="iniciar-sesion" class="anchor accept margin-top margin-bottom" data-label="Ingresar"></button></p>
@@ -140,16 +145,16 @@
         </header>
         <article class="active scroll indented">
             <div class="form">
-                <fieldset data-icon="user">
+                <fieldset>
                     <input id="campo_nombres" type="text" placeholder="Nombre(s)">
                 </fieldset>
-                <fieldset data-icon="user">
+                <fieldset>
                     <input id="campo_apellidos" type="text" placeholder="Apellido(s)">
                 </fieldset>
-                <fieldset data-icon="inbox">
+                <fieldset>
                     <input id="campo_correo" type="email" placeholder="Correo electrónico">
                 </fieldset>
-                <fieldset data-icon="lock">
+                <fieldset>
                     <input id="campo_contrasena" type="password" placeholder="Contraseña">
                 </fieldset>
                 <fieldset>
@@ -161,7 +166,7 @@
                         </select>
                     </label>
                 </fieldset>
-                <fieldset data-icon="phone">
+                <fieldset>
                     <input id="campo_telefono" type="tel" placeholder="Telefono">
                 </fieldset>
                 <a href="#" id="btn_registrar" class="button anchor accept margin-top margin-bottom" data-label="Crear cuenta"></a>
@@ -175,13 +180,13 @@
         </header>
         <article class="active scroll indented">
             <div class="form">
-                <fieldset data-icon="user">
+                <fieldset>
                     <input id="inv_nombres" type="text" placeholder="Nombre(s)">
                 </fieldset>
-                <fieldset data-icon="user">
+                <fieldset>
                     <input id="inv_apellidos" type="text" placeholder="Apellido(s)">
                 </fieldset>
-                <fieldset data-icon="inbox">
+                <fieldset>
                     <input id="inv_correo" type="email" placeholder="Correo electrónico">
                 </fieldset>
                 <fieldset>
@@ -193,7 +198,7 @@
                         </select>
                     </label>
                 </fieldset>
-                <fieldset data-icon="phone">
+                <fieldset>
                     <input id="inv_telefono" type="tel" placeholder="Telefono">
                 </fieldset>
                 <a href="#" id="btn_invitar" class="button anchor accept margin-top margin-bottom" data-label="Invitar"></a>
@@ -203,7 +208,6 @@
 
     <section id="perfil" data-transition="fade">
         <header data-title="Perfil">
-            <nav><button data-icon="angle-left" data-view-section="main"></button></nav>
             <nav class="on-right"><button id="cerrar-sesion" data-icon="off"></button></nav>
         </header>
         <footer>
@@ -212,14 +216,14 @@
                 <a href="#" data-view-section="perfil"><span class="icon user" style="color: #003C5A"></span></a>
             </nav>
         </footer>
-        <article id="article_perfil" class="active scroll indented color-texto">
+        <article id="article_perfil" class="active scroll color-texto">
             <div class="empty">
                 <strong>Sesión no iniciada</strong>
                 <span class="icon user"></span>
                 <small>Debes iniciar sesión para poder acceder al perfil</small><br>
                 <a id="lanzar-login" class="button anchor accept" href="#" data-label="Iniciar Sesión"></a>
             </div>
-            <div id="contenido"></div>
+            <div id="contenido" style="margin-top: 10px"></div>
         </article>
     </section>
 

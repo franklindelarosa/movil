@@ -387,7 +387,7 @@ body > section > article,
 body > section > [data-control="pull"],
 body > section > article a,
 body > section > [data-control="pull"] a {
-  color: #000;
+  color: gray;
 }
 body > section > article.splash,
 body > section > [data-control="pull"].splash {

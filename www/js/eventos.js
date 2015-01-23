@@ -10,7 +10,8 @@ Lungo.ready(function() {
             $$('header').style('margin-top', '20px');
         }
     }
-    direccionBase = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/";
+    // direccionBase = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/";
+    direccionBase = "http://fcracks.com/fcapi/web/v1/";
     Lungo.Service.Settings.async = true;
     Lungo.Service.Settings.error = function(type, xhr){
         if(type === "QuoJS.ajax: Timeout exceeded"){
@@ -72,13 +73,13 @@ $$('#listado-equipos').on('swipeRight', function(event) {
     Lungo.Router.article("main", "listado-horas");
 });
 $$('#login').on('unload', function(event) {
-    $$('#login div.form').find(':not(button)[id]').val('');
+    setTimeout(function(){$$('#login div.form').find(':not(button)[id]').val('');}, 350)
 });
 $$('#registrar').on('unload', function(event) {
-    $$('#registrar div.form').find(':not(button)[id]').val('');
+    setTimeout(function(){$$('#registrar div.form').find(':not(button)[id]').val('');}, 350)
 });
 $$('#invitar').on('unload', function(event) {
-    $$('#invitar div.form').find(':not(button)[id]').val('');
+    setTimeout(function(){$$('#invitar div.form').find(':not(button)[id]').val('');}, 350)
 });
 // navigator.Backbutton.goHome(function() {
 //     console.log('success')
@@ -130,7 +131,8 @@ $$('#listado-canchas ul').on('singleTap', 'li.selectable', function(event) {
         logo : $$(this).attr('data-fc-logo'),
 		imagen : $$(this).attr('data-fc-image'),
 	};
-    $$('article#cancha img').attr('src', 'http://elecsis.com.co/fcracks/web/images/canchas/'+cancha.imagen);
+    // $$('article#cancha img').attr('src', 'http://elecsis.com.co/fcracks/web/images/canchas/'+cancha.imagen);
+    $$('article#cancha img').attr('src', 'http://fcracks.com/fcadm/web/images/canchas/'+cancha.imagen);
     $$('article#cancha h2').html(cancha.nombre);
     // $$('#label-telefono').html("Tel: "+cancha.telefono);
     $$('#label-cupo').html("Cupo: "+cancha.cupo_max+" jugadores");
@@ -218,7 +220,6 @@ $$('#btn_registrar').on('singleTap', function(event) {
     }else{
         Lungo.Service.post(url, datos, verificarRegistro, "json");
     }
-    cordova.plugins.Keyboard.close();
 });
 
 $$(document).on('singleTap', '#sacarme-blanco', function(event) {
@@ -277,6 +278,5 @@ $$(document).on('singleTap', '#btn_invitar', function(event) {
         Lungo.Notification.show();
         Lungo.Service.post(url, datos, verificarInvitacion, "json");
     }
-    cordova.plugins.Keyboard.close();
 });
 
