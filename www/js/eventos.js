@@ -7,7 +7,7 @@ Lungo.ready(function() {
     // console.log(environment.os.name);
     if(typeof(environment.os) != "undefined" && environment.os !== null) {
         if(environment.os.name === "ios"){
-            $$('header').style('margin-top', '20px');
+            $$('section > header').style('margin-top', '20px');
         }
     }
     // direccionBase = "http://elecsis.com.co/fcracks/futbolcracksapi/web/v1/";
