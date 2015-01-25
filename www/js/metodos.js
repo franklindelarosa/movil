@@ -1,6 +1,6 @@
 // var mensajes = ["Anímate", "No lo pienses más", "Esta es la hora perfecta", "Qué estás esperando?"];
 
-//Esta función combierte un número en formato de dinero
+// esta función combierte un número en formato de dinero
 Number.prototype.formatMoney = function(places, symbol, thousand, decimal) {
     places = !isNaN(places = Math.abs(places)) ? places : 2;
     symbol = symbol !== undefined ? symbol : "$";
@@ -18,7 +18,7 @@ function mostrarError(){
     Lungo.Notification.error("Error de conexión", "Por favor verifica que tengas acceso a internet", "remove", function(){return});
 }
 
-//Este método capitaliza un string
+// este método capitaliza la primera letra de un string
 function capitaliseFirstLetter(string)
 {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -52,7 +52,7 @@ var imprimirDias = function (result){
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             $$('#dias').append('<li class="selectable arrow" data-fc-fecha="'+
-                val.fecha+'"><div><strong>'+val.label+
+                val.fecha+'"><div><strong>'+capitaliseFirstLetter(val.label)+
                 '</strong><small>'+val.fecha+'</small></div></li>');
         });
         Lungo.Router.article("main", "listado-dias");
@@ -90,6 +90,9 @@ var imprimirEquipos = function (result){
     partido = result.partido;
     total_blancos = result.data[0][0].length + result.data[0][1].length;
     total_negros = result.data[1][0].length + result.data[1][1].length;
+    $$('div.interno h4 > p').html(cancha.nombre);
+    $$('div.interno h5 > p').first().html(label_fecha);
+    $$('div.interno h5 > p').last().html(label_hora);
     if(total_blancos < cancha.cupo_max/2){
         $$('#unirse-blanco').show();
     }else{
