@@ -67,7 +67,7 @@ var imprimirDias = function (result){
 var imprimirHoras = function (result){
     // console.log(result);
     $$('#horas').empty();
-    $$('article#listado-horas header > h5').html(cancha.nombre+' - '+capitaliseFirstLetter(label_fecha));
+    $$('article#listado-horas header > h5').html(cancha.nombre+' - '+label_fecha);
     // $$('#horas').append('<li class="thumb big"><img src="http://elecsis.com.co/fcracks/web/images/logos/'+cancha.logo+'"/><div><h3>'+cancha.nombre+
     // '</h3><strong>'+label_fecha+'</strong></div></li>');
     if(result.status === "ok"){
