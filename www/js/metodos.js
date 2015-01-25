@@ -257,6 +257,7 @@ var imprimirJugador = function(result){
             $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
             $$('#equipo-negro').append('<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
         }
+        imprimirPerfil();
         Lungo.Notification.hide();
     }else{
         if(result.data.tipo === 1){
@@ -298,6 +299,7 @@ var verificarEliminacion = function(result){
         }
         $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
         $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
+        imprimirPerfil();
         Lungo.Notification.hide();
     }else{
         //Error
