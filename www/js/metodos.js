@@ -75,7 +75,7 @@ var imprimirHoras = function (result){
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             var name="";
-            val.disponibles > 1 ? name = "cupos" : name = "cupo";
+            val.disponibles === 1 ? name = "cupo" : name = "cupos";
             $$('#horas').append('<li class="selectable arrow" data-fc-hora="'+val.hora+'" data-fc-label_hora="'+
                val.label+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha">'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max).formatMoney(0,"$")+' c/u <small>'+val.disponibles+' '+name+'</small></div><strong>'+val.label+
                 '</strong><small>'+Math.floor(val.venta.substr(0,(val.venta.length-3))).formatMoney(0,"$")+' Total</small></div></li>');
@@ -129,7 +129,7 @@ var imprimirEquipos = function (result){
                     if(i === 0){ //Usuarios Registrados
                         $$.each(perfil, function(index, jugador) {
                             if(jugador.id_usuario === sessionStorage["id"]){
-                                $$('#equipo-blanco').append('<li data-fc-id-usuario="'+jugador.id_usuario+'" data-fc-equipo="b" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
+                                $$('#equipo-blanco').prepend('<li data-fc-id-usuario="'+jugador.id_usuario+'" data-fc-equipo="b" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
                                 $$('#unirse-blanco > span').removeClass();
                                 $$('#unirse-blanco > span').html('<h3>Invitar</h3>');
                                 $$('#unirse-blanco').attr('data-fc-estado', 'si');
@@ -155,7 +155,7 @@ var imprimirEquipos = function (result){
                     if(i === 0){ //Usuarios Registrados
                         $$.each(perfil, function(index, jugador) {
                             if(jugador.id_usuario === sessionStorage["id"]){
-                                $$('#equipo-negro').append('<li data-fc-id-usuario="'+jugador.id_usuario+'" data-fc-equipo="n" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
+                                $$('#equipo-negro').prepend('<li data-fc-id-usuario="'+jugador.id_usuario+'" data-fc-equipo="n" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+jugador.nombre+'</strong><small>Usuario registrado</small></li>');
                                 $$('#unirse-negro > span').removeClass();
                                 $$('#unirse-negro > span').html('<h3>Invitar</h3>');
                                 $$('#unirse-negro').attr('data-fc-estado', 'si');
@@ -250,7 +250,10 @@ var imprimirJugador = function(result){
             $$('#unirse-negro > span').removeClass();
             $$('#unirse-negro > span').html('<h3>Invitar</h3>');
             $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
-            $$('#equipo-blanco').append('<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="b" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
+            $$('#equipo-blanco').prepend('<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="b" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
+            // var elemento = '<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="b" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>';
+            // var lista = document.getElementById('equipo-blanco');
+            // lista.insertBefore($$(elemento), lista.childNodes[0]);
         }else{
             total_negros += 1;
             if(total_negros === cancha.cupo_max/2){
@@ -263,7 +266,7 @@ var imprimirJugador = function(result){
             $$('#unirse-blanco > span').removeClass();
             $$('#unirse-blanco > span').html('<h3>Invitar</h3>');
             $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
-            $$('#equipo-negro').append('<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
+            $$('#equipo-negro').prepend('<li data-fc-id-usuario="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="usuario"><span class=" icon user"></span><a id="sacarme-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Usuario registrado</small></li>');
         }
         imprimirPerfil();
         Lungo.Notification.hide();
@@ -367,7 +370,7 @@ function imprimirPerfil(){
     $$('#article_perfil > div.empty').hide();
     var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
     Lungo.Service.post(url, "id=1", function(result){
-        // console.log(result);
+        console.log(result);
         var articulo = $$('#article_perfil div#contenido');
         articulo.empty();
         articulo.append('<div class="layout horizontal"><div data-layout="quarter"><p class="centrar"><img class="img-perfil" src="images/profile.png"/></p></div><div style="margin-left: 10px" data-layout="primary"><h4>'+
@@ -378,8 +381,26 @@ function imprimirPerfil(){
         //     '</strong><br><br><strong class="separado">Partidos jugados: '+result.total+'</strong><br><div class="list"><ul><li></li><p class="centrar" style="margin-top: 10px"><strong>Último partido:</strong></p><li id="ultimo"></li></ul></div>');
         if(result.pendientes.length > 0){
             $$.each(result.pendientes, function(index, val) {
-                $$('#history').append('<li class="selectable"><div style="width:100%;"><div style="display:inline-block; width:50%;"><strong>'+val.nombre+'</strong></div><div style="display:inline-block; width:50%;"><small>'+capitaliseFirstLetter(val.label_fecha)+
-                '</small></div></div><div style="width:100%;"><div style="display:inline-block; width:50%;"><small>'+val.direccion+'</small></div><div style="display:inline-block; width:50%;"><small> '+val.label_hora+'</small></div></div></li>');
+                $$('#history').append('<li class="selectable" data-fc-id="'+val.id_cancha+'" data-fc-cancha="'+val.nombre+'" '+
+                'data-fc-cupo="'+val.cupo_max+'" data-fc-dir="'+val.direccion+'" data-fc-tel="'+val.telefono+'" '+
+                'data-fc-logo="'+val.imagen_logo+'" data-fc-image="'+val.imagen_cancha+'" data-fc-fecha="'+val.fecha+'" data-fc-hora="'+val.hora+'">'+
+                '<div style="width:100%;">'+
+                    '<div style="display:inline-block; width:50%;">'+
+                        '<strong>'+val.nombre+'</strong>'+
+                    '</div>'+
+                    '<div style="display:inline-block; width:50%;">'+
+                        '<small>'+capitaliseFirstLetter(val.label_fecha)+'</small>'+
+                    '</div>'+
+                '</div>'+
+                '<div style="width:100%;">'+
+                    '<div style="display:inline-block; width:50%;">'+
+                        '<small>'+val.direccion+'</small>'+
+                    '</div>'+
+                    '<div style="display:inline-block; width:50%;">'+
+                        '<small> '+val.label_hora+'</small>'+
+                    '</div>'+
+                '</div>'+
+                '</li>');
             });
         }else{
             $$('#history').append('<li><p class="centrar"><small>No tienes partidos reservados</small></p></li>');

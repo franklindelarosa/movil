@@ -50,28 +50,31 @@ $$('#listado-canchas').on('load', function(event) {
 });
 $$('#cancha').on('load', function(event) {
     $$("#main h1.title").html(cancha.nombre);
+    console.log("Cancha");
 });
-$$('#cancha').on('swipeRight', function(event) {
-    Lungo.Router.article("main", "listado-canchas");
-});
+// $$('#cancha').on('swipeRight', function(event) {
+//     Lungo.Router.article("main", "listado-canchas");
+// });
 $$('#listado-dias').on('load', function(event) {
     $$("#main h1.title").html("Dias Disponibles");
+    console.log("Dias");
 });
-$$('#listado-dias').on('swipeRight', function(event) {
-    Lungo.Router.article("main", "cancha");
-});
+// $$('#listado-dias').on('swipeRight', function(event) {
+//     Lungo.Router.article("main", "cancha");
+// });
 $$('#listado-horas').on('load', function(event) {
     $$("#main h1.title").html("Horas Disponibles");
+    console.log("Horas");
 });
-$$('#listado-horas').on('swipeRight', function(event) {
-    Lungo.Router.article("main", "listado-dias");
-});
+// $$('#listado-horas').on('swipeRight', function(event) {
+//     Lungo.Router.article("main", "listado-dias");
+// });
 $$('#listado-equipos').on('load', function(event) {
     $$("#main h1.title").html("Equipos");
 });
-$$('#listado-equipos').on('swipeRight', function(event) {
-    Lungo.Router.article("main", "listado-horas");
-});
+// $$('#listado-equipos').on('swipeRight', function(event) {
+//     Lungo.Router.article("main", "listado-horas");
+// });
 $$('#login').on('unload', function(event) {
     setTimeout(function(){$$('#login div.form').find(':not(button)[id]').val('');}, 350)
 });
@@ -279,5 +282,20 @@ $$(document).on('singleTap', '#btn_invitar', function(event) {
         Lungo.Notification.show();
         Lungo.Service.post(url, datos, verificarInvitacion, "json");
     }
+});
+
+$$(document).on('singleTap', '#history li.selectable', function(event) {
+    Lungo.Router.article("main", "listado-equipos");
+    // cancha = {
+    //     id : $$(this).attr('data-fc-id'),
+    //     nombre : $$(this).attr('data-fc-cancha'),
+    //     cupo_max : $$(this).attr('data-fc-cupo'),
+    //     direccion : $$(this).attr('data-fc-dir'),
+    //     telefono : $$(this).attr('data-fc-tel'),
+    //     logo : $$(this).attr('data-fc-logo'),
+    //     imagen : $$(this).attr('data-fc-image'),
+    // }
+    // fecha = $$(this).attr('data-fc-fecha');
+    // hora = $$(this).attr('data-fc-hora');
 });
 
