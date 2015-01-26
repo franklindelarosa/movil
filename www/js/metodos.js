@@ -51,9 +51,11 @@ var imprimirDias = function (result){
     // '</h3></div></li>');
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
+            var name="";
+            val.total > 1 ? name = "disponibles" : name = "disponible";
             $$('#dias').append('<li class="selectable arrow" data-fc-fecha="'+
-                val.fecha+'"><div><strong>'+val.label+
-                '</strong><small>'+val.fecha+'</small></div></li>');
+                val.dia+'"><div><strong>'+val.label+
+                '</strong><small>'+val.total+' '+name+'</small></div></li>');
         });
         Lungo.Router.article("main", "listado-dias");
         Lungo.Notification.hide();
@@ -72,8 +74,10 @@ var imprimirHoras = function (result){
     // '</h3><strong>'+label_fecha+'</strong></div></li>');
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
+            var name="";
+            val.disponibles > 1 ? name = "cupos" : name = "cupo";
             $$('#horas').append('<li class="selectable arrow" data-fc-hora="'+val.hora+'" data-fc-label_hora="'+
-               val.label+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha">'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max).formatMoney(0,"$")+' c/u</div><strong>'+val.label+
+               val.label+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha">'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max).formatMoney(0,"$")+' c/u <small>'+val.disponibles+' '+name+'</small></div><strong>'+val.label+
                 '</strong><small>'+Math.floor(val.venta.substr(0,(val.venta.length-3))).formatMoney(0,"$")+' Total</small></div></li>');
         });
         Lungo.Router.article("main", "listado-horas");
