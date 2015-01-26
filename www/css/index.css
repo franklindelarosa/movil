@@ -62,11 +62,10 @@ span.icon.plus {
 }
 
 article#listado-equipos div.interno {
-	color: #FFF;
-	font-size: 1.2em;
-	top: 8%;
+	/*color: #FFF;*/
 	position: absolute;
 	width: 100%;
+	z-index: 1;
 }
 
 footer > nav > a{

@@ -51,27 +51,27 @@ $$('#listado-canchas').on('load', function(event) {
 $$('#cancha').on('load', function(event) {
     $$("#main h1.title").html(cancha.nombre);
 });
-// $$('#cancha').on('swipeRight', function(event) {
-//     Lungo.Router.article("main", "listado-canchas");
-// });
+$$('#cancha').on('swipeRight', function(event) {
+    Lungo.Router.article("main", "listado-canchas");
+});
 $$('#listado-dias').on('load', function(event) {
     $$("#main h1.title").html("Dias Disponibles");
 });
-// $$('#listado-dias').on('swipeRight', function(event) {
-//     Lungo.Router.article("main", "cancha");
-// });
+$$('#listado-dias').on('swipeRight', function(event) {
+    Lungo.Router.article("main", "cancha");
+});
 $$('#listado-horas').on('load', function(event) {
     $$("#main h1.title").html("Horas Disponibles");
 });
-// $$('#listado-horas').on('swipeRight', function(event) {
-//     Lungo.Router.article("main", "listado-dias");
-// });
+$$('#listado-horas').on('swipeRight', function(event) {
+    Lungo.Router.article("main", "listado-dias");
+});
 $$('#listado-equipos').on('load', function(event) {
     $$("#main h1.title").html("Equipos");
 });
-// $$('#listado-equipos').on('swipeRight', function(event) {
-//     Lungo.Router.article("main", "listado-horas");
-// });
+$$('#listado-equipos').on('swipeRight', function(event) {
+    Lungo.Router.article("main", "listado-horas");
+});
 $$('#login').on('unload', function(event) {
     setTimeout(function(){$$('#login div.form').find(':not(button)[id]').val('');}, 350)
 });
@@ -154,7 +154,7 @@ $$('#listado-dias ul').on('singleTap', 'li.selectable', function(event) {
     var url = direccionBase+"site/cancha-horas";
     Lungo.Notification.show();
     fecha = $$(this).attr('data-fc-fecha');
-	label_fecha = $$(this).find('strong').html();
+	label_fecha = capitaliseFirstLetter($$(this).find('strong').html());
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
 });
 
@@ -163,7 +163,7 @@ $$('#listado-horas ul').on('singleTap', 'li.selectable', function(event) {
     var url = direccionBase+"site/equipos";
     Lungo.Notification.show();
 	hora = $$(this).attr('data-fc-hora');
-    label_hora = $$(this).find('strong').html();
+    label_hora = $$(this).attr('data-fc-label_hora');
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
 });
 

@@ -1,6 +1,6 @@
 // var mensajes = ["Anímate", "No lo pienses más", "Esta es la hora perfecta", "Qué estás esperando?"];
 
-// esta función combierte un número en formato de dinero
+//Esta función combierte un número en formato de dinero
 Number.prototype.formatMoney = function(places, symbol, thousand, decimal) {
     places = !isNaN(places = Math.abs(places)) ? places : 2;
     symbol = symbol !== undefined ? symbol : "$";
@@ -18,7 +18,7 @@ function mostrarError(){
     Lungo.Notification.error("Error de conexión", "Por favor verifica que tengas acceso a internet", "remove", function(){return});
 }
 
-// este método capitaliza la primera letra de un string
+//Este método capitaliza un string
 function capitaliseFirstLetter(string)
 {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -52,7 +52,7 @@ var imprimirDias = function (result){
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             $$('#dias').append('<li class="selectable arrow" data-fc-fecha="'+
-                val.fecha+'"><div><strong>'+capitaliseFirstLetter(val.label)+
+                val.fecha+'"><div><strong>'+val.label+
                 '</strong><small>'+val.fecha+'</small></div></li>');
         });
         Lungo.Router.article("main", "listado-dias");
@@ -72,9 +72,9 @@ var imprimirHoras = function (result){
     // '</h3><strong>'+label_fecha+'</strong></div></li>');
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
-            $$('#horas').append('<li class="selectable arrow" data-fc-hora="'+
-                val.hora+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha">'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max).formatMoney()+' c/u</div><strong>'+val.label+
-                '</strong><small>'+Math.floor(val.venta.substr(0,(val.venta.length-3))).formatMoney()+' Total</small></div></li>');
+            $$('#horas').append('<li class="selectable arrow" data-fc-hora="'+val.hora+'" data-fc-label_hora="'+
+               val.label+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha">'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max).formatMoney(0,"$")+' c/u</div><strong>'+val.label+
+                '</strong><small>'+Math.floor(val.venta.substr(0,(val.venta.length-3))).formatMoney(0,"$")+' Total</small></div></li>');
         });
         Lungo.Router.article("main", "listado-horas");
         Lungo.Notification.hide();
@@ -90,9 +90,13 @@ var imprimirEquipos = function (result){
     partido = result.partido;
     total_blancos = result.data[0][0].length + result.data[0][1].length;
     total_negros = result.data[1][0].length + result.data[1][1].length;
-    $$('div.interno h4 > p').html(cancha.nombre);
-    $$('div.interno h5 > p').first().html(label_fecha);
-    $$('div.interno h5 > p').last().html(label_hora);
+    
+    $$('#li-equipo-cancha').html(cancha.nombre);
+    $$('#li-equipo-fecha').html(label_fecha);
+    $$('#li-equipo-hora').html(label_hora);
+
+    $$('#unirse-negro > span').html('');
+
     if(total_blancos < cancha.cupo_max/2){
         $$('#unirse-blanco').show();
     }else{
@@ -364,17 +368,17 @@ function imprimirPerfil(){
         articulo.empty();
         articulo.append('<div class="layout horizontal"><div data-layout="quarter"><p class="centrar"><img class="img-perfil" src="images/profile.png"/></p></div><div style="margin-left: 10px" data-layout="primary"><h4>'+
         result.data.nombre+'</h4><small><span class="icon envelope"></span> '+result.data.correo+'</small><br><small><span class="icon phone"></span> '+result.data.telefono+'</small><br><small><span class="icon ok"></span> '+result.total+
-        ' partidos</small></div></div><div class="list"><ul id="history"><li><p class="centrar">Partidos pendientes</p></li></ul></div>');
+        ' partidos</small></div></div><div class="list"><ul id="history"><li><p class="centrar">Partidos reservados</p></li></ul></div>');
         // articulo.append('<p class="centrar"><img src="images/profile.png"/></p><br><strong class="separado">Nombre: '+result.data.nombre+'</strong><br><br><strong class="separado">Correo: '+
         //     result.data.correo+'</strong><br><br><strong class="separado">Sexo: '+result.data.sexo+'</strong><br><br><strong class="separado">Teléfono: '+result.data.telefono+
         //     '</strong><br><br><strong class="separado">Partidos jugados: '+result.total+'</strong><br><div class="list"><ul><li></li><p class="centrar" style="margin-top: 10px"><strong>Último partido:</strong></p><li id="ultimo"></li></ul></div>');
         if(result.pendientes.length > 0){
             $$.each(result.pendientes, function(index, val) {
-                $$('#history').append('<li class="selectable"><div class="layout horizontal"><div data-layout="primary"><strong>'+val.nombre+'</strong></div><div data-layout="primary"><small>'+capitaliseFirstLetter(val.label_fecha)+
-                '</small></div></div><div class="layout horizontal"><div data-layout="primary"><small>'+val.direccion+'</small></div><div data-layout="primary"><small> '+val.label_hora+'</small></div></div></li>');
+                $$('#history').append('<li class="selectable"><div style="width:100%;"><div style="display:inline-block; width:50%;"><strong>'+val.nombre+'</strong></div><div style="display:inline-block; width:50%;"><small>'+capitaliseFirstLetter(val.label_fecha)+
+                '</small></div></div><div style="width:100%;"><div style="display:inline-block; width:50%;"><small>'+val.direccion+'</small></div><div style="display:inline-block; width:50%;"><small> '+val.label_hora+'</small></div></div></li>');
             });
         }else{
-            $$('#history').append('<li><p class="centrar"><small>No tienes partidos pendientes</small></p></li>');
+            $$('#history').append('<li><p class="centrar"><small>No tienes partidos reservados</small></p></li>');
         }
     }, "json");
     Lungo.Notification.hide();
