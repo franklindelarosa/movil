@@ -1,6 +1,6 @@
 // var mensajes = ["Anímate", "No lo pienses más", "Esta es la hora perfecta", "Qué estás esperando?"];
 
-//Esta función combierte un número en formato de dinero
+// esta función combierte un número en formato de dinero
 Number.prototype.formatMoney = function(places, symbol, thousand, decimal) {
     places = !isNaN(places = Math.abs(places)) ? places : 2;
     symbol = symbol !== undefined ? symbol : "$";
@@ -18,7 +18,7 @@ function mostrarError(){
     Lungo.Notification.error("Error de conexión", "Por favor verifica que tengas acceso a internet", "remove", function(){return});
 }
 
-//Este método capitaliza la primera palabra de un string
+// este método capitaliza la primera palabra de un string
 function capitaliseFirstLetter(string)
 {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -185,6 +185,7 @@ var imprimirEquipos = function (result){
     }
 }
 
+// esta variable almacena la función de verificación del login
 var verificarLogin = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key[0].accessToken;
@@ -206,6 +207,7 @@ var verificarLogin = function (result){
     }
 }
 
+// esta variable almacena la función de verificación de registro de un nuevo usuario
 var verificarRegistro = function (result){
     if(result.status === "ok"){
         localStorage["_chrome-rel-back"] = result.key;
@@ -225,6 +227,7 @@ var verificarRegistro = function (result){
     }
 }
 
+// esta función solicita la adición de el usuario en un partido y llama a la función de imprimir jugador
 function adicionarJugador(){
     var data = {
         equipo: equipo,
@@ -235,6 +238,7 @@ function adicionarJugador(){
     Lungo.Service.post(url, data, imprimirJugador, "json");
 }
 
+// esta variable almacena la función de validación para la impresión de un jugador en un partido específico
 var imprimirJugador = function(result){
     // console.log(result);
     if(result.status === 'ok'){
@@ -281,6 +285,7 @@ var imprimirJugador = function(result){
     }
 }
 
+// esta variable almacena la función de verificación de eliminación del usuario en un partido específico
 var verificarEliminacion = function(result){
     // console.log(result);
     if(result.status === "ok"){
@@ -314,6 +319,7 @@ var verificarEliminacion = function(result){
     }
 }
 
+// esta variable almacena la función de verificación de eliminación de un invitado en un partido específico
 var verificarEliminacionInvitado = function(result){
     // console.log(result);
     if(result.status === "ok"){
@@ -339,6 +345,7 @@ var verificarEliminacionInvitado = function(result){
     }
 }
 
+// esta variable almacena la función de verificación para la impresión de un invitado en un determinado partido
 var verificarInvitacion = function(result){
     if(result.status === "ok"){
         if(result.data.equipo === "blancos"){
@@ -363,6 +370,7 @@ var verificarInvitacion = function(result){
     Lungo.Notification.hide();
 }
 
+// esta función imprime el perfil del usuario logueado en la aplicación
 function imprimirPerfil(){
     $$('#article_perfil > div.empty').hide();
     var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
