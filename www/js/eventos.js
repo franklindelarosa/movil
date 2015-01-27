@@ -19,9 +19,6 @@ Lungo.ready(function() {
         }
         console.log(type); /*------------------------------------------------------------------------------------*/
     };
-    // localStorage.prueba = {nombre: "Hello", twitter: "twitter"};
-    // var x = localStorage.getItem("_chrome-rel-back");
-    // console.log(localStorage["_chrome-rel-back"]);
     
     Lungo.Service.Settings.headers["Content-Type"] = "application/json";
     // Lungo.Service.Settings.headers["Access-Control-Allow-Origin"] = "*";
@@ -39,8 +36,6 @@ Lungo.ready(function() {
     sessionStorage.removeItem("lanzadoDesdeHome");
     listadoDeEquipos = "no";
     var url = direccionBase+"site/listar-canchas";
-    // var url = "http://localhost/futbolcracksapi/web/v1/site/listar-canchas";
-    // var url = "https://futbolcracksapi.herokuapp.com/web/v1/site/listar-canchas";
     Lungo.Service.post(url, "id=1", imprimirCanchas, "json");
 
 });
@@ -50,20 +45,20 @@ $$('#listado-canchas').on('load', function(event) {
 });
 $$('#cancha').on('load', function(event) {
     $$("#main h1.title").html(cancha.nombre);
-    console.log("Cancha");
 });
 // $$('#cancha').on('swipeRight', function(event) {
 //     Lungo.Router.article("main", "listado-canchas");
 // });
 $$('#listado-dias').on('load', function(event) {
     $$("#main h1.title").html("Dias Disponibles");
-    console.log("Dias");
+    $$('article#listado-dias header > h5').html(cancha.nombre);
 });
 // $$('#listado-dias').on('swipeRight', function(event) {
 //     Lungo.Router.article("main", "cancha");
 // });
 $$('#listado-horas').on('load', function(event) {
     $$("#main h1.title").html("Horas Disponibles");
+    $$('article#listado-horas header > h5').html(cancha.nombre+' - '+label_fecha);
     console.log("Horas");
 });
 // $$('#listado-horas').on('swipeRight', function(event) {
@@ -71,6 +66,9 @@ $$('#listado-horas').on('load', function(event) {
 // });
 $$('#listado-equipos').on('load', function(event) {
     $$("#main h1.title").html("Equipos");
+    $$('#li-equipo-cancha').html(cancha.nombre);
+    $$('#li-equipo-fecha').html(label_fecha);
+    $$('#li-equipo-hora').html(label_hora);
 });
 // $$('#listado-equipos').on('swipeRight', function(event) {
 //     Lungo.Router.article("main", "listado-horas");
@@ -98,16 +96,13 @@ $$('#lanzar-login').on('singleTap', function(event) {
     }
 });
 $$('#iniciar-sesion').on('singleTap', function(event) {
-    // var url = "http://localhost/futbolcracksapi/web/v1/site/login";
     var url = direccionBase+"site/login";
     document.activeElement.blur();
     Lungo.Notification.show();
     var correo = $$('#correo').val();
     var contrasena = $$('#contrasena').val();
     if(correo === "" || contrasena === ""){
-        // setTimeout(function(){Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return})},1000);
         Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
-        // cord;
     }else{
         Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
     }
@@ -125,46 +120,43 @@ $$('#cerrar-sesion').on('singleTap', function(event) {
 });
 
 $$('#listado-canchas ul').on('singleTap', 'li.selectable', function(event) {
-	cancha = {
-		id : $$(this).attr('data-fc-id'),
-		nombre : $$(this).find("strong").html(),
-		cupo_max : $$(this).attr('data-fc-cupo'),
-		direccion : $$(this).find("small").html(),
+    Lungo.Notification.show();
+    recarga = false;
+    cancha = {
+        id : $$(this).attr('data-fc-id'),
+        nombre : $$(this).find("strong").html(),
+        cupo_max : $$(this).attr('data-fc-cupo'),
+        direccion : $$(this).find("small").html(),
         telefono : $$(this).attr('data-fc-tel'),
         logo : $$(this).attr('data-fc-logo'),
-		imagen : $$(this).attr('data-fc-image'),
-	};
-    // $$('article#cancha img').attr('src', 'http://elecsis.com.co/fcracks/web/images/canchas/'+cancha.imagen);
+        imagen : $$(this).attr('data-fc-image'),
+    };
     $$('article#cancha img').attr('src', 'http://fcracks.com/fcadm/web/images/canchas/'+cancha.imagen);
     $$('article#cancha h2').html(cancha.nombre);
     // $$('#label-telefono').html("Tel: "+cancha.telefono);
     $$('#label-cupo').html("Cupo: "+cancha.cupo_max+" jugadores");
     $$('#label-direccion').html("Dirección: "+cancha.direccion);
-    Lungo.Notification.show();
     setTimeout(function(){Lungo.Router.article("main", "cancha"); Lungo.Notification.hide()}, 500);
     
 });
 
 $$('#seleccionar-cancha').on('singleTap', function(event) {
     Lungo.Notification.show();
-    // var url = "http://localhost/futbolcracksapi/web/v1/site/cancha-dias";
     var url = direccionBase+"site/cancha-dias";
     Lungo.Service.post(url, {cancha:cancha.id}, imprimirDias, "json");
 });
 
 $$('#listado-dias ul').on('singleTap', 'li.selectable', function(event) {
-    // var url = "http://localhost/futbolcracksapi/web/v1/site/cancha-horas";
-    var url = direccionBase+"site/cancha-horas";
     Lungo.Notification.show();
+    var url = direccionBase+"site/cancha-horas";
     fecha = $$(this).attr('data-fc-fecha');
 	label_fecha = capitaliseFirstLetter($$(this).find('strong').html());
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
 });
 
 $$('#listado-horas ul').on('singleTap', 'li.selectable', function(event) {
-    // var url = "http://localhost/futbolcracksapi/web/v1/site/equipos";
-    var url = direccionBase+"site/equipos";
     Lungo.Notification.show();
+    var url = direccionBase+"site/equipos";
 	hora = $$(this).attr('data-fc-hora');
     label_hora = $$(this).attr('data-fc-label_hora');
 	Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
@@ -180,7 +172,6 @@ $$('#unirse-blanco').on('singleTap', function(event) {
             adicionarJugador();
             Lungo.Notification.show();
         }else{
-            // Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
             Lungo.Router.section("invitar");
         }
     }else{
@@ -198,14 +189,12 @@ $$('#unirse-negro').on('singleTap', function(event) {
             adicionarJugador();
             Lungo.Notification.show();
         }else{
-            // Lungo.Notification.error("Ya estás en el partido", "Para salir del partido presiona el botón rojo junto a tu nombre","warning-sign", function(){return});
             Lungo.Router.section("invitar");
         }
     }else{
         Lungo.Router.section("login");
     }
 });
-
 
 $$('#btn_registrar').on('singleTap', function(event) {
     var url = direccionBase+"site/registrar-perfil";
@@ -285,17 +274,33 @@ $$(document).on('singleTap', '#btn_invitar', function(event) {
 });
 
 $$(document).on('singleTap', '#history li.selectable', function(event) {
+    Lungo.Notification.show();
+    recarga = true;
+    cancha = {
+        id : $$(this).attr('data-fc-id'),
+        nombre : $$(this).attr('data-fc-cancha'),
+        cupo_max : $$(this).attr('data-fc-cupo'),
+        direccion : $$(this).attr('data-fc-dir'),
+        telefono : $$(this).attr('data-fc-tel'),
+        logo : $$(this).attr('data-fc-logo'),
+        imagen : $$(this).attr('data-fc-image'),
+    }
+    fecha = $$(this).attr('data-fc-fecha');
+    label_fecha = $$(this).find('small[data-fc-label-fecha]').html();
+    hora = $$(this).attr('data-fc-hora');
+    label_hora = $$(this).find('small[data-fc-label-hora]').html();
+    $$('article#cancha img').attr('src', 'http://fcracks.com/fcadm/web/images/canchas/'+cancha.imagen);
+    $$('article#cancha h2').html(cancha.nombre);
+    // $$('#label-telefono').html("Tel: "+cancha.telefono);
+    $$('#label-cupo').html("Cupo: "+cancha.cupo_max+" jugadores");
+    $$('#label-direccion').html("Dirección: "+cancha.direccion);
+    var url = direccionBase+"site/equipos";
+    Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
+    var url = direccionBase+"site/cancha-horas";
+    Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
+    var url = direccionBase+"site/cancha-dias";
+    Lungo.Service.post(url, {cancha:cancha.id}, imprimirDias, "json");
     Lungo.Router.article("main", "listado-equipos");
-    // cancha = {
-    //     id : $$(this).attr('data-fc-id'),
-    //     nombre : $$(this).attr('data-fc-cancha'),
-    //     cupo_max : $$(this).attr('data-fc-cupo'),
-    //     direccion : $$(this).attr('data-fc-dir'),
-    //     telefono : $$(this).attr('data-fc-tel'),
-    //     logo : $$(this).attr('data-fc-logo'),
-    //     imagen : $$(this).attr('data-fc-image'),
-    // }
-    // fecha = $$(this).attr('data-fc-fecha');
-    // hora = $$(this).attr('data-fc-hora');
+    Lungo.Notification.hide();
 });
 
