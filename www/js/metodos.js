@@ -55,10 +55,8 @@ var imprimirDias = function (result){
                 val.dia+'"><div><strong>'+val.label+
                 '</strong><small>'+val.total+' '+name+'</small></div></li>');
         });
-        if(!recarga){
-            Lungo.Router.article("main", "listado-dias");
-            Lungo.Notification.hide();
-        }
+        Lungo.Router.article("main", "listado-dias");
+        Lungo.Notification.hide();
         refresh_dias.hide();
     }else{
         mostrarError();
@@ -78,10 +76,8 @@ var imprimirHoras = function (result){
                val.label+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha">'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max).formatMoney(0,"$")+' c/u <small>'+val.disponibles+' '+name+'</small></div><strong>'+val.label+
                 '</strong><small>'+Math.floor(val.venta.substr(0,(val.venta.length-3))).formatMoney(0,"$")+' Total</small></div></li>');
         });
-        if(!recarga){
-            Lungo.Router.article("main", "listado-horas");
-            Lungo.Notification.hide();
-        }
+        Lungo.Router.article("main", "listado-horas");
+        Lungo.Notification.hide();
         refresh_horas.hide();
     }else{
         mostrarError();
@@ -175,10 +171,8 @@ var imprimirEquipos = function (result){
                 });
             }
         });
-        if(!recarga){
-            Lungo.Router.article("main", "listado-equipos");
-            Lungo.Notification.hide();
-        }
+        Lungo.Router.article("main", "listado-equipos");
+        Lungo.Notification.hide();
         refresh_equipos.hide();
     }else{
         mostrarError();

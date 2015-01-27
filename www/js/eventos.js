@@ -81,7 +81,6 @@ var refresh_dias = new Lungo.Element.Pull('#listado-dias', {
 $$('#listado-horas').on('load', function(event) {
     $$("#main h1.title").html("Horas Disponibles");
     $$('article#listado-horas header > h5').html(cancha.nombre+' - '+label_fecha);
-    console.log("Horas");
 });
 var refresh_horas = new Lungo.Element.Pull('#listado-horas', {
     onPull: "Desliza para actualizar",
@@ -163,7 +162,6 @@ $$('#cerrar-sesion').on('singleTap', function(event) {
 
 $$('#listado-canchas ul').on('singleTap', 'li.selectable', function(event) {
     Lungo.Notification.show();
-    recarga = false;
     cancha = {
         id : $$(this).attr('data-fc-id'),
         nombre : $$(this).find("strong").html(),
@@ -317,7 +315,6 @@ $$(document).on('singleTap', '#btn_invitar', function(event) {
 
 $$(document).on('singleTap', '#history li.selectable', function(event) {
     Lungo.Notification.show();
-    recarga = true;
     cancha = {
         id : $$(this).attr('data-fc-id'),
         nombre : $$(this).attr('data-fc-cancha'),
@@ -336,13 +333,11 @@ $$(document).on('singleTap', '#history li.selectable', function(event) {
     // $$('#label-telefono').html("Tel: "+cancha.telefono);
     $$('#label-cupo').html("Cupo: "+cancha.cupo_max+" jugadores");
     $$('#label-direccion').html("Dirección: "+cancha.direccion);
+    var url = direccionBase+"site/cancha-horas";
+    Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHorasR, "json");
+    var url = direccionBase+"site/cancha-dias";
+    Lungo.Service.post(url, {cancha:cancha.id}, imprimirDiasR, "json");
     var url = direccionBase+"site/equipos";
     Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
-    var url = direccionBase+"site/cancha-horas";
-    Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
-    var url = direccionBase+"site/cancha-dias";
-    Lungo.Service.post(url, {cancha:cancha.id}, imprimirDias, "json");
-    Lungo.Router.article("main", "listado-equipos");
-    Lungo.Notification.hide();
 });
 
