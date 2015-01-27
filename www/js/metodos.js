@@ -28,6 +28,7 @@ function capitaliseFirstLetter(string)
 var imprimirCanchas = function (result){
     // console.log(result);
     $$('#canchas').empty();
+    // $$('#canchas').append('<li class="contrast pullable"><strong class="centrar">Desliza para recargar</strong><li/>');
     if(result.status === "ok"){
         $$.each(result['data'], function(index, val) {
             $$('#canchas').append('<li class="thumb selectable arrow" data-fc-id="'+
@@ -36,6 +37,7 @@ var imprimirCanchas = function (result){
                 '</strong><small>'+val.direccion+'</small></div></li>');
         });
         Lungo.Notification.hide();
+        refresh_canchas.hide();
     }else{
         mostrarError();
     }
@@ -57,6 +59,7 @@ var imprimirDias = function (result){
             Lungo.Router.article("main", "listado-dias");
             Lungo.Notification.hide();
         }
+        refresh_dias.hide();
     }else{
         mostrarError();
     }
@@ -79,6 +82,7 @@ var imprimirHoras = function (result){
             Lungo.Router.article("main", "listado-horas");
             Lungo.Notification.hide();
         }
+        refresh_horas.hide();
     }else{
         mostrarError();
     }
@@ -175,6 +179,7 @@ var imprimirEquipos = function (result){
             Lungo.Router.article("main", "listado-equipos");
             Lungo.Notification.hide();
         }
+        refresh_equipos.hide();
     }else{
         mostrarError();
     }
@@ -395,7 +400,7 @@ function imprimirPerfil(){
             $$('#history').append('<li><p class="centrar"><small>No tienes partidos reservados</small></p></li>');
         }
     }, "json");
-    Lungo.Notification.hide();
+    // Lungo.Notification.hide();
 }
 
 

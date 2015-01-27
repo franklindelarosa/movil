@@ -17,7 +17,7 @@ Lungo.ready(function() {
         if(type === "QuoJS.ajax: Timeout exceeded"){
             mostrarError();
         }
-        console.log(type); /*------------------------------------------------------------------------------------*/
+        // console.log(type); /*------------------------------------------------------------------------------------*/
     };
     
     Lungo.Service.Settings.headers["Content-Type"] = "application/json";
@@ -37,11 +37,22 @@ Lungo.ready(function() {
     listadoDeEquipos = "no";
     var url = direccionBase+"site/listar-canchas";
     Lungo.Service.post(url, "id=1", imprimirCanchas, "json");
-
 });
+
+
 
 $$('#listado-canchas').on('load', function(event) {
     $$("#main h1.title").html("Canchas");
+});
+var refresh_canchas = new Lungo.Element.Pull('#listado-canchas', {
+    onPull: "Desliza para actualizar",
+    onRelease: "Suelta para recargar",
+    onRefresh: "Recargando lista",
+    callback: function() {
+        // setTimeout(function(){refresh_canchas.hide();}, 3000);
+        var url = direccionBase+"site/listar-canchas";
+        Lungo.Service.post(url, "id=1", imprimirCanchas, "json");
+    }
 });
 $$('#cancha').on('load', function(event) {
     $$("#main h1.title").html(cancha.nombre);
@@ -53,6 +64,16 @@ $$('#listado-dias').on('load', function(event) {
     $$("#main h1.title").html("Dias Disponibles");
     $$('article#listado-dias header > h5').html(cancha.nombre);
 });
+var refresh_dias = new Lungo.Element.Pull('#listado-dias', {
+    onPull: "Desliza para actualizar",
+    onRelease: "Suelta para recargar",
+    onRefresh: "Recargando lista",
+    callback: function() {
+        // setTimeout(function(){refresh_dias.hide();}, 3000);
+        var url = direccionBase+"site/cancha-dias";
+        Lungo.Service.post(url, {cancha:cancha.id}, imprimirDias, "json");
+    }
+});
 // $$('#listado-dias').on('swipeRight', function(event) {
 //     Lungo.Router.article("main", "cancha");
 // });
@@ -60,6 +81,16 @@ $$('#listado-horas').on('load', function(event) {
     $$("#main h1.title").html("Horas Disponibles");
     $$('article#listado-horas header > h5').html(cancha.nombre+' - '+label_fecha);
     console.log("Horas");
+});
+var refresh_horas = new Lungo.Element.Pull('#listado-horas', {
+    onPull: "Desliza para actualizar",
+    onRelease: "Suelta para recargar",
+    onRefresh: "Recargando lista",
+    callback: function() {
+        // setTimeout(function(){refresh_horas.hide();}, 3000);
+        var url = direccionBase+"site/cancha-horas";
+        Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha}, imprimirHoras, "json");
+    }
 });
 // $$('#listado-horas').on('swipeRight', function(event) {
 //     Lungo.Router.article("main", "listado-dias");
@@ -69,6 +100,16 @@ $$('#listado-equipos').on('load', function(event) {
     $$('#li-equipo-cancha').html(cancha.nombre);
     $$('#li-equipo-fecha').html(label_fecha);
     $$('#li-equipo-hora').html(label_hora);
+});
+var refresh_equipos = new Lungo.Element.Pull('#listado-equipos', {
+    onPull: "Desliza para actualizar",
+    onRelease: "Suelta para recargar",
+    onRefresh: "Recargando lista",
+    callback: function() {
+        // setTimeout(function(){refresh_equipos.hide();}, 3000);
+        var url = direccionBase+"site/equipos";
+        Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
+    }
 });
 // $$('#listado-equipos').on('swipeRight', function(event) {
 //     Lungo.Router.article("main", "listado-horas");
