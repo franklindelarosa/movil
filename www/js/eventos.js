@@ -152,12 +152,12 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
 $$('#cerrar-sesion').on('singleTap', function(event) {
     localStorage.removeItem("_chrome-rel-back");
     sessionStorage.removeItem("id");
+    Lungo.Router.article("main", "listado-canchas");
     setTimeout(function(){
         $$('#cerrar-sesion').hide();
         $$('#article_perfil div#contenido').empty();
         $$('#article_perfil > div.empty').show();
     }, 400);
-    Lungo.Router.article("main", "listado-canchas");
 });
 
 $$('#listado-canchas ul').on('singleTap', 'li.selectable', function(event) {
