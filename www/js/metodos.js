@@ -52,7 +52,7 @@ var imprimirDias = function (result){
             var name="";
             val.total > 1 ? name = "disponibles" : name = "disponible";
             $$('#dias').append('<li class="selectable arrow" data-fc-fecha="'+
-                val.dia+'"><div><strong>'+val.label+
+                val.dia+'"><div><strong>'+capitaliseFirstLetter(val.label)+
                 '</strong><small>'+val.total+' '+name+'</small></div></li>');
         });
         Lungo.Router.article("main", "listado-dias");

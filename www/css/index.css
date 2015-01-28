@@ -24,7 +24,7 @@ article#cancha h2{
 	padding: 8.53333px;
 }
 
-article header{
+.sub-header{
 	color: #FFF;
 	background-color: #155474;
 }
@@ -46,9 +46,7 @@ span.icon.plus {
 .separado {
 	margin-left: 5%;
 }
-/*header, nav#options{
-	margin-top: 20px; inactivo: #A1A6A8; activo: #003c5a;
-}*/
+
 .no-margin {
 	margin: 0px;
 }
@@ -59,13 +57,6 @@ span.icon.plus {
 	font-size: 1.1em;
 	color: #808080;
 	font-weight: 400;
-}
-
-article#listado-equipos div.interno {
-	/*color: #FFF;*/
-	position: absolute;
-	width: 100%;
-	z-index: 1;
 }
 
 footer > nav > a{
