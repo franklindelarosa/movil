@@ -3,7 +3,7 @@ Lungo.init({
 });
 Lungo.ready(function() {
     Lungo.Notification.show();
-    $$('.sub-header').hide();
+    // $$('.sub-header').hide();
     var environment = Lungo.Core.environment();
     // console.log(environment.os.name);
     if(typeof(environment.os) != "undefined" && environment.os !== null) {
