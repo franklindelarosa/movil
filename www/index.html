@@ -52,7 +52,7 @@
 </head>
 
 <body class="app">
-    <section id="main" data-transition="fade" data-pull="normal">
+    <section id="main" data-transition="fade" data-pull="chevron-down">
         <header data-title="Canchas">
             <nav>
                 <button data-article="cancha" data-view-article="listado-canchas" data-icon="angle-left"></button>
@@ -94,7 +94,7 @@
         </article>
 
         <article id="listado-equipos" class="list scroll indented">
-            <div style="background: url('images/vs.png') no-repeat 0 0; background-size:100% auto; width:100%; height:auto; text-align:center; ">
+            <div class="fondo-equipos" style="background: url('images/vs.png') no-repeat 0 0; background-size:100% auto; width:100%; height:auto; text-align:center; ">
                 <div style="margin:4%; color:white; font-size:1.1em">
                     <span id="li-equipo-cancha" style="font-size:1.3em"></span>
                     <br/>
@@ -104,7 +104,7 @@
                 </div>
             </div>
 
-            <ul>
+            <ul id='equipos'>
                 <li class="anchor"><a id="unirse-blanco" data-fc-estado="no" href="#" class="icono" data-icon="plus"></a><h2>Equipo Blanco</h2>
                     <ul id="equipo-blanco"></ul>
                 </li>

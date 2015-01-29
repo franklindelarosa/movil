@@ -36,6 +36,12 @@ var imprimirCanchas = function (result){
                 '"> <img src="http://fcracks.com/fcadm/web/images/logos/'+val.imagen_logo+'"/><div><strong>'+val.nombre+
                 '</strong><small>'+val.direccion+'</small></div></li>');
         });
+        $$('#listado-canchas div[style]').remove();
+        setTimeout(function(){
+            if($$('#canchas').height() < ($$('#listado-canchas').height()-46)){
+                $$('#listado-canchas').append('<div style="height: '+(($$('#listado-canchas').height()-46)-$$('#canchas').height())+'px"></div>');
+            }
+        },500);
         Lungo.Notification.hide();
         refresh_canchas.hide();
     }else{
@@ -55,6 +61,12 @@ var imprimirDias = function (result){
                 val.dia+'"><div><strong>'+capitaliseFirstLetter(val.label)+
                 '</strong><small>'+val.total+' '+name+'</small></div></li>');
         });
+        $$('#listado-dias div[style]').remove();
+        setTimeout(function(){
+            if($$('#dias').height() < ($$('#listado-dias').height()-46)){
+                $$('#listado-dias').append('<div style="height: '+(($$('#listado-dias').height()-46)-$$('#dias').height())+'px"></div>');
+            }
+        },500);
         Lungo.Router.article("main", "listado-dias");
         Lungo.Notification.hide();
         refresh_dias.hide();
@@ -76,6 +88,12 @@ var imprimirHoras = function (result){
                val.label+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha">'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max).formatMoney(0,"$")+' c/u <small>'+val.disponibles+' '+name+'</small></div><strong>'+val.label+
                 '</strong><small>'+Math.floor(val.venta.substr(0,(val.venta.length-3))).formatMoney(0,"$")+' Total</small></div></li>');
         });
+        $$('#listado-horas div[style]').remove();
+        setTimeout(function(){
+            if($$('#horas').height() < ($$('#listado-horas').height()-46)){
+                $$('#listado-horas').append('<div style="height: '+(($$('#listado-horas').height()-46)-$$('#horas').height())+'px"></div>');
+            }
+        },500);
         Lungo.Router.article("main", "listado-horas");
         Lungo.Notification.hide();
         refresh_horas.hide();
@@ -171,6 +189,12 @@ var imprimirEquipos = function (result){
                 });
             }
         });
+        $$('#listado-equipos div.fixer').remove();
+        setTimeout(function(){
+            if(($$('ul#equipos').height()+$$('#listado-equipos > div.fondo-equipos').height()) < ($$('#listado-equipos').height()-46)){
+                $$('#listado-equipos').append('<div class="fixer" style="height: '+(($$('#listado-equipos').height()-46)-($$('ul#equipos').height()+$$('#listado-equipos > div').height()))+'px"></div>');
+            }
+        },500);
         Lungo.Router.article("main", "listado-equipos");
         Lungo.Notification.hide();
         refresh_equipos.hide();

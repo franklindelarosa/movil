@@ -3,7 +3,6 @@ Lungo.init({
 });
 Lungo.ready(function() {
     Lungo.Notification.show();
-    // $$('.sub-header').hide();
     var environment = Lungo.Core.environment();
     // console.log(environment.os.name);
     if(typeof(environment.os) != "undefined" && environment.os !== null) {
@@ -64,9 +63,7 @@ $$('#cancha').on('load', function(event) {
 // });
 $$('#listado-dias').on('load', function(event) {
     $$("#main h1.title").html("Dias Disponibles");
-    // $$('article#listado-dias header > h5').html(cancha.nombre);
     $$('.sub-header > h5').html(cancha.nombre);
-    // $$('.sub-header').show();
 });
 var refresh_dias = new Lungo.Element.Pull('#listado-dias', {
     onPull: "Desliza para actualizar",
@@ -83,9 +80,7 @@ var refresh_dias = new Lungo.Element.Pull('#listado-dias', {
 // });
 $$('#listado-horas').on('load', function(event) {
     $$("#main h1.title").html("Horas Disponibles");
-    // $$('article#listado-horas header > h5').html(cancha.nombre+' - '+label_fecha);
     $$('.sub-header > h5').html(cancha.nombre+' - '+label_fecha);
-    // $$('.sub-header').show();
 });
 var refresh_horas = new Lungo.Element.Pull('#listado-horas', {
     onPull: "Desliza para actualizar",
@@ -116,6 +111,16 @@ var refresh_equipos = new Lungo.Element.Pull('#listado-equipos', {
         Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
     }
 });
+var refresh_prueba = new Lungo.Element.Pull('#listado-prueba', {
+    onPull: "Desliza para actualizar",
+    onRelease: "Suelta para recargar",
+    onRefresh: "Recargando lista",
+    callback: function() {
+        // setTimeout(function(){refresh_prueba.hide();}, 3000);
+        var url = direccionBase+"site/equipos";
+        Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
+    }
+});
 // $$('#listado-equipos').on('swipeRight', function(event) {
 //     Lungo.Router.article("main", "listado-horas");
 // });
@@ -127,12 +132,6 @@ $$('#registrar').on('unload', function(event) {
 });
 $$('#invitar').on('unload', function(event) {
     setTimeout(function(){$$('#invitar div.form').find(':not(button)[id]').val('');}, 350)
-});
-$$('#listado-dias').on('unload', function(event) {
-    $$('.sub-header').hide();
-});
-$$('#listado-horas').on('unload', function(event) {
-    $$('.sub-header').hide();
 });
 // navigator.Backbutton.goHome(function() {
 //     console.log('success')
