@@ -6,6 +6,10 @@
 	color: gray;
 }
 
+div[data-fc-estado] {
+	margin-bottom: 5px;
+}
+
 li.thumb.big:not(.selectable) {
 	padding-bottom: .4em
 }
@@ -14,7 +18,7 @@ label.margen-select{
 	margin-right: 5px;
 }
 
-li > a.icono {
+a.icono {
 	float: right;
 	color: gray;
 	padding-top: 4px;

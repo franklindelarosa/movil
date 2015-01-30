@@ -97,6 +97,7 @@ var refresh_horas = new Lungo.Element.Pull('#listado-horas', {
 // });
 $$('#listado-equipos').on('load', function(event) {
     $$("#main h1.title").html("Equipos");
+    // $$('#listado-equipos > ul > li > div').removeAttr('style');
     $$('#li-equipo-cancha').html(cancha.nombre);
     $$('#li-equipo-fecha').html(label_fecha);
     $$('#li-equipo-hora').html(label_hora);
@@ -107,16 +108,6 @@ var refresh_equipos = new Lungo.Element.Pull('#listado-equipos', {
     onRefresh: "Recargando lista",
     callback: function() {
         // setTimeout(function(){refresh_equipos.hide();}, 3000);
-        var url = direccionBase+"site/equipos";
-        Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
-    }
-});
-var refresh_prueba = new Lungo.Element.Pull('#listado-prueba', {
-    onPull: "Desliza para actualizar",
-    onRelease: "Suelta para recargar",
-    onRefresh: "Recargando lista",
-    callback: function() {
-        // setTimeout(function(){refresh_prueba.hide();}, 3000);
         var url = direccionBase+"site/equipos";
         Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
     }
