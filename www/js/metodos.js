@@ -30,19 +30,24 @@ var imprimirCanchas = function (result){
     $$('#canchas').empty();
     // $$('#canchas').append('<li class="contrast pullable"><strong class="centrar">Desliza para recargar</strong><li/>');
     if(result.status === "ok"){
-        $$.each(result['data'], function(index, val) {
-            $$('#canchas').append('<li class="thumb selectable arrow" data-fc-id="'+
-                val.id_cancha+'" data-fc-cupo="'+val.cupo_max+'" data-fc-tel="'+val.telefono+'" data-fc-logo="'+val.imagen_logo+'" data-fc-image="'+val.imagen_cancha+
-                '"> <img src="http://fcracks.com/fcadm/web/images/logos/'+val.imagen_logo+'"/><div><strong>'+val.nombre+
-                '</strong><small>'+val.direccion+'</small></div></li>');
-        });
+        if (result.data.length > 0) {
+            $$.each(result['data'], function(index, val) {
+                $$('#canchas').append('<li class="thumb selectable arrow" data-fc-id="'+
+                    val.id_cancha+'" data-fc-cupo="'+val.cupo_max+'" data-fc-tel="'+val.telefono+'" data-fc-logo="'+val.imagen_logo+'" data-fc-image="'+val.imagen_cancha+
+                    '"> <img src="http://fcracks.com/fcadm/web/images/logos/'+val.imagen_logo+'"/><div><strong>'+val.nombre+
+                    '</strong><small>'+val.direccion+'</small></div></li>');
+            });
+            Lungo.Notification.hide();
+        }else{
+            var html_error = '<br><p class="centrar"><img src="images/warning.png"/></p><br><small class="centrar">No hay canchas disponibles en el momento</small>';
+            Lungo.Notification.html(html_error, "Cerrar");
+        }
         $$('#listado-canchas div[style]').remove();
         setTimeout(function(){
             if($$('#canchas').height() < ($$('#listado-canchas').height()-46)){
                 $$('#listado-canchas').append('<div style="height: '+(($$('#listado-canchas').height()-46)-$$('#canchas').height())+'px"></div>');
             }
         },500);
-        Lungo.Notification.hide();
         refresh_canchas.hide();
     }else{
         mostrarError();
