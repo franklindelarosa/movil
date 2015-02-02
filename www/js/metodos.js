@@ -239,7 +239,9 @@ var verificarRegistro = function (result){
         imprimirPerfil();
         if(sessionStorage["lanzadoDesdeHome"]){
             Lungo.Router.section("perfil");
-            imprimirEquipos(listadoDeEquipos);
+            if(listadoDeEquipos !== 'no'){
+                imprimirEquipos(listadoDeEquipos);
+            }
             Lungo.Notification.hide();
         }else{
             adicionarJugador();

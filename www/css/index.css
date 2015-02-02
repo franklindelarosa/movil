@@ -45,6 +45,7 @@ article#cancha h2{
 
 span.icon.plus {
 	color: #E5E5E5;
+	margin-top: 9px;
 }
 
 .separado {
@@ -80,6 +81,15 @@ footer > nav > a > p img {
 .img-perfil {
 	height: 90px;
 	width: auto;
+	margin-left: 1px;
+}
+
+@media only screen and (max-width: 322px) {
+	.img-perfil {
+		margin-left: 1px;
+		width: 100%;
+		height: auto;
+	}
 }
 
 #contenido small{
