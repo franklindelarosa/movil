@@ -112,17 +112,36 @@ var refresh_equipos = new Lungo.Element.Pull('#listado-equipos', {
         Lungo.Service.post(url, {cancha: cancha.id, fecha: fecha, hora: hora}, imprimirEquipos, "json");
     }
 });
+$$('#perfil').on('load', function(event) {
+    console.log('cargado');
+    $$('#article_perfil div.fixer').remove();
+    setTimeout(function(){
+        var resta = $$('#article_perfil').height() - 10 - $$('#contenido').height();
+        console.log(resta);
+        if(resta > 0){
+            $$('#article_perfil').append('<div class="fixer" style="height: '+resta+'px"></div>');
+        }
+    },500);
+});
+var refresh_perfil = new Lungo.Element.Pull('#article_perfil', {
+    onPull: "Desliza para actualizar",
+    onRelease: "Suelta para recargar",
+    onRefresh: "Recargando lista",
+    callback: function() {
+        imprimirPerfil();
+    }
+});
 // $$('#listado-equipos').on('swipeRight', function(event) {
 //     Lungo.Router.article("main", "listado-horas");
 // });
 $$('#login').on('unload', function(event) {
-    setTimeout(function(){$$('#login div.form').find(':not(button)[id]').val('');}, 350)
+    setTimeout(function(){$$('#login div.form').find(':not(button)[id]').val('');}, 350);
 });
 $$('#registrar').on('unload', function(event) {
-    setTimeout(function(){$$('#registrar div.form').find(':not(button)[id]').val('');}, 350)
+    setTimeout(function(){$$('#registrar div.form').find(':not(button)[id]').val('');}, 350);
 });
 $$('#invitar').on('unload', function(event) {
-    setTimeout(function(){$$('#invitar div.form').find(':not(button)[id]').val('');}, 350)
+    setTimeout(function(){$$('#invitar div.form').find(':not(button)[id]').val('');}, 350);
 });
 // navigator.Backbutton.goHome(function() {
 //     console.log('success')
@@ -137,6 +156,7 @@ $$('#lanzar-login').on('singleTap', function(event) {
         Lungo.Router.section("login");
     }
 });
+
 $$('#iniciar-sesion').on('singleTap', function(event) {
     var url = direccionBase+"site/login";
     document.activeElement.blur();
@@ -148,6 +168,16 @@ $$('#iniciar-sesion').on('singleTap', function(event) {
     }else{
         Lungo.Service.post(url, {correo: correo, contrasena: contrasena}, verificarLogin, "json");
     }
+});
+
+$$(document).on('singleTap', 'a#editar',function(event) {
+    $$('#edit_nombres').val(usuario.nombres);
+    $$('#edit_apellidos').val(usuario.apellidos);
+    $$('#edit_correo').val(usuario.correo);
+    $$('#edit_contrasena').val('');
+    $$('#edit_sexo').val(usuario.sex);
+    $$('#edit_telefono').val(usuario.telefono);
+    Lungo.Router.section('editar-perfil');
 });
 
 $$('#cerrar-sesion').on('singleTap', function(event) {
@@ -253,6 +283,34 @@ $$('#btn_registrar').on('singleTap', function(event) {
         Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
     }else{
         Lungo.Service.post(url, datos, verificarRegistro, "json");
+    }
+});
+
+$$('#btn_editar').on('singleTap', function(event) {
+    var url = direccionBase+"usuario/actualizar-perfil?access-token="+localStorage["_chrome-rel-back"];
+    document.activeElement.blur();
+    Lungo.Notification.show();
+    var datos = {
+        nombres: $$('#edit_nombres').val(),
+        apellidos: $$('#edit_apellidos').val(),
+        correo: $$('#edit_correo').val(),
+        contrasena: $$('#edit_contrasena').val(),
+        sexo: $$('#edit_sexo').val(),
+        telefono: $$('#edit_telefono').val()
+    };
+    if(datos.nombres === "" || datos.apellidos === "" || datos.correo === "" || datos.sexo === "" || datos.telefono === ""){
+        Lungo.Notification.error("Error", "Todos los campos son obligatorios", "remove", function(){return});
+    }else{
+        Lungo.Service.post(url, datos, function(result){
+            if(result.status === 'ok'){
+                localStorage["_chrome-rel-back"] = result.key;
+                imprimirPerfil();
+                Lungo.Notification.success("Correcto", result.mensaje, "ok", function(){return});
+                Lungo.Router.section("perfil");
+            }else{
+                Lungo.Notification.error("Error", result.mensaje, "remove", function(){return});
+            }
+        }, "json");
     }
 });
 

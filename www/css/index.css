@@ -6,13 +6,21 @@
 	color: gray;
 }
 
-.button.editar-perfil {
+#editar {
 	color: gray;
-	font-weight: normal;
+	font-size: 0.8em;
 	margin-left: 24%;
 	background-color: #FFF;
-	/*border-radius: 3px;*/
-	border: solid 1px gray 4px;
+	border-radius: 3px;
+	border: solid 1px gray;
+	padding: 1px;
+}
+
+#editar:active {
+	color: #FFF;
+	border-radius: 3px;
+	border-color: #003c5a;
+	background-color: #003c5a;
 }
 
 div[data-fc-estado] {

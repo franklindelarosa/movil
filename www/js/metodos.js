@@ -44,8 +44,9 @@ var imprimirCanchas = function (result){
         }
         $$('#listado-canchas div[style]').remove();
         setTimeout(function(){
-            if($$('#canchas').height() < ($$('#listado-canchas').height()-46)){
-                $$('#listado-canchas').append('<div style="height: '+(($$('#listado-canchas').height()-46)-$$('#canchas').height())+'px"></div>');
+            var resta = $$('#listado-canchas').height() - $$('#canchas').height();
+            if(resta > 0){
+                $$('#listado-canchas').append('<div style="height: '+resta+'px"></div>');
             }
         },500);
         refresh_canchas.hide();
@@ -66,10 +67,11 @@ var imprimirDias = function (result){
                 val.dia+'"><div><strong>'+capitaliseFirstLetter(val.label)+
                 '</strong><small>'+val.total+' '+name+'</small></div></li>');
         });
-        $$('#listado-dias div[style]').remove();
+        $$('#listado-dias div.fixer').remove();
         setTimeout(function(){
-            if($$('#dias').height() < ($$('#listado-dias').height()-46)){
-                $$('#listado-dias').append('<div style="height: '+(($$('#listado-dias').height()-46)-$$('#dias').height())+'px"></div>');
+            var resta = $$('#listado-dias').height() - ($$('#listado-dias .sub-header').height() + $$('#dias').height());
+            if(resta > 0){
+                $$('#listado-dias').append('<div class="fixer" style="height: '+resta+'px"></div>');
             }
         },500);
         Lungo.Router.article("main", "listado-dias");
@@ -93,10 +95,11 @@ var imprimirHoras = function (result){
                val.label+'" data-fc-blancos="'+val.blancos+'" data-fc-negros="'+val.negros+'"><div><div class="derecha">'+Math.floor(val.venta.substr(0,(val.venta.length-3))/cancha.cupo_max).formatMoney(0,"$")+' c/u <small>'+val.disponibles+' '+name+'</small></div><strong>'+val.label+
                 '</strong><small>'+Math.floor(val.venta.substr(0,(val.venta.length-3))).formatMoney(0,"$")+' Total</small></div></li>');
         });
-        $$('#listado-horas div[style]').remove();
+        $$('#listado-horas div.fixer').remove();
         setTimeout(function(){
-            if($$('#horas').height() < ($$('#listado-horas').height()-46)){
-                $$('#listado-horas').append('<div style="height: '+(($$('#listado-horas').height()-46)-$$('#horas').height())+'px"></div>');
+            var resta = $$('#listado-horas').height() - ($$('#horas').height() + $$('#listado-horas .sub-header').height());
+            if(resta > 0){
+                $$('#listado-horas').append('<div class="fixer" style="height: '+resta+'px"></div>');
             }
         },500);
         Lungo.Router.article("main", "listado-horas");
@@ -196,8 +199,9 @@ var imprimirEquipos = function (result){
         });
         $$('#listado-equipos div.fixer').remove();
         setTimeout(function(){
-            if(($$('ul#equipos').height()+$$('#listado-equipos > div.fondo-equipos').height()) < ($$('#listado-equipos').height()-46)){
-                $$('#listado-equipos').append('<div class="fixer" style="height: '+(($$('#listado-equipos').height()-46)-($$('ul#equipos').height()+$$('#listado-equipos > div').height()))+'px"></div>');
+            var resta = $$('#listado-equipos').height() - ($$('#listado-equipos > div.fondo-equipos').height() + $$('ul#equipos').height());
+            if(resta > 0){
+                $$('#listado-equipos').append('<div class="fixer" style="height: '+resta+'px"></div>');
             }
         },500);
         Lungo.Router.article("main", "listado-equipos");
@@ -401,38 +405,44 @@ function imprimirPerfil(){
     var url = direccionBase+"usuario/info-perfil?access-token="+localStorage["_chrome-rel-back"];
     Lungo.Service.post(url, "id=1", function(result){
         // console.log(result);
-        var articulo = $$('#article_perfil div#contenido');
-        articulo.empty();
-        articulo.append('<div class="layout horizontal"><div data-layout="quarter"><p class="centrar"><img class="img-perfil" src="images/profile.png"/></p></div><div style="margin-left: 10px" data-layout="primary"><h4>'+
-        result.data.nombre+'</h4><small><span class="icon envelope"></span> '+result.data.correo+'</small><br><small><span class="icon phone"></span> '+result.data.telefono+'</small><a href="#" data-view-section="editar-perfil" class="editar-perfil button tiny">Editar Perfil</a><br><small><span class="icon ok"></span> '+result.total+
-        ' partidos</small></div></div><div class="list"><ul id="history"><li><p class="centrar">Partidos reservados</p></li></ul></div>');
-        if(result.pendientes.length > 0){
-            $$.each(result.pendientes, function(index, val) {
-                $$('#history').append('<li class="selectable" data-fc-id="'+val.id_cancha+'" data-fc-cancha="'+val.nombre+'" '+
-                'data-fc-cupo="'+val.cupo_max+'" data-fc-dir="'+val.direccion+'" data-fc-tel="'+val.telefono+'" '+
-                'data-fc-logo="'+val.imagen_logo+'" data-fc-image="'+val.imagen_cancha+'" data-fc-fecha="'+val.fecha+'" data-fc-hora="'+val.hora+'">'+
-                '<div style="width:100%;">'+
-                    '<div style="display:inline-block; width:50%;">'+
-                        '<strong>'+val.nombre+'</strong>'+
+        if(result.status === 'ok'){
+            usuario = result.data;
+            var articulo = $$('#article_perfil div#contenido');
+            articulo.empty();
+            articulo.append('<div class="layout horizontal"><div data-layout="quarter"><p class="centrar"><img class="img-perfil" src="images/profile.png"/></p></div><div style="margin-left: 10px" data-layout="primary"><h4>'+
+            usuario.nombre+'</h4><small><span class="icon envelope"></span> '+usuario.correo+'</small><br><small><span class="icon phone"></span> '+usuario.telefono+'</small><a href="#" id="editar" class="editar-perfil"> Editar Perfil </a><br><small><span class="icon ok"></span> '+result.total+
+            ' partidos</small></div></div><div class="list"><ul id="history"><li><p class="centrar">Partidos reservados</p></li></ul></div>');
+            if(result.pendientes.length > 0){
+                $$.each(result.pendientes, function(index, val) {
+                    $$('#history').append('<li class="selectable" data-fc-id="'+val.id_cancha+'" data-fc-cancha="'+val.nombre+'" '+
+                    'data-fc-cupo="'+val.cupo_max+'" data-fc-dir="'+val.direccion+'" data-fc-tel="'+val.telefono+'" '+
+                    'data-fc-logo="'+val.imagen_logo+'" data-fc-image="'+val.imagen_cancha+'" data-fc-fecha="'+val.fecha+'" data-fc-hora="'+val.hora+'">'+
+                    '<div style="width:100%;">'+
+                        '<div style="display:inline-block; width:50%;">'+
+                            '<strong>'+val.nombre+'</strong>'+
+                        '</div>'+
+                        '<div style="display:inline-block; width:50%;">'+
+                            '<small data-fc-label-fecha>'+capitaliseFirstLetter(val.label_fecha)+'</small>'+
+                        '</div>'+
                     '</div>'+
-                    '<div style="display:inline-block; width:50%;">'+
-                        '<small data-fc-label-fecha>'+capitaliseFirstLetter(val.label_fecha)+'</small>'+
+                    '<div style="width:100%;">'+
+                        '<div style="display:inline-block; width:50%;">'+
+                            '<small>'+val.direccion+'</small>'+
+                        '</div>'+
+                        '<div style="display:inline-block; width:50%;">'+
+                            '<small data-fc-label-hora> '+val.label_hora+'</small>'+
+                        '</div>'+
                     '</div>'+
-                '</div>'+
-                '<div style="width:100%;">'+
-                    '<div style="display:inline-block; width:50%;">'+
-                        '<small>'+val.direccion+'</small>'+
-                    '</div>'+
-                    '<div style="display:inline-block; width:50%;">'+
-                        '<small data-fc-label-hora> '+val.label_hora+'</small>'+
-                    '</div>'+
-                '</div>'+
-                '</li>');
-            });
+                    '</li>');
+                });
+            }else{
+                $$('#history').append('<li><p class="centrar"><small>No tienes partidos reservados</small></p></li>');
+            }
         }else{
-            $$('#history').append('<li><p class="centrar"><small>No tienes partidos reservados</small></p></li>');
+            //Error con retorno de perfil
         }
     }, "json");
+    refresh_perfil.hide();
     // Lungo.Notification.hide();
 }
 
