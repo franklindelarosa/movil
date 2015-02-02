@@ -404,7 +404,7 @@ function imprimirPerfil(){
         var articulo = $$('#article_perfil div#contenido');
         articulo.empty();
         articulo.append('<div class="layout horizontal"><div data-layout="quarter"><p class="centrar"><img class="img-perfil" src="images/profile.png"/></p></div><div style="margin-left: 10px" data-layout="primary"><h4>'+
-        result.data.nombre+'</h4><small><span class="icon envelope"></span> '+result.data.correo+'</small><br><small><span class="icon phone"></span> '+result.data.telefono+'</small><br><small><span class="icon ok"></span> '+result.total+
+        result.data.nombre+'</h4><small><span class="icon envelope"></span> '+result.data.correo+'</small><br><small><span class="icon phone"></span> '+result.data.telefono+'</small><a href="#" data-view-section="editar-perfil" class="editar-perfil button tiny">Editar Perfil</a><br><small><span class="icon ok"></span> '+result.total+
         ' partidos</small></div></div><div class="list"><ul id="history"><li><p class="centrar">Partidos reservados</p></li></ul></div>');
         if(result.pendientes.length > 0){
             $$.each(result.pendientes, function(index, val) {

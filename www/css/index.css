@@ -6,6 +6,15 @@
 	color: gray;
 }
 
+.button.editar-perfil {
+	color: gray;
+	font-weight: normal;
+	margin-left: 24%;
+	background-color: #FFF;
+	/*border-radius: 3px;*/
+	border: solid 1px gray 4px;
+}
+
 div[data-fc-estado] {
 	margin-bottom: 5px;
 }

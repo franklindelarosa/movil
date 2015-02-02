@@ -164,8 +164,8 @@
                     <label class="select border">
                         <select id="campo_sexo">
                             <option value="">Selecciona sexo</option>
-                            <option value="m">Masculino</option>
-                            <option value="f">Femenino</option>
+                            <option value="m">Hombre</option>
+                            <option value="f">Mujer</option>
                         </select>
                     </label>
                 </fieldset>
@@ -196,8 +196,8 @@
                     <label class="select border">
                         <select id="inv_sexo">
                             <option value="">Selecciona sexo</option>
-                            <option value="m">Masculino</option>
-                            <option value="f">Femenino</option>
+                            <option value="m">Hombre</option>
+                            <option value="f">Mujer</option>
                         </select>
                     </label>
                 </fieldset>
@@ -230,18 +230,38 @@
         </article>
     </section>
 
-    <section id="cuenta" data-transition="cover">
-        <header data-title="Configuración">
-            <nav><button data-icon="angle-left" data-view-section="back"></button></nav>
+    <section id="editar-perfil" data-transition="cover">
+        <header data-title="Editar perfil">
+            <nav class="on-left"><button data-icon="angle-left" data-view-section="perfil"></button></nav>
         </header>
         <article class="active scroll indented">
-            <h1 class="centrar">Config...</h1>
-            <p class="centrar">
-                <img src="images/profile.png" alt="...">
-            </p>
-            <p class="centrar">
-                <a id="cerrar-sesion" class="button anchor cancel" href="#" data-label="Cerrar Sesión"></a>
-            </p>
+            <div class="form">
+                <fieldset>
+                    <input id="edit_nombres" type="text" placeholder="Nombre(s)">
+                </fieldset>
+                <fieldset>
+                    <input id="edit_apellidos" type="text" placeholder="Apellido(s)">
+                </fieldset>
+                <fieldset>
+                    <input id="edit_correo" type="email" placeholder="Correo electrónico">
+                </fieldset>
+                <fieldset>
+                    <input id="edit_contrasena" type="password" placeholder="Contraseña">
+                </fieldset>
+                <fieldset>
+                    <label class="select border">
+                        <select id="edit_sexo">
+                            <option value="">Selecciona sexo</option>
+                            <option value="m">Hombre</option>
+                            <option value="f">Mujer</option>
+                        </select>
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <input id="edit_telefono" type="tel" placeholder="Telefono">
+                </fieldset>
+                <a href="#" id="btn_editar" class="button anchor accept margin-top margin-bottom" data-label="Guardar cambios"></a>
+            </div>
         </article>
     </section>
 
