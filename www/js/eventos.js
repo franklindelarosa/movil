@@ -42,6 +42,9 @@ Lungo.ready(function() {
 
 
 
+$$('#main').on('load', function(event) {
+    document.activeElement.blur();
+});
 $$('#listado-canchas').on('load', function(event) {
     $$("#main h1.title").html("Canchas");
 });
@@ -113,6 +116,7 @@ var refresh_equipos = new Lungo.Element.Pull('#listado-equipos', {
     }
 });
 $$('#perfil').on('load', function(event) {
+    document.activeElement.blur();
     console.log('cargado');
     $$('#article_perfil div.fixer').remove();
     setTimeout(function(){
