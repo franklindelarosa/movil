@@ -62,7 +62,7 @@ article#cancha h2{
 
 span.icon.plus {
 	color: #E5E5E5;
-	margin-top: 9px;
+	/*margin-top: 4px;*/
 }
 
 .separado {
@@ -72,6 +72,7 @@ span.icon.plus {
 .no-margin {
 	margin: 0px;
 }
+
 .derecha {
 	position: absolute;
 	right: 2.2em;
@@ -79,6 +80,19 @@ span.icon.plus {
 	font-size: 1.1em;
 	color: #808080;
 	font-weight: 400;
+}
+
+.derecha-equipos {
+	position: absolute;
+	right: 0.4em;
+	top: 4%;
+	font-size: 1.1em;
+	color: #808080;
+	font-weight: 400;
+}
+
+#unirse-negro .derecha-equipos {
+	top: 10%;
 }
 
 footer > nav > a{

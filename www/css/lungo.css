@@ -48,7 +48,7 @@ body[data-os=firefoxos] [data-os=android],body[data-os=firefoxos] [data-os=ios],
 .list li.thumb:not(.big) > div{padding-left:.8em}
 .list li.arrow::after{position:absolute;right:.8em;top:38%;width:.7em;height:.7em;content:'';border-right:.2em solid;border-top:.2em solid;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg)}
 .list li a{display:block;text-decoration:none}
-.list li .icon{display:inline-block;float:left;margin-right:.4em;text-align:center;line-height:1em;width:24px;height:24px;font-size:1.4em}
+.list li .icon{display:inline-block;float:left;margin-right:.4em;text-align:center;line-height:1em;width:24px;height:24px;font-size:2.2em}
 .list li.anchor{padding:.25em .5em;}
 .list li.anchor .tag{display:none}
 .list li h1,.list li h2,.list li h3,.list li h4,.list li h5,.list li h6,.list li strong,.list li small{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:block}
