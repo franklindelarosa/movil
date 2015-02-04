@@ -85,14 +85,14 @@ span.icon.plus {
 .derecha-equipos {
 	position: absolute;
 	right: 0.4em;
-	top: 4%;
+	top: 16px;
 	font-size: 1.1em;
 	color: #808080;
 	font-weight: 400;
 }
 
 #unirse-negro .derecha-equipos {
-	top: 10%;
+	top: 15px;
 }
 
 footer > nav > a{

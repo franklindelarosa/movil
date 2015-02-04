@@ -121,14 +121,14 @@ var imprimirEquipos = function (result){
     $$('#unirse-negro > div span').html('');
 
     if(total_blancos < cancha.cupo_max/2){
-        $$('#unirse-blanco').show();
+        $$('#unirse-blanco .derecha-equipos').show();
     }else{
-        $$('#unirse-blanco').hide();
+        $$('#unirse-blanco .derecha-equipos').hide();
     }
     if(total_negros < cancha.cupo_max/2){
-        $$('#unirse-negro').show();
+        $$('#unirse-negro .derecha-equipos').show();
     }else{
-        $$('#unirse-negro').hide();
+        $$('#unirse-negro .derecha-equipos').hide();
     }
     $$('#unirse-blanco > div span').attr('class', 'icon plus');
     $$('#unirse-blanco').attr('data-fc-estado', 'no');
@@ -274,7 +274,7 @@ var imprimirJugador = function(result){
         if(result.data.equipo === "b"){
             total_blancos += 1;
             if(total_blancos === cancha.cupo_max/2){
-                $$('#unirse-blanco').hide();
+                $$('#unirse-blanco .derecha-equipos').hide();
             }
             $$('#unirse-blanco').attr('data-fc-estado', 'si');
             $$('#unirse-blanco > div span').removeClass();
@@ -287,7 +287,7 @@ var imprimirJugador = function(result){
         }else{
             total_negros += 1;
             if(total_negros === cancha.cupo_max/2){
-                $$('#unirse-negro').hide();
+                $$('#unirse-negro .derecha-equipos').hide();
             }
             $$('#unirse-negro').attr('data-fc-estado', 'si');
             $$('#unirse-negro > div span').removeClass();
@@ -334,10 +334,10 @@ var verificarEliminacion = function(result){
         $$('#unirse-negro > div span').attr('class', 'icon plus');
         $$('#unirse-negro > div span').html('');
         if(total_blancos < cancha.cupo_max/2){
-            $$('#unirse-blanco').show();
+            $$('#unirse-blanco .derecha-equipos').show();
         }
         if(total_negros < cancha.cupo_max/2){
-            $$('#unirse-negro').show();
+            $$('#unirse-negro .derecha-equipos').show();
         }
         $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
         $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
@@ -363,10 +363,10 @@ var verificarEliminacionInvitado = function(result){
             $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));
         }
         if(total_blancos < cancha.cupo_max/2){
-            $$('#unirse-blanco').show();
+            $$('#unirse-blanco .derecha-equipos').show();
         }
         if(total_negros < cancha.cupo_max/2){
-            $$('#unirse-negro').show();
+            $$('#unirse-negro .derecha-equipos').show();
         }
         Lungo.Notification.hide();
     }else{
@@ -380,14 +380,14 @@ var verificarInvitacion = function(result){
         if(result.data.equipo === "blancos"){
             total_blancos += 1;
             if(total_blancos === cancha.cupo_max/2){
-                $$('#unirse-blanco').hide();
+                $$('#unirse-blanco .derecha-equipos').hide();
             }
             $$('#equipo-blanco').append('<li data-fc-id-responsable="'+result.data.responsable+'" data-fc-id-invitado="'+result.data.id+'" data-fc-equipo="b" data-fc-entidad="invitado"><span class=" icon group"></span><a id="sacar-invitado-blanco" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Invitado</small></li>');
             $$('#listado-equipos ul > li:first-child h2').html("Equipo Blanco\t"+total_blancos +"/"+(cancha.cupo_max/2));
         }else{
             total_negros += 1;
             if(total_negros === cancha.cupo_max/2){
-                $$('#unirse-negro').hide();
+                $$('#unirse-negro .derecha-equipos').hide();
             }
             $$('#equipo-negro').append('<li data-fc-id-responsable="'+result.data.responsable+'" data-fc-id-invitado="'+result.data.id+'" data-fc-equipo="n" data-fc-entidad="invitado"><span class=" icon group"></span><a id="sacar-invitado-negro" href="#" class="icono"><span style="color:#e74c3c" class="icon remove-sign"></span></a><strong>'+result.data.nombre+'</strong><small>Invitado</small></li>');
             $$('#listado-equipos ul > li:nth-child(2) h2').html("Equipo Negro\t"+total_negros +"/"+(cancha.cupo_max/2));

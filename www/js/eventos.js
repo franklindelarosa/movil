@@ -117,11 +117,9 @@ var refresh_equipos = new Lungo.Element.Pull('#listado-equipos', {
 });
 $$('#perfil').on('load', function(event) {
     document.activeElement.blur();
-    console.log('cargado');
     $$('#article_perfil div.fixer').remove();
     setTimeout(function(){
         var resta = $$('#article_perfil').height() - 10 - $$('#contenido').height();
-        console.log(resta);
         if(resta > 0){
             $$('#article_perfil').append('<div class="fixer" style="height: '+resta+'px"></div>');
         }
